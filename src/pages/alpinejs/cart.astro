@@ -1,0 +1,77 @@
+---
+import Base from "../../layouts/base.astro";
+---
+
+<style lang="scss">
+    #single-subject {
+        p {
+            transition: all ease-out 0.8s;
+        }
+    }
+</style>
+
+<script>
+    import alpine from 'alpinejs';
+
+    alpine.store('cart', {
+        items: [],
+        total: 0,
+        add(newItem) {
+
+            const cartItem = this.items.find(item => item.id === newItem.id);
+
+            if(!cartItem) {
+                this.items.push({...newItem, count: 1, total: newItem.price });
+                this.total += newItem.price;
+            } else
+                this.items = this.items.map((item) => {
+                    if(item.id !== newItem.id) return item;
+                    item.count += 1;
+                    item.total = item.price * item.count;
+                    this.total += item.price;
+                    return item;
+                });
+        },
+        remove(id) {
+
+            const cartItem = this.items.find(item => item.id === id);
+
+            if(cartItem.count > 1)
+                this.items = this.items.map((item) => {
+                    if(item.id !== id) return item;
+                    item.count -= 1;
+                    item.total = item.price * item.count;
+                    this.total -= item.price;
+                    return item;
+                });
+            else if(cartItem.count === 1) {
+                this.items = this.items.filter((item) => item.id !== id);
+                this.total -= cartItem.price;
+            }
+        }
+    });
+
+    alpine.start();
+</script>
+
+<Base>
+    <div id="single-subject" class="relative" x-data>
+
+        <button type="button" @click="$store.cart.add({id:1, name: 'item1', price: 10})">item 1</button>
+        <button type="button" @click="$store.cart.add({id:2, name: 'item2', price: 20})">item 2</button>
+        <button type="button" @click="$store.cart.add({id:3, name: 'item3', price: 30})">item 3</button>
+
+        <ul>
+            <template x-for="(item, index) in $store.cart.items" x-key="index">
+                <li>
+                    <div x-text="item.name + ' ' + item.count + 'for' + item.total"></div>
+                    <button type="button" @click="$store.cart.remove(item.id)">remove</button>
+                    <button @click="$store.cart.add(item)">add</button>
+                </li>
+            </template>
+        </ul>
+
+        <div x-text="$store.cart.total"></div>
+
+    </div>
+</Base>
