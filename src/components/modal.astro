@@ -1,0 +1,52 @@
+---
+import DimBg from "./dim-bg.astro";
+import Close from "./icon-close.astro";
+---
+<style lang="scss" is:global>
+    .modal-box {
+        
+        .modal-header {
+
+            button {
+                max-width: 5rem;
+                max-height: 5rem;
+            }
+        }
+        
+        .modal-body {
+            box-shadow: 0px 0px 10px -3px white;
+        }
+    }
+</style>
+<div id="cart-modal" class="modal-box grid content-center w-full h-full fixed inset-0" x-show="open">
+    <DimBg />
+    <div 
+        class="modal-content 
+        px-4 py-8 
+        flex flex-col justify-start 
+        items-center 
+        overflow-y-auto 
+        relative z-20"
+    >
+        <div 
+            class="modal-header 
+            max-w-md mx-auto 
+            w-full 
+            fixed top-0 left-1/2 translate-x-[-50%] 
+            flex justify-end"
+        >
+            <button class="bg-white" type="button" @click="toggle()">
+                <Close fill="#1e3a8a" />
+            </button>
+        </div>
+        <div 
+            class="modal-body 
+            max-w-md mx-auto 
+            my-32 px-4 py-2 
+            w-full 
+            border border-blue-900 rounded-xl"
+        >
+        <slot></slot>
+        </div>
+    </div>
+</div>
