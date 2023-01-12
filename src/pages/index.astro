@@ -3,5 +3,35 @@ import Base from "../layouts/base.astro";
 ---
 
 <Base title="the blog">
-	<h2>welcome to the blog</h2>
+	<main class="h-full grid content-center">
+		<div 
+			class="page-box 
+			h-full 
+			flex flex-col justify-start
+			overflow-y-auto"
+		>
+			<header class="p-4 bg-black text-white">
+				<h1 class="font-mont font-bold text-8xl capitalize">blog</h1>
+				<h2 class="inline-block font-ssp font-regular mt-8 text-4xl">andrew saeed zachary</h2>
+				<a 
+					href="https://github.com/andrew-zachary"
+					class="btn-icon-txt
+					max-w-[20rem]
+					text-white
+					mt-4
+					border border-black rounded-2xl 
+					flex justify-between items-center"
+				>
+					<img class="bg-white rounded-full w-16" src="https://www.svgrepo.com/show/448447/github.svg" alt="source code">
+					<p class="text-3xl font-bold">{`<my-github />`}</p>
+				</a>
+			</header>
+			<ul class="p-4 mt-14 text-5xl capitalize">
+				<li>
+					<a class="block font-ssp" href="/alpinejs/cart">shopping cart with alpinejs and tailwind.</a>
+					<span class="text-3xl">11 January 2023</span>
+				</li>
+			</ul>
+		</div>
+	</main>
 </Base>
