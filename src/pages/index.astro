@@ -5,33 +5,39 @@ import Base from "../layouts/base.astro";
 <Base title="the blog">
 	<main class="h-full grid content-center">
 		<div 
-			class="page-box 
+			class="page-box
+			py-8
+			bg-black
 			h-full 
 			flex flex-col justify-start
 			overflow-y-auto"
 		>
-			<header class="p-4 bg-black text-white">
-				<h1 class="font-mont font-bold text-8xl capitalize">blog</h1>
-				<h2 class="inline-block font-ssp font-regular mt-8 text-4xl">andrew saeed zachary</h2>
-				<a 
+			<div class="max-w-md mx-auto p-4 text-white">
+				<h1 class="font-mont font-bold text-8xl capitalize">andrew saeed zachary</h1>
+				<h2 class="font-ssp font-regular text-6xl capitalize">frontend web developer | freelancer</h2>
+				<a
 					href="https://github.com/andrew-zachary"
 					class="btn-icon-txt
-					max-w-[20rem]
 					text-white
-					mt-4
-					border border-black rounded-2xl 
-					flex justify-between items-center"
+					mt-8
+					border border-black rounded-2xl
+					flex justify-start items-center"
 				>
-					<img class="bg-white rounded-full w-16" src="https://www.svgrepo.com/show/448447/github.svg" alt="source code">
-					<p class="text-3xl font-bold">{`<my-github />`}</p>
+					<img class="bg-white border border-white rounded-full w-16" src="https://www.svgrepo.com/show/378420/github-fill.svg" alt="source code">
+					<p class="text-5xl font-ssp font-regular mx-8">{`<github />`}</p>
 				</a>
-			</header>
-			<ul class="p-4 mt-14 text-5xl capitalize">
-				<li>
-					<a class="block font-ssp" href="/alpinejs/cart">shopping cart with alpinejs and tailwind.</a>
-					<span class="text-3xl">11 January 2023</span>
-				</li>
-			</ul>
+				<a
+					href="https://twitter.com/andrewzach"
+					class="btn-icon-txt
+					text-white
+					mt-8
+					border border-black rounded-2xl
+					flex justify-start items-center"
+				>
+					<img class="bg-white border border-white rounded-full w-16" src="https://www.svgrepo.com/show/138536/twitter-social-logotype.svg" alt="twitter">
+					<p class="text-5xl font-ssp font-regular mx-8">{`<twitter />`}</p>
+				</a>
+			</div>
 		</div>
 	</main>
 </Base>
