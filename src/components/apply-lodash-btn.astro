@@ -1,0 +1,22 @@
+---
+const {type, item} = Astro.props;
+---
+<script></script>
+<style lang="scss" is:global>
+    .applyLodash.current {
+        background-color: black;
+        color: white;
+    }
+</style>
+<button
+    type={type}
+    class="applyLodash font-ssp font-bold text-3xl capitalize 
+    border border-black 
+    rounded-2xl
+    p-2"
+    data-label=`${item.label}`
+    :class="$el.dataset.label === currentUtil?'current':''"
+    @click=`applyLodash(${JSON.stringify(item)});`;
+>
+    <slot></slot>
+</button>
