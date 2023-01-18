@@ -1,0 +1,4 @@
+{
+    "1": {"name": "en", "target": "en", "dir": "ltr"},
+    "2": {"name": "ar", "target": "العربية", "dir": "rtl"}
+}

@@ -1,0 +1,59 @@
+---
+import Langs from '../../../../data/meta.json';
+
+import Base from "../../../../layouts/base.astro";
+import Title from "../../../../components/title.astro";
+import ContainerCenterScroll from "../../../../components/container-center-scroll.astro";
+
+export async function getStaticPaths() {
+
+    const posts = await Astro.glob('../../../../data/*.mdx');
+    const paths = [];
+
+    Object.keys(Langs).forEach(lang => {
+
+        const metaLangName = Langs[lang]['name'];
+        const metaLangDir = Langs[lang]['dir'];
+
+        posts.forEach(post => {
+            paths.push({
+                params: {
+                    lang: metaLangName,
+                    post: post['content'][metaLangName]['slug'],
+                },
+                props: {
+                    title: post['content'][metaLangName]['title'],
+                    description: post['content'][metaLangName]['description'],
+                    blocks: post['content'][metaLangName]['blocks'],
+                    dir: metaLangDir
+                }
+            });
+        });
+
+    });
+
+    return paths;
+}
+
+const {lang} = Astro.params;
+const {dir} = Astro.props;
+const {title, description, blocks} = Astro.props;
+---
+<Base lang={lang} dir={dir}>
+    <Title>{title}</Title>
+    <ContainerCenterScroll>
+        <section class="page-box w-full max-w-md mx-auto">
+            <h2 class="p-2 font-ssp font-bold text-5xl">{description}</h2>
+            <ul>
+                {
+                    blocks.map(block => {
+                        return <li class="p-2">
+                            <h1 class="font-mont font-bold text-4xl mt-8">{block.title}</h1>
+                            <p class="font-ssp font-regular text-3xl mt-4">{block.content}</p>
+                        </li>
+                    })
+                }
+            </ul>
+        </section>
+    </ContainerCenterScroll>
+</Base>
