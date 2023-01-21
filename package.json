@@ -1,7 +1,8 @@
 {
-  "name": "@example/minimal",
+  "name": "the-blog-labs",
+  "description": "knowledge sharing is the key that will open the one door and construct the many paths to inspiration and perfection.",
   "type": "module",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "astro dev",
