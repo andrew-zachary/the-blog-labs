@@ -55,6 +55,61 @@ import Remove from "../../components/icon-remove.astro";
             }
         }
     }
+
+    .animate__animated {
+        animation-duration: 1s;
+        animation-fill-mode: both;
+    }
+
+    @keyframes jello {
+        from,
+        11.1%,
+        to {
+            -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+        }
+
+        22.2% {
+            -webkit-transform: skewX(-12.5deg) skewY(-12.5deg);
+            transform: skewX(-12.5deg) skewY(-12.5deg);
+        }
+
+        33.3% {
+            -webkit-transform: skewX(6.25deg) skewY(6.25deg);
+            transform: skewX(6.25deg) skewY(6.25deg);
+        }
+
+        44.4% {
+            -webkit-transform: skewX(-3.125deg) skewY(-3.125deg);
+            transform: skewX(-3.125deg) skewY(-3.125deg);
+        }
+
+        55.5% {
+            -webkit-transform: skewX(1.5625deg) skewY(1.5625deg);
+            transform: skewX(1.5625deg) skewY(1.5625deg);
+        }
+
+        66.6% {
+            -webkit-transform: skewX(-0.78125deg) skewY(-0.78125deg);
+            transform: skewX(-0.78125deg) skewY(-0.78125deg);
+        }
+
+        77.7% {
+            -webkit-transform: skewX(0.390625deg) skewY(0.390625deg);
+            transform: skewX(0.390625deg) skewY(0.390625deg);
+        }
+
+        88.8% {
+            -webkit-transform: skewX(-0.1953125deg) skewY(-0.1953125deg);
+            transform: skewX(-0.1953125deg) skewY(-0.1953125deg);
+        }
+    }
+
+    .animate__jello {
+        animation-name: jello;
+        transform-origin: center;
+    }
+
 </style>
 
 <script>
@@ -97,6 +152,7 @@ import Remove from "../../components/icon-remove.astro";
                     this.count += 1;
                     return item;
                 });
+
         },
         remove(id) {
 
@@ -119,10 +175,30 @@ import Remove from "../../components/icon-remove.astro";
         }
     });
 
+    alpine.data('cart_container', () => ({
+        open: false,
+        init() {
+            this.$refs.cartBox.addEventListener('animationend', () => {
+                this.$refs.cartBox.classList.remove('animate__jello');
+            });
+            this.$watch('$store.cart.count', () => this.$refs.cartBox.classList.add('animate__jello'));
+        },
+        toggle(){
+            this.open = !this.open;
+            if(this.open) {
+                document.body.style.overflow = 'hidden'; 
+            } else {
+                document.body.style.overflow = 'auto';
+            }
+        }
+    }));
+
     alpine.start();
 </script>
 
 <Base>
+
+    <!-- products list -->
     <div id="products-list" class="max-w-lg mx-auto" x-data='products'>
 
         <ul class="p-4">
@@ -142,17 +218,10 @@ import Remove from "../../components/icon-remove.astro";
         </ul>
 
     </div>
-    <div id="cart" x-data="{
-        open: false, 
-        toggle(){
-            this.open = !this.open;
-            if(this.open) {
-                document.body.style.overflow = 'hidden'; 
-            } else {
-                document.body.style.overflow = 'auto';
-            }
-        }
-    }">
+    <!-- products list -->
+
+    <!-- the cart -->
+    <div id="cart" x-data="cart_container">
 
         <button
             type="button"
@@ -166,14 +235,14 @@ import Remove from "../../components/icon-remove.astro";
         >
             <div 
                 class="p-4
-                rounded-xl
+                rounded-tl-xl rounded-bl-xl
                 bg-white
                 text-blue-900
                 flex items-center justify-center"
             >
                 <span class="text-6xl font-bold" x-text="$store.cart.count"></span>
                 <span class="text-6xl mx-2">x</span>
-                <div class="svg-box">
+                <div class="svg-box animate__animated animate__jello" x-ref="cartBox">
                     <Cart fill="#1e3a8a" />
                 </div>
             </div>
@@ -185,7 +254,8 @@ import Remove from "../../components/icon-remove.astro";
 
         <template x-teleport="body">
             <Modal>
-                <ul id="cart-products-list">
+                <h1 class="text-white text-4xl capitalize text-center" x-show="$store.cart.items.length === 0">cart is empty</h1>
+                <ul id="cart-products-list" x-show="$store.cart.items.length > 0">
                     <template x-for="(item, index) in $store.cart.items" x-key="index">
                         <li class="p-4 my-12 text-white border-b border-white">
                             <div class="text-6xl font-bold capitalize" x-text="item.name"></div>
@@ -205,4 +275,6 @@ import Remove from "../../components/icon-remove.astro";
         </template>
 
     </div>
+    <!-- the cart -->
+
 </Base>
