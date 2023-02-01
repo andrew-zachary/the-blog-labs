@@ -18,7 +18,7 @@ import Remove from "../../components/icon-remove.astro";
 
         ul {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(28rem, 31rem));
+            grid-template-columns: repeat(auto-fit, 31rem);
             justify-content: center;
             gap: 1rem 1rem;
 
@@ -29,7 +29,6 @@ import Remove from "../../components/icon-remove.astro";
     }
 
     #cart {
-        height: 7.4rem;
 
         button {
 
@@ -177,19 +176,23 @@ import Remove from "../../components/icon-remove.astro";
 
     alpine.data('cart_container', () => ({
         open: false,
+        submitted: false,
         init() {
-            this.$refs.cartBox.addEventListener('animationend', () => {
+            this.$watch('$store.cart.count', () => {
                 this.$refs.cartBox.classList.remove('animate__jello');
+                setTimeout(() => this.$refs.cartBox.classList.add('animate__jello'), 0);
             });
-            this.$watch('$store.cart.count', () => this.$refs.cartBox.classList.add('animate__jello'));
         },
-        toggle(){
+        toggle() {
             this.open = !this.open;
             if(this.open) {
                 document.body.style.overflow = 'hidden'; 
             } else {
                 document.body.style.overflow = 'auto';
             }
+        },
+        submit() {
+            this.submitted = true;
         }
     }));
 
@@ -198,83 +201,124 @@ import Remove from "../../components/icon-remove.astro";
 
 <Base>
 
-    <!-- products list -->
-    <div id="products-list" class="max-w-lg mx-auto" x-data='products'>
+    <!-- page-box -->
+    <div class="pb-56">
 
-        <ul class="p-4">
-            <template x-for="(item, index) in items" x-key="index">
-                <li class="p-4">
-                    <img src="/350x450.png" alt="">
-                    <h1 class="mt-4 text-6xl text-blue-900 font-bold capitalize" x-text="item.name"></h1>
-                    <h2 class="mt-8 text-4xl font-regular">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</h2>
-                    <p class="mt-4 text-4xl font-bold" x-text="'$' + ' ' + item.price"></p>
-                    <div class="ctrl mt-8 flex justify-end">
-                        <button type="button" @click="$store.cart.add(item)">
-                            <CartAdd fill="#1e3a8a" />
+        <!-- products list -->
+        <div id="products-list" class="max-w-lg mx-auto" x-data='products'>
+
+            <ul class="p-4 font-ssp">
+                <template x-for="(item, index) in items" x-key="index">
+                    <li class="p-4">
+                        <img src="/350x450.png" alt="">
+                        <h1 class="mt-4 text-6xl text-blue-900 font-mont font-bold capitalize" x-text="item.name"></h1>
+                        <h2 class="mt-8 text-4xl font-regular">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</h2>
+                        <p class="mt-4 text-4xl font-bold" x-text="'$' + ' ' + item.price"></p>
+                        <div class="ctrl mt-8 flex justify-end">
+                            <button type="button" @click="$store.cart.add(item)">
+                                <CartAdd fill="#1e3a8a" />
+                            </button>
+                        </div>
+                    </li>
+                </template>
+            </ul>
+
+        </div>
+        <!-- products list -->
+
+        <!-- the cart -->
+        <div
+            id="cart" 
+            class="w-full flex flex-col items-end fixed z-30 bottom-0 left-0"
+            x-data="cart_container"
+        >
+
+            <button 
+                type="button" 
+                class="capitalize text-4xl font-ssp font-bold
+                rounded-xl
+                mx-8 p-2
+                bg-blue-900 text-white
+                border-2 border-blue-900
+                disabled:opacity-50"
+                @click="submit()"
+                x-show="open"
+                x-bind:disabled="$store.cart.items.length === 0"
+            >
+                submit cart
+            </button>
+
+            <button
+                type="button"
+                class="font-ssp
+                rounded-xl
+                mx-8 my-4 
+                flex items-center
+                bg-blue-900 text-white
+                border-2 border-blue-900"
+                @click="toggle()"
+            >
+                <div 
+                    class="p-4
+                    rounded-tl-xl rounded-bl-xl
+                    bg-white
+                    text-blue-900
+                    flex items-center justify-center"
+                >
+                    <span class="text-6xl font-bold" x-text="$store.cart.count"></span>
+                    <span class="text-6xl mx-2">x</span>
+                    <div class="svg-box animate__animated" x-ref="cartBox">
+                        <Cart fill="#1e3a8a" />
+                    </div>
+                </div>
+                <div class="flex items-center text-center px-4">
+                    <span class="inline-block text-6xl font-bold">$</span>
+                    <span class="inline-block text-6xl font-bold" x-text="$store.cart.total"></span>
+                </div>
+            </button>
+
+            <!-- cart modal -->
+            <template x-teleport="body">
+                <Modal modalId="cart-modal" contentClasses="pb-60">
+                    <h1 id="cart-is-empty" class="font-ssp text-white text-4xl font-bold capitalize text-center" x-show="$store.cart.items.length === 0">cart is empty.</h1>
+                    <div id="submitted-box" class="text-center py-8" x-show="$store.cart.items.length > 0 && submitted">
+                        <h1 class="font-ssp text-white text-5xl font-bold capitalize text-center">order was sent.</h1>
+                        <button 
+                            type="button" 
+                            class="capitalize text-4xl font-ssp font-bold
+                            rounded-xl
+                            mx-8 mt-4 p-2
+                            bg-white text-blue-900
+                            border-2 border-blue-900"
+                            @click="submitted = false"
+                        >
+                            continue
                         </button>
                     </div>
-                </li>
+                    <ul id="cart-products-list" class="font-ssp" x-show="$store.cart.items.length > 0 && !submitted">
+                        <template x-for="(item, index) in $store.cart.items" x-key="index">
+                            <li class="p-4 my-12 text-white border-b border-white">
+                                <div class="text-6xl font-bold capitalize" x-text="item.name"></div>
+                                <div class="font-mont mt-4 text-4xl text-center font-bold" x-text="item.count + ' for ' + ' $ ' + item.total"></div>
+                                <div class="mt-4 flex justify-around max-w-xs mx-auto">
+                                    <button type="button" @click="$store.cart.remove(item.id)">
+                                        <Remove fill="white" />
+                                    </button>
+                                    <button type="button" @click="$store.cart.add(item)">
+                                        <Plus fill="white" />
+                                    </button>
+                                </div>
+                            </li>
+                        </template>
+                    </ul>
+                </Modal>
             </template>
-        </ul>
+            <!-- cart modal -->
+
+        </div>
+        <!-- the cart -->
 
     </div>
-    <!-- products list -->
-
-    <!-- the cart -->
-    <div id="cart" x-data="cart_container">
-
-        <button
-            type="button"
-            class="fixed z-30 bottom-0 right-0
-            rounded-xl
-            mx-8 my-4 
-            flex items-center
-            bg-blue-900 text-white
-            border-2 border-blue-900"
-            @click="toggle()"
-        >
-            <div 
-                class="p-4
-                rounded-tl-xl rounded-bl-xl
-                bg-white
-                text-blue-900
-                flex items-center justify-center"
-            >
-                <span class="text-6xl font-bold" x-text="$store.cart.count"></span>
-                <span class="text-6xl mx-2">x</span>
-                <div class="svg-box animate__animated animate__jello" x-ref="cartBox">
-                    <Cart fill="#1e3a8a" />
-                </div>
-            </div>
-            <div class="flex items-center text-center px-4">
-                <span class="inline-block text-6xl font-bold">$</span>
-                <span class="inline-block text-6xl font-bold" x-text="$store.cart.total"></span>
-            </div>
-        </button>
-
-        <template x-teleport="body">
-            <Modal>
-                <h1 class="text-white text-4xl capitalize text-center" x-show="$store.cart.items.length === 0">cart is empty</h1>
-                <ul id="cart-products-list" x-show="$store.cart.items.length > 0">
-                    <template x-for="(item, index) in $store.cart.items" x-key="index">
-                        <li class="p-4 my-12 text-white border-b border-white">
-                            <div class="text-6xl font-bold capitalize" x-text="item.name"></div>
-                            <div class="mt-4 text-4xl text-center font-bold" x-text="item.count + ' for ' + ' $ ' + item.total"></div>
-                            <div class="mt-4 flex justify-around max-w-xs mx-auto">
-                                <button type="button" @click="$store.cart.remove(item.id)">
-                                    <Remove fill="white" />
-                                </button>
-                                <button type="button" @click="$store.cart.add(item)">
-                                    <Plus fill="white" />
-                                </button>
-                            </div>
-                        </li>
-                    </template>
-                </ul>
-            </Modal>
-        </template>
-
-    </div>
-    <!-- the cart -->
+    <!-- page-box -->
 
 </Base>

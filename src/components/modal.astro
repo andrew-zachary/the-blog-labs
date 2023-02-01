@@ -1,6 +1,8 @@
 ---
 import DimBg from "./dim-bg.astro";
 import Close from "./icon-close.astro";
+
+const {contentClasses, modalId} = Astro.props;
 ---
 <style lang="scss" is:global>
     .modal-box {
@@ -18,16 +20,9 @@ import Close from "./icon-close.astro";
         }
     }
 </style>
-<div id="cart-modal" class="modal-box grid content-center w-full h-full fixed inset-0" x-show="open">
+<div id={modalId} class="modal-box grid content-center w-full h-full fixed inset-0" x-show="open" x-transition>
     <DimBg />
-    <div 
-        class="modal-content 
-        px-4 py-8 
-        flex flex-col justify-start 
-        items-center 
-        overflow-y-auto 
-        relative z-20"
-    >
+    <div class:list={["modal-content px-4 py-8 flex flex-col justify-start items-center overflow-y-auto relative z-20", contentClasses]}>
         <div 
             class="modal-header 
             max-w-md mx-auto 
@@ -42,11 +37,11 @@ import Close from "./icon-close.astro";
         <div 
             class="modal-body 
             max-w-md mx-auto 
-            my-32 px-4 py-2 
+            px-4 py-2 
             w-full 
             border border-blue-900 rounded-xl"
         >
-        <slot></slot>
+            <slot></slot>
         </div>
     </div>
 </div>
