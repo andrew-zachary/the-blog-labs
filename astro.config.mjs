@@ -11,5 +11,14 @@ export default defineConfig({
   server: {
     port: 4200
   },
-  integrations: [tailwind(), mdx()]
+  integrations: [tailwind(), mdx()],
+  vite: {
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: '@import "./src/styles/_mixins.scss";',
+        },
+      },
+    }
+  }
 });

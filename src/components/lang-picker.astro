@@ -1,0 +1,90 @@
+---
+import translationsMeta from '../data/meta.json';
+
+import IconCaretDown from './icon-caret-down.astro';
+
+const {lang} = Astro.params;
+---
+<style lang="scss" is:global>
+    #lang-picker {
+        width: 100%;
+        max-width: 9rem;
+        position: relative;
+        border: 0.1rem solid black;
+        border-radius: 2.5rem;
+        padding: 0.1rem 1rem;
+        @include withRtl('margin', 0 0 0 5rem, 0 5rem 0 0);
+
+        @media screen and (max-width: 768px) {
+            grid-row: 1 / 2;
+            margin: 0 auto;
+            @include withRtl('margin', 0 auto, 0 auto);
+        }
+
+        #box-ctrls {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+
+            #picked {
+                width: 100%;
+                font-size: 2rem;
+                font-weight: 500;
+                text-transform: capitalize;
+                
+                [lang='ar'] & {
+                    padding: 0.5rem 0rem;
+                    line-height: 2.2rem;
+                }
+            }
+
+            #icon-caret-down {
+                width: 1.25rem;
+            }
+        }
+
+        #box-list {
+            width: 100%;
+            position: absolute;
+            left:0;
+            margin-top: 0.2rem;
+            background-color: white;
+
+            li {
+                text-align: center;
+                display: block;
+                font-weight: 300;
+                font-size: 2rem;
+
+                a {
+                    font-size: 2rem;
+                    font-weight: 300;
+                    text-transform: capitalize;
+                    color: black;
+                }
+            }
+        }
+    }
+</style>
+<div id="lang-picker" x-data="{ open: false }">
+	<div id="box-ctrls" @click="open = !open">
+		<div id="picked" class="mb-montserrat">
+			{
+				Object.keys(translationsMeta)
+				.filter(filteredLang => translationsMeta[filteredLang].name === lang)
+				.map(mappedLang => translationsMeta[mappedLang].target)
+			}
+		</div>
+		<IconCaretDown />
+	</div>
+	<ul id="box-list" x-cloak x-show="open">
+		{
+			Object.keys(translationsMeta)
+			.filter(filteredLang => translationsMeta[filteredLang].name !== lang)
+			.map(mappedLang => {
+				return <li><a class="mb-montserrat" href={`/astro/${translationsMeta[mappedLang].name}/posts`}>{`${translationsMeta[mappedLang].target}`}</a></li>
+			})
+		}
+	</ul>
+</div>
