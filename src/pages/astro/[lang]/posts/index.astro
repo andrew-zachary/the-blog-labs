@@ -29,10 +29,15 @@ const translation = {
     }
 };
 ---
+<style lang="scss" is:global>
+    #posts-list {
+        margin-top: 5.75rem;
+    }
+</style>
 <Base lang={lang} dir={dir}>
     <Title>{translation[lang]['title']}</Title>
     <ContainerCenterScroll>
-        <ul class="p-4 w-full max-w-md mx-auto">
+        <ul id="posts-list" class="p-4 w-full max-w-md mx-auto">
             {
                 posts.map( post => {
                     return <li class="mt-8">
