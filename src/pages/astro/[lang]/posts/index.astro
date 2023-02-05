@@ -5,6 +5,7 @@ import Base from "../../../../layouts/base.astro";
 
 import Title from "../../../../components/title.astro";
 import ContainerCenterScroll from "../../../../components/container-center-scroll.astro";
+import LangPicker from '../../../../components/lang-picker.astro';
 
 const posts = await Astro.glob('../../../../data/*.mdx');
 
@@ -29,25 +30,34 @@ const translation = {
     }
 };
 ---
+<script>
+    import alpine from 'alpinejs';
+    alpine.start();
+</script>
 <style lang="scss" is:global>
-    #posts-list {
+    #main-container {
         margin-top: 5.75rem;
     }
 </style>
 <Base lang={lang} dir={dir}>
     <Title>{translation[lang]['title']}</Title>
     <ContainerCenterScroll>
-        <ul id="posts-list" class="p-4 w-full max-w-md mx-auto">
-            {
-                posts.map( post => {
-                    return <li class="mt-8">
-                        <h1 class="font-mont font-bold text-6xl capitalize">
-                            <a href={`posts/${post['content'][lang].slug}`}>{post['content'][lang].title}</a>
-                        </h1>
-                        <h2 class="font-ssp font-regular text-4xl mt-4">{post['content'][lang].description}</h2>
-                    </li>
-                })
-            }
-        </ul>
+        <div id="main-container_box" class="py-8 w-full max-w-md mx-auto">
+            <div class="flex justify-end">
+                <LangPicker></LangPicker>
+            </div>
+            <ul id="posts-list" class="p-4 w-full">
+                {
+                    posts.map( post => {
+                        return <li class="mt-8">
+                            <h1 class="font-mont font-bold text-6xl capitalize">
+                                <a href={`posts/${post['content'][lang].slug}`}>{post['content'][lang].title}</a>
+                            </h1>
+                            <h2 class="font-ssp font-regular text-4xl mt-4">{post['content'][lang].description}</h2>
+                        </li>
+                    })
+                }
+            </ul>
+        </div>
     </ContainerCenterScroll>
 </Base>
