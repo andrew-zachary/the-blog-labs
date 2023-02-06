@@ -9,40 +9,40 @@ import Base from "../../layouts/base.astro";
 <Base>
     <div x-data id="lazy-loading-page" class="h-full">
 
-        <section class="p-8 h-full flex items-center justify-center">
-            <img 
+        <section x-intersect.threshold.50="$refs.img1.src = $refs.img1.dataset.img" class="border-b-4 border-black p-8 h-full flex items-center justify-center">
+            <img
+                x-ref="img1"
                 class="opacity-0 transition-opacity duration-300 ease-linear" 
                 src=""
                 data-img="https://via.placeholder.com/650x450"
-                x-intersect="$el.load = ()=> $el.classList.add('opacity-100');
-                $el.src = $el.dataset.img;"
+                onload="this.classList.add('opacity-100')"
             />
         </section>
-        <section class="p-8 h-full flex items-center justify-center">
-            <img 
+        <section x-intersect.threshold.50="$refs.img2.src = $refs.img2.dataset.img" class="border-b-4 border-black p-8 h-full flex items-center justify-center">
+            <img
+                x-ref="img2"
                 class="opacity-0 transition-opacity duration-300 ease-linear" 
                 src=""
                 data-img="https://via.placeholder.com/650x450"
-                x-intersect="$el.load = ()=> $el.classList.add('opacity-100');
-                $el.src = $el.dataset.img;"
+                onload="this.classList.add('opacity-100')"
             />
         </section>
-        <section class="p-8 h-full flex items-center justify-center">
-            <img 
+        <section x-intersect.threshold.50="$refs.img3.src = $refs.img3.dataset.img" class="border-b-4 border-black p-8 h-full flex items-center justify-center">
+            <img
+                x-ref="img3"
                 class="opacity-0 transition-opacity duration-300 ease-linear" 
                 src=""
                 data-img="https://via.placeholder.com/650x450"
-                x-intersect="$el.load = ()=> $el.classList.add('opacity-100');
-                $el.src = $el.dataset.img;"
+                onload="this.classList.add('opacity-100')"
             />
         </section>
-        <section class="p-8 h-full flex items-center justify-center">
-            <img 
+        <section x-intersect.threshold.50="$refs.img4.src = $refs.img4.dataset.img" class="border-b-4 border-black p-8 h-full flex items-center justify-center">
+            <img
+                x-ref="img4"
                 class="opacity-0 transition-opacity duration-300 ease-linear" 
                 src=""
                 data-img="https://via.placeholder.com/650x450"
-                x-intersect="$el.load = ()=> $el.classList.add('opacity-100');
-                $el.src = $el.dataset.img;"
+                onload="this.classList.add('opacity-100')"
             />
         </section>
 
