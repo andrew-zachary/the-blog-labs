@@ -1,0 +1,15 @@
+---
+import Base from "../../layouts/base.astro";
+import ContainerCenterScroll from "../../components/container-center-scroll.astro";
+
+import RegisterForm from "../../components/register-form.vue";
+---
+<Base>
+
+    <ContainerCenterScroll>
+
+        <RegisterForm client:visible></RegisterForm>
+        
+    </ContainerCenterScroll>
+
+</Base>
