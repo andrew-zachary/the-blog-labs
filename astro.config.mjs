@@ -14,8 +14,17 @@ export default defineConfig({
   server: {
     port: 4200
   },
-  integrations: [tailwind(), mdx(), vue()],
+  integrations: [tailwind(), mdx(), 
+    vue({
+      appEntrypoint: '/src/js/vue-app'
+    })
+  ],
   vite: {
+    resolve: {
+      alias: {
+        'vue-i18n': 'vue-i18n/dist/vue-i18n.cjs.js'
+      }
+    },
     css: {
       preprocessorOptions: {
         scss: {
@@ -23,5 +32,5 @@ export default defineConfig({
         }
       }
     }
-  }
+  },
 });
