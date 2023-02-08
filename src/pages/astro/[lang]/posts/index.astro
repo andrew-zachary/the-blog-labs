@@ -3,9 +3,9 @@ import langs from '../../../../data/meta.json';
 
 import Base from "../../../../layouts/base.astro";
 
-import Title from "../../../../components/title.astro";
-import ContainerCenterScroll from "../../../../components/container-center-scroll.astro";
-import LangPicker from '../../../../components/lang-picker.astro';
+import Title from "../../../../components/astro/title.astro";
+import ContainerCenterScroll from "../../../../components/astro/container-center-scroll.astro";
+import LangPicker from '../../../../components/astro/lang-picker.astro';
 
 const posts = await Astro.glob('../../../../data/*.mdx');
 
