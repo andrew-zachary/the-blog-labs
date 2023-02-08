@@ -10,15 +10,16 @@ import mdx from "@astrojs/mdx";
 import vue from "@astrojs/vue";
 
 // https://astro.build/config
+import react from "@astrojs/react";
+
+// https://astro.build/config
 export default defineConfig({
   server: {
     port: 4200
   },
-  integrations: [tailwind(), mdx(), 
-    vue({
-      appEntrypoint: '/src/js/vue-app'
-    })
-  ],
+  integrations: [tailwind(), mdx(), vue({
+    appEntrypoint: '/src/js/vue-app'
+  }), react()],
   vite: {
     resolve: {
       alias: {
@@ -32,5 +33,5 @@ export default defineConfig({
         }
       }
     }
-  },
+  }
 });
