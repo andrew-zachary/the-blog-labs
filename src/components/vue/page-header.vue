@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue';
 import { useI18n } from 'vue-i18n';
-import meta from '../data/meta.json';
+import meta from '../../data/meta.json';
 
 const { locale } = useI18n({ useScope: 'global' });
 const langRef = ref('العربية');
