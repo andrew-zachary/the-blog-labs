@@ -1,27 +1,33 @@
-import { useRef, useState } from "react";
-import { useScroll, useDebounce, useAsyncFn } from "react-use";
+import { useRef, useState, useEffect } from "react";
+import { useScroll, useAsyncFn, useThrottleFn } from "react-use";
 
 import ProductsList from './layouts/products-list';
 
 export default ({url}) => {
-    const [canFetch, setCanFetch] = useState(false);
+    const scrollRef = useRef(null);
     const [skip, setSkip] = useState(0);
+    const {y} = useScroll(scrollRef);
 
     const [response, doFetch] = useAsyncFn(async () => {
-        setCanFetch(false);
         const result = await (await fetch(`${url}/?limit=5&skip=${skip}`)).json();
         setSkip(value => value += 5);
         return result;
     }, [skip]);
 
-    useDebounce(() => {
-        if(canFetch) doFetch();
-    }, 2000, [canFetch]);
+    const tryFetching = () => {
+        if(response.loading) return;
+        doFetch();
+    };
 
-    return <div>
-        <div>
-            <button className="text-4xl" onClick={() => setCanFetch(true)}>load</button>
-        </div>
+    const throttledBottomScroll = useThrottleFn((currentY) => {
+        return Math.ceil(currentY + scrollRef.current.clientHeight) >= (scrollRef.current.scrollHeight - 150)?true:false;
+    }, 1000, [y]);
+
+    useEffect(() => {
+        if(throttledBottomScroll) tryFetching();
+    }, [throttledBottomScroll])
+
+    return <div ref={scrollRef} id="infinite-scroll-page" className="h-full overflow-y-auto">
         <ProductsList response={response.value} />
     </div>
 };
