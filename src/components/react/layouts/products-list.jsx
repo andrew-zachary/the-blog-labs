@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 
+import ProductsListItem from "./products-list-item";
+
 export default ({response}) => {
 
     const [products, setProducts] = useState([]);
@@ -8,10 +10,10 @@ export default ({response}) => {
         if(response) setProducts(items => items.concat(response.products));
     }, [response]);
 
-    return <ul>
+    return <ul className="p-4">
         {
             products.map((product) => {
-                return <li key={product.id}>{product.title}</li>
+                return <ProductsListItem key={product.id} product={product} />
             })
         }
     </ul>
