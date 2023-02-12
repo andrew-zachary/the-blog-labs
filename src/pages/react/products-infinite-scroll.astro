@@ -2,8 +2,7 @@
 import Base from "../../layouts/base.astro";
 
 import ContainerCenterScroll from "../../components/astro/container-center-scroll.astro";
-import InfiniteScroll from "../../components/react/infinite-scroll";
-import ProductsList from "../../components/react/layouts/products-list";
+import ProductsInfiniteScroll from "../../components/react/products-infinite-scroll";
 ---
 <style lang="scss" is:global>
     #infinite-scroll-page {
@@ -33,8 +32,8 @@ import ProductsList from "../../components/react/layouts/products-list";
 <Base>
 
     <ContainerCenterScroll>
-        <InfiniteScroll url="https://dummyjson.com/products" target="products" toLimit="5" toSkip="5" client:visible>
-        </InfiniteScroll>
+        <ProductsInfiniteScroll url="https://dummyjson.com/products" target="products" toLimit="5" toSkip="5" client:visible>
+        </ProductsInfiniteScroll>
     </ContainerCenterScroll>
 
 
