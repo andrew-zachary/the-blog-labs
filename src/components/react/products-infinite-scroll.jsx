@@ -1,23 +1,12 @@
-import { useRef, useState } from "react";
-import { useAsyncFn } from "react-use";
+import { useRef } from "react";
 
 import ProductsList from './layouts/products-list';
 import ActionScroller from "./parts/action-scroller";
+import usePaginator from "./hooks/paginator";
 
-export default ({url, target, toLimit, toSkip}) => {
+export default ({url, target, perPage}) => {
     const scrollRef = useRef(null);
-
-    const [hasMore, setHasMore] = useState(true);
-    const [skip, setSkip] = useState(0);
-
-    const [response, doFetch] = useAsyncFn(async () => {
-        const result = await (await fetch(`${url}/?limit=${toLimit}&skip=${skip}`)).json();
-        setSkip(value => value += parseInt(toSkip));
-
-        if(result[target].length < toLimit) setHasMore(false);
-
-        return result;
-    }, [skip]);
+    const [response, doFetch, hasMore] = usePaginator(url, target, perPage);
 
     const tryFetching = (loading, currentHasMore) => {
         if(loading || !currentHasMore) return;
