@@ -32,6 +32,9 @@ export default defineConfig({
           additionalData: '@import "./src/styles/_mixins.scss";'
         }
       }
+    },
+    ssr: {
+      noExternal: ['react-use']
     }
   }
 });
