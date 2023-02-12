@@ -1,13 +1,14 @@
-import { useRef, useState, useEffect } from "react";
-import { useScroll, useAsyncFn, useThrottleFn } from "react-use";
+import { useRef, useState } from "react";
+import { useAsyncFn } from "react-use";
 
 import ProductsList from './layouts/products-list';
+import ActionScroller from "./parts/action-scroller";
 
 export default ({url, target, toLimit, toSkip}) => {
     const scrollRef = useRef(null);
+
     const [hasMore, setHasMore] = useState(true);
     const [skip, setSkip] = useState(0);
-    const {y} = useScroll(scrollRef);
 
     const [response, doFetch] = useAsyncFn(async () => {
         const result = await (await fetch(`${url}/?limit=${toLimit}&skip=${skip}`)).json();
@@ -18,20 +19,13 @@ export default ({url, target, toLimit, toSkip}) => {
         return result;
     }, [skip]);
 
-    const tryFetching = () => {
-        if(response.loading || !hasMore) return;
+    const tryFetching = (loading, currentHasMore) => {
+        if(loading || !currentHasMore) return;
         doFetch();
     };
 
-    const throttledBottomScroll = useThrottleFn((currentY) => {
-        return Math.ceil(currentY + scrollRef.current.clientHeight) >= (scrollRef.current.scrollHeight - 150)?true:false;
-    }, 400, [y]);
-
-    useEffect(() => {
-        if(throttledBottomScroll) tryFetching();
-    }, [throttledBottomScroll]);
-
     return <div ref={scrollRef} id="infinite-scroll-page" className="h-full overflow-y-auto">
+        <ActionScroller target={scrollRef} action={() => tryFetching(response.loading, hasMore)} />
         <ProductsList response={response.value} />
         { hasMore && <div className="p-4 text-center">
             <span className="loader"></span>
