@@ -3,12 +3,11 @@ import { useEffect, useState } from "react";
 import ProductsListItem from "./products-list-item";
 
 export default ({response}) => {
-
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        if(response) setProducts(items => items.concat(response.products));
-    }, [response]);
+        if(response.value) setProducts(value => value.concat(response.value.products));
+    }, [response.value]);
 
     return <ul className="p-4">
         {
