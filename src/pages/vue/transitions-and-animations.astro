@@ -1,0 +1,16 @@
+---
+import Base from "../../layouts/base.astro";
+
+import ContainerCenterScroll from "../../components/astro/container-center-scroll.astro";
+import TransitionsAndAnimations from "../../components/vue/transitions-and-animations.vue";
+---
+<style lang="scss" is:global></style>
+<Base>
+
+    <ContainerCenterScroll>
+    
+        <TransitionsAndAnimations client:visible></TransitionsAndAnimations>
+    
+    </ContainerCenterScroll>
+    
+</Base>
