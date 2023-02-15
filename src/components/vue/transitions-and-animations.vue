@@ -157,135 +157,139 @@
     }
 </style>
 <template>
-    <div id="fade-animation" class="p-8">
+    <div id="page" class="w-full max-w-lg mx-auto">
 
-        <div class="animation-box overflow-hidden">
-            
-            <transition name="fade" mode="out-in">
-                <header v-if="animation1Toggle" class="font-mont">
-                    <h1 class="text-6xl capitalize font-bold">first</h1>
-                </header>
-                <header v-else class="font-mont">
-                    <h1 class="text-6xl capitalize font-bold">second</h1>
-                </header>
-            </transition>
-            <div class="mt-8">
-                <button class="text-4xl text-white font-ssp capitalize bg-black p-4" @click="animation1Toggle = !animation1Toggle">toggle fade</button>
+        <div id="fade-animation" class="p-8">
+
+            <div class="animation-box overflow-hidden text-center">
+                
+                <transition name="fade" mode="out-in">
+                    <header v-if="animation1Toggle" class="font-mont border-b-2 border-black">
+                        <h1 class="text-6xl capitalize font-bold">first</h1>
+                    </header>
+                    <header v-else class="font-mont border-b-2 border-black">
+                        <h1 class="text-6xl capitalize font-bold">second</h1>
+                    </header>
+                </transition>
+                <div class="mt-8">
+                    <button class="text-4xl text-white font-ssp capitalize bg-black p-4" @click="animation1Toggle = !animation1Toggle">toggle fade</button>
+                </div>
+
+            </div>
+        </div>
+        <div id="zoom-animation" class="p-8">
+
+            <div class="animation-box overflow-hidden text-center">
+
+                <transition name="zoom" mode="out-in">
+                    <header v-if="animation2Toggle" class="font-mont border-b-2 border-black">
+                        <h1 class="text-6xl capitalize font-bold">first</h1>
+                    </header>
+                    <header v-else class="font-mont border-b-2 border-black">
+                        <h1 class="text-6xl capitalize font-bold">second</h1>
+                    </header>
+                </transition>
+                <div class="mt-8">
+                    <button class="text-4xl text-white font-ssp capitalize bg-black p-4" @click="animation2Toggle = !animation2Toggle">toggle zoom</button>
+                </div>
+
+            </div>
+        </div>
+        <div id="zoom-fade-animation" class="p-8">
+
+            <div class="animation-box overflow-hidden text-center">
+
+                <transition name="zoom-fade" mode="out-in" type="transition">
+                    <header v-if="animation3Toggle" class="font-mont border-b-2 border-black">
+                        <h1 class="text-6xl capitalize font-bold">first</h1>
+                    </header>
+                    <header v-else class="font-mont border-b-2 border-black">
+                        <h1 class="text-6xl capitalize font-bold">second</h1>
+                    </header>
+                </transition>
+                <div class="mt-8">
+                    <button class="text-4xl text-white font-ssp capitalize bg-black p-4" @click="animation3Toggle = !animation3Toggle">toggle zoom-fade</button>
+                </div>
+
+            </div>
+        </div>
+        <div id="scale-animation" class="p-8">
+
+            <div class="animation-box overflow-hidden text-center">
+
+                <transition 
+                    @before-enter="beforeEnter1"
+                    @enter="enter1"
+                    @after-enter="afterEnter1"
+                    @before-leave="beforeLeave1"
+                    @leave="leave1"
+                    @after-leave="afterLeave1"
+                    :css="false"
+                    mode="out-in"
+                >
+                    <header v-if="animation4Toggle" class="font-mont border-b-2 border-black">
+                        <h1 class="text-6xl capitalize font-bold">first</h1>
+                    </header>
+                    <header v-else class="font-mont border-b-2 border-black">
+                        <h1 class="text-6xl capitalize font-bold">second</h1>
+                    </header>
+                </transition>
+                <div class="mt-8">
+                    <button class="text-4xl text-white font-ssp capitalize bg-black p-4" @click="animation4Toggle = !animation4Toggle">toggle javascript scale</button>
+                </div>
+
+            </div>
+        </div>
+        <div id="rotate-animation" class="p-8">
+
+            <div class="animation-box overflow-hidden text-center">
+
+                <transition 
+                    @before-enter="beforeEnter2"
+                    @enter="enter2"
+                    @after-enter="afterEnter2"
+                    @before-leave="beforeLeave2"
+                    @leave="leave2"
+                    @after-leave="afterLeave2"
+                    name="rotate"
+                    :css="true"
+                    mode="out-in"
+                >
+                    <header v-if="animation5Toggle" class="font-mont border-b-2 border-black">
+                        <h1 class="text-6xl capitalize font-bold">first</h1>
+                    </header>
+                    <header v-else class="font-mont border-b-2 border-black">
+                        <h1 class="text-6xl capitalize font-bold">second</h1>
+                    </header>
+                </transition>
+                <div class="text-4xl font-ssp capitalize mt-8">
+                    <p class="mt-4 p-4">num of rounds {{ roundsNum }}</p>
+                    <button class="mt-4 p-4 text-white bg-black" @click="animation5Toggle = !animation5Toggle">toggle javascript + css</button>
+                </div>
+
             </div>
 
         </div>
-    </div>
-    <div id="zoom-animation" class="p-8">
+        <div id="rotate-animation" class="p-8">
 
-        <div class="animation-box overflow-hidden">
+            <div class="animation-box overflow-hidden text-center">
 
-            <transition name="zoom" mode="out-in">
-                <header v-if="animation2Toggle" class="font-mont">
-                    <h1 class="text-6xl capitalize font-bold">first</h1>
-                </header>
-                <header v-else class="font-mont">
-                    <h1 class="text-6xl capitalize font-bold">second</h1>
-                </header>
-            </transition>
-            <div class="mt-8">
-                <button class="text-4xl text-white font-ssp capitalize bg-black p-4" @click="animation2Toggle = !animation2Toggle">toggle zoom</button>
-            </div>
+                <transition 
+                    enter-active-class="animate__animated animate__rubberBand"
+                    leave-active-class="animate__animated animate__fadeOutRight"
+                    mode="out-in"
+                >
+                    <header v-if="animation6Toggle" class="font-mont border-b-2 border-black">
+                        <h1 class="text-6xl capitalize font-bold">first</h1>
+                    </header>
+                    <header v-else class="font-mont border-b-2 border-black">
+                        <h1 class="text-6xl capitalize font-bold">second</h1>
+                    </header>
+                </transition>
+                <div class="text-4xl font-ssp capitalize mt-8">
+                    <button class="p-4 text-white bg-black" @click="animation6Toggle = !animation6Toggle">toggle classes</button>
+                </div>
 
-        </div>
-    </div>
-    <div id="zoom-fade-animation" class="p-8">
-
-        <div class="animation-box overflow-hidden">
-
-            <transition name="zoom-fade" mode="out-in" type="transition">
-                <header v-if="animation3Toggle" class="font-mont">
-                    <h1 class="text-6xl capitalize font-bold">first</h1>
-                </header>
-                <header v-else class="font-mont">
-                    <h1 class="text-6xl capitalize font-bold">second</h1>
-                </header>
-            </transition>
-            <div class="mt-8">
-                <button class="text-4xl text-white font-ssp capitalize bg-black p-4" @click="animation3Toggle = !animation3Toggle">toggle zoom-fade</button>
-            </div>
-
-        </div>
-    </div>
-    <div id="scale-animation" class="p-8">
-
-        <div class="animation-box overflow-hidden">
-
-            <transition 
-                @before-enter="beforeEnter1"
-                @enter="enter1"
-                @after-enter="afterEnter1"
-                @before-leave="beforeLeave1"
-                @leave="leave1"
-                @after-leave="afterLeave1"
-                :css="false"
-                mode="out-in"
-            >
-                <header v-if="animation4Toggle" class="font-mont">
-                    <h1 class="text-6xl capitalize font-bold">first</h1>
-                </header>
-                <header v-else class="font-mont">
-                    <h1 class="text-6xl capitalize font-bold">second</h1>
-                </header>
-            </transition>
-            <div class="mt-8">
-                <button class="text-4xl text-white font-ssp capitalize bg-black p-4" @click="animation4Toggle = !animation4Toggle">toggle javascript scale</button>
-            </div>
-
-        </div>
-    </div>
-    <div id="rotate-animation" class="p-8">
-
-        <div class="animation-box overflow-hidden">
-
-            <transition 
-                @before-enter="beforeEnter2"
-                @enter="enter2"
-                @after-enter="afterEnter2"
-                @before-leave="beforeLeave2"
-                @leave="leave2"
-                @after-leave="afterLeave2"
-                name="rotate"
-                :css="true"
-                mode="out-in"
-            >
-                <header v-if="animation5Toggle" class="font-mont border-b-2 border-black">
-                    <h1 class="text-6xl capitalize font-bold">first</h1>
-                </header>
-                <header v-else class="font-mont border-b-2 border-black">
-                    <h1 class="text-6xl capitalize font-bold">second</h1>
-                </header>
-            </transition>
-            <div class="text-4xl font-ssp capitalize mt-8">
-                <p class="mt-4 p-4">num of rounds {{ roundsNum }}</p>
-                <button class="mt-4 p-4 text-white bg-black" @click="animation5Toggle = !animation5Toggle">toggle javascript + css</button>
-            </div>
-
-        </div>
-
-    </div>
-    <div id="rotate-animation" class="p-8">
-
-        <div class="animation-box overflow-hidden">
-
-            <transition 
-                enter-active-class="animate__animated animate__rubberBand"
-                leave-active-class="animate__animated animate__fadeOutRight"
-                mode="out-in"
-            >
-                <header v-if="animation6Toggle" class="font-mont border-b-2 border-black">
-                    <h1 class="text-6xl capitalize font-bold">first</h1>
-                </header>
-                <header v-else class="font-mont border-b-2 border-black">
-                    <h1 class="text-6xl capitalize font-bold">second</h1>
-                </header>
-            </transition>
-            <div class="text-4xl font-ssp capitalize mt-8">
-                <button class="p-4 text-white bg-black" @click="animation6Toggle = !animation6Toggle">toggle classes</button>
             </div>
 
         </div>
