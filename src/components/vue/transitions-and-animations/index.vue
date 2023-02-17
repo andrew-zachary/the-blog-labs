@@ -1,6 +1,8 @@
 <script setup>
     import {ref} from 'vue';
 
+    import Btn from './btn.vue';
+
     const animation1Toggle = ref(true);
     const animation2Toggle = ref(true);
     const animation3Toggle = ref(true);
@@ -172,7 +174,7 @@
                     </header>
                 </transition>
                 <div class="mt-8">
-                    <button class="text-4xl text-white font-ssp capitalize bg-black p-4" @click="animation1Toggle = !animation1Toggle">toggle fade</button>
+                    <Btn @click="animation1Toggle = !animation1Toggle">toggle fade</Btn>
                 </div>
 
             </div>
@@ -190,7 +192,7 @@
                     </header>
                 </transition>
                 <div class="mt-8">
-                    <button class="text-4xl text-white font-ssp capitalize bg-black p-4" @click="animation2Toggle = !animation2Toggle">toggle zoom</button>
+                    <Btn @click="animation2Toggle = !animation2Toggle">toggle zoom</Btn>
                 </div>
 
             </div>
@@ -208,7 +210,7 @@
                     </header>
                 </transition>
                 <div class="mt-8">
-                    <button class="text-4xl text-white font-ssp capitalize bg-black p-4" @click="animation3Toggle = !animation3Toggle">toggle zoom-fade</button>
+                    <Btn @click="animation3Toggle = !animation3Toggle">toggle zoom-fade</Btn>
                 </div>
 
             </div>
@@ -235,7 +237,7 @@
                     </header>
                 </transition>
                 <div class="mt-8">
-                    <button class="text-4xl text-white font-ssp capitalize bg-black p-4" @click="animation4Toggle = !animation4Toggle">toggle javascript scale</button>
+                    <Btn @click="animation4Toggle = !animation4Toggle">toggle javascript scale</Btn>
                 </div>
 
             </div>
@@ -264,7 +266,7 @@
                 </transition>
                 <div class="text-4xl font-ssp capitalize mt-8">
                     <p class="mt-4 p-4">num of rounds {{ roundsNum }}</p>
-                    <button class="mt-4 p-4 text-white bg-black" @click="animation5Toggle = !animation5Toggle">toggle javascript + css</button>
+                    <Btn @click="animation5Toggle = !animation5Toggle">toggle javascript + css</Btn>
                 </div>
 
             </div>
@@ -287,7 +289,7 @@
                     </header>
                 </transition>
                 <div class="text-4xl font-ssp capitalize mt-8">
-                    <button class="p-4 text-white bg-black" @click="animation6Toggle = !animation6Toggle">toggle classes</button>
+                    <Btn @click="animation6Toggle = !animation6Toggle">toggle classes</Btn>
                 </div>
 
             </div>
