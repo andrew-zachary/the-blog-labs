@@ -16,7 +16,6 @@ const {title, lang, dir} = Astro.props;
 		</main>
 	</body>
 </html>
-
 <style lang="scss" is:global>
 	html {
 		font-size: 62.5%;
@@ -32,5 +31,27 @@ const {title, lang, dir} = Astro.props;
 
 	.font-mont {
 		font-family: 'Montserrat';
+	}
+
+	//prime-vue modal
+	.p-dialog-mask {
+		background: #0D1117;
+
+		.p-dialog {
+			padding: 2rem;
+			max-height: unset;
+			max-width: 76.8rem;
+			margin: 0 auto;
+
+			.p-dialog-header {
+				font-size: 4rem;
+				font-weight: bold;
+				color: white; 
+
+				.p-dialog-header-icons {
+					font-size: 2rem;
+				}
+			}
+		}
 	}
 </style>
