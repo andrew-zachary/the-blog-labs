@@ -1,14 +1,25 @@
 <script setup>
-    import {ref} from 'vue';
+    import {ref, onMounted} from 'vue';
 
-    import Btn from './btn.vue';
+    import initCodeHighlight from '../../../js/interactive-cheat-sheet';
 
+    import Modal from './modal.vue';
+
+    // animation togglers
     const animation1Toggle = ref(true);
     const animation2Toggle = ref(true);
     const animation3Toggle = ref(true);
     const animation4Toggle = ref(true);
     const animation5Toggle = ref(true);
     const animation6Toggle = ref(true);
+
+    // animation desc togglers
+    const animation1DescToggle = ref(false);
+
+    // opens
+    const openCss = () => { animation1DescToggle.value = true };
+
+    const hljs = initCodeHighlight();
 
     const roundsNum = ref(0);
 
@@ -54,7 +65,6 @@
     const afterLeave2 = (el) => {
         console.log('after-leave');
     }
-
 </script>
 <style lang="scss">
     // using css transitions
@@ -166,16 +176,18 @@
             <div class="animation-box overflow-hidden text-center">
                 
                 <transition name="fade" mode="out-in">
-                    <header v-if="animation1Toggle" class="font-mont border-b-2 border-black">
+                    <header v-if="animation1Toggle" class="font-mont">
                         <h1 class="text-6xl capitalize font-bold">first</h1>
                     </header>
-                    <header v-else class="font-mont border-b-2 border-black">
+                    <header v-else class="font-mont">
                         <h1 class="text-6xl capitalize font-bold">second</h1>
                     </header>
                 </transition>
                 <div class="mt-8">
-                    <Btn @click="animation1Toggle = !animation1Toggle">toggle fade</Btn>
+                    <Button class="text-4xl text-white font-ssp capitalize bg-black p-4" @click="animation1Toggle = !animation1Toggle">toggle fade</Button>
+                    <Button class="text-4xl text-white font-ssp capitalize bg-black p-4" @click="openCss">css</Button>
                 </div>
+                <Modal :hljs="hljs" :show="animation1DescToggle" />
 
             </div>
         </div>
@@ -192,7 +204,7 @@
                     </header>
                 </transition>
                 <div class="mt-8">
-                    <Btn @click="animation2Toggle = !animation2Toggle">toggle zoom</Btn>
+                    <Button class="text-4xl text-white font-ssp capitalize bg-black p-4" @click="animation2Toggle = !animation2Toggle">toggle zoom</Button>
                 </div>
 
             </div>
@@ -210,7 +222,7 @@
                     </header>
                 </transition>
                 <div class="mt-8">
-                    <Btn @click="animation3Toggle = !animation3Toggle">toggle zoom-fade</Btn>
+                    <Button class="text-4xl text-white font-ssp capitalize bg-black p-4" @click="animation3Toggle = !animation3Toggle">toggle zoom-fade</Button>
                 </div>
 
             </div>
@@ -237,7 +249,7 @@
                     </header>
                 </transition>
                 <div class="mt-8">
-                    <Btn @click="animation4Toggle = !animation4Toggle">toggle javascript scale</Btn>
+                    <Button class="text-4xl text-white font-ssp capitalize bg-black p-4" @click="animation4Toggle = !animation4Toggle">toggle javascript scale</Button>
                 </div>
 
             </div>
@@ -266,7 +278,7 @@
                 </transition>
                 <div class="text-4xl font-ssp capitalize mt-8">
                     <p class="mt-4 p-4">num of rounds {{ roundsNum }}</p>
-                    <Btn @click="animation5Toggle = !animation5Toggle">toggle javascript + css</Btn>
+                    <Button class="text-4xl text-white font-ssp capitalize bg-black p-4" @click="animation5Toggle = !animation5Toggle">toggle javascript + css</Button>
                 </div>
 
             </div>
@@ -289,7 +301,7 @@
                     </header>
                 </transition>
                 <div class="text-4xl font-ssp capitalize mt-8">
-                    <Btn @click="animation6Toggle = !animation6Toggle">toggle classes</Btn>
+                    <Button class="text-4xl text-white font-ssp capitalize bg-black p-4" @click="animation6Toggle = !animation6Toggle">toggle classes</Button>
                 </div>
 
             </div>

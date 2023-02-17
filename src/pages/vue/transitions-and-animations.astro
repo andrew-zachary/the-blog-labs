@@ -7,10 +7,14 @@ import TransitionsAndAnimations from "../../components/vue/transitions-and-anima
 <style lang="scss" is:global></style>
 <Base>
 
-    <ContainerCenterScroll>
-    
-        <TransitionsAndAnimations client:visible></TransitionsAndAnimations>
-    
-    </ContainerCenterScroll>
-    
+    <div id="interactive-cheat-sheet">
+
+        <ContainerCenterScroll>
+        
+            <TransitionsAndAnimations client:only></TransitionsAndAnimations>
+        
+        </ContainerCenterScroll>
+
+    </div>
+
 </Base>
