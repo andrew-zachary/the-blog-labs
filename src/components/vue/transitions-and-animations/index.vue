@@ -3,7 +3,10 @@
 
     import initCodeHighlight from '../../../js/interactive-cheat-sheet';
 
-    import Modal from './modal.vue';
+    import ModalFadeCode from './modal-fade-code.vue';
+
+    // init codeHightlight
+    const hljs = initCodeHighlight();
 
     // animation togglers
     const animation1Toggle = ref(true);
@@ -12,14 +15,6 @@
     const animation4Toggle = ref(true);
     const animation5Toggle = ref(true);
     const animation6Toggle = ref(true);
-
-    // animation desc togglers
-    const animation1DescToggle = ref(false);
-
-    // opens
-    const openCss = () => { animation1DescToggle.value = true };
-
-    const hljs = initCodeHighlight();
 
     const roundsNum = ref(0);
 
@@ -185,9 +180,8 @@
                 </transition>
                 <div class="mt-8">
                     <Button class="text-4xl text-white font-ssp capitalize bg-black p-4" @click="animation1Toggle = !animation1Toggle">toggle fade</Button>
-                    <Button class="text-4xl text-white font-ssp capitalize bg-black p-4" @click="openCss">css</Button>
                 </div>
-                <Modal :hljs="hljs" :show="animation1DescToggle" />
+                <ModalFadeCode :hljs="hljs" />
 
             </div>
         </div>
