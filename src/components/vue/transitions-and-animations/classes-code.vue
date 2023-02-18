@@ -1,0 +1,137 @@
+<script setup>
+    import { ref } from 'vue';
+
+    const { hljs } = defineProps(['hljs']);
+    const codeFragment = ref(null);
+    const display = ref(false);
+    const header = ref('');
+
+    const js = ``;
+
+    const css = `
+    .animate__animated {
+        animation-duration: 1s;
+        animation-fill-mode: both;
+    }
+    @keyframes rubberBand {
+        from {
+            -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+        }
+
+        30% {
+            -webkit-transform: scale3d(1.25, 0.75, 1);
+            transform: scale3d(1.25, 0.75, 1);
+        }
+
+        40% {
+            -webkit-transform: scale3d(0.75, 1.25, 1);
+            transform: scale3d(0.75, 1.25, 1);
+        }
+
+        50% {
+            -webkit-transform: scale3d(1.15, 0.85, 1);
+            transform: scale3d(1.15, 0.85, 1);
+        }
+
+        65% {
+            -webkit-transform: scale3d(0.95, 1.05, 1);
+            transform: scale3d(0.95, 1.05, 1);
+        }
+
+        75% {
+            -webkit-transform: scale3d(1.05, 0.95, 1);
+            transform: scale3d(1.05, 0.95, 1);
+        }
+
+        to {
+            -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+        }
+    }
+    .animate__rubberBand {
+        -webkit-animation-name: rubberBand;
+        animation-name: rubberBand;
+    }
+    @keyframes fadeOutRight {
+        from {
+            opacity: 1;
+        }
+
+        to {
+            opacity: 0;
+            -webkit-transform: translate3d(100%, 0, 0);
+            transform: translate3d(100%, 0, 0);
+        }
+    }
+    .animate__fadeOutRight {
+        -webkit-animation-name: fadeOutRight;
+        animation-name: fadeOutRight;
+    }
+    `;
+
+    const html = `
+    <transition 
+        enter-active-class="animate__animated animate__rubberBand"
+        leave-active-class="animate__animated animate__fadeOutRight"
+        mode="out-in"
+    >
+        <header v-if="animation6Toggle" class="font-mont border-b-2 border-black">
+            <h1 class="text-6xl capitalize font-bold">first</h1>
+        </header>
+        <header v-else class="font-mont border-b-2 border-black">
+            <h1 class="text-6xl capitalize font-bold">second</h1>
+        </header>
+    </transition>
+    <div class="text-4xl font-ssp capitalize mt-8">
+        <Button class="text-4xl text-white font-ssp capitalize bg-black p-4" @click="animation6Toggle = !animation6Toggle">toggle classes</Button>
+    </div>
+    `;
+    
+    const highlight = () => setTimeout(() => hljs.highlightAll(), 0);
+
+    const loadCode = (lang) => {
+        switch (lang) {
+            case 'js':
+                codeFragment.value = js;
+                header.value = 'js'
+            break;
+            case 'css':
+                codeFragment.value = css;
+                header.value = 'css'
+            break;
+            case 'html':
+                codeFragment.value = html;
+                header.value = 'html'
+            break;
+        }
+
+        display.value = true;
+    };
+</script>
+<style lang="scss"></style>
+<template>
+    <div class="mt-8 flex justify-center">
+
+        <Button class="text-3xl text-black font-ssp font-bold uppercase p-2" @click="loadCode('html')">
+            <div class="border border-black p-2">html</div>
+        </Button>
+        <Button class="text-3xl text-black font-ssp font-bold uppercase p-2" @click="loadCode('css')">
+            <div class="border border-black p-2">css</div>
+        </Button>
+
+        <Dialog 
+            :header="header" 
+            v-model:visible="display" 
+            :style="{ width: '100vw', height: '100vh' }" 
+            :modal="true" :dismissableMask="true"
+            :show="highlight()"
+            hide="() => console.log('test')"
+        >
+            <pre>
+                <code class="language-css text-3xl">{{ codeFragment }}</code>
+            </pre>
+        </Dialog>
+
+    </div>
+</template>

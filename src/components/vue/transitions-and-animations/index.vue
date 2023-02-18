@@ -3,7 +3,13 @@
 
     import initCodeHighlight from '../../../js/interactive-cheat-sheet';
 
-    import ModalFadeCode from './modal-fade-code.vue';
+    // code fragments
+    import TransitionCode from './transition-code.vue';
+    import AnimationCode from './animation-code.vue';
+    import TransitionAnimationCode from './transition-animation-code.vue';
+    import JavascriptCode from './javascript-code.vue';
+    import JavascriptCssCode from './javascript-css-code.vue';
+    import ClassesCode from './classes-code.vue';
 
     // init codeHightlight
     const hljs = initCodeHighlight();
@@ -181,7 +187,7 @@
                 <div class="mt-8">
                     <Button class="text-4xl text-white font-ssp capitalize bg-black p-4" @click="animation1Toggle = !animation1Toggle">toggle fade</Button>
                 </div>
-                <ModalFadeCode :hljs="hljs" />
+                <TransitionCode :hljs="hljs" />
 
             </div>
         </div>
@@ -190,16 +196,17 @@
             <div class="animation-box overflow-hidden text-center">
 
                 <transition name="zoom" mode="out-in">
-                    <header v-if="animation2Toggle" class="font-mont border-b-2 border-black">
+                    <header v-if="animation2Toggle" class="font-mont">
                         <h1 class="text-6xl capitalize font-bold">first</h1>
                     </header>
-                    <header v-else class="font-mont border-b-2 border-black">
+                    <header v-else class="font-mont">
                         <h1 class="text-6xl capitalize font-bold">second</h1>
                     </header>
                 </transition>
                 <div class="mt-8">
                     <Button class="text-4xl text-white font-ssp capitalize bg-black p-4" @click="animation2Toggle = !animation2Toggle">toggle zoom</Button>
                 </div>
+                <AnimationCode :hljs="hljs" />
 
             </div>
         </div>
@@ -208,16 +215,17 @@
             <div class="animation-box overflow-hidden text-center">
 
                 <transition name="zoom-fade" mode="out-in" type="transition">
-                    <header v-if="animation3Toggle" class="font-mont border-b-2 border-black">
+                    <header v-if="animation3Toggle" class="font-mont">
                         <h1 class="text-6xl capitalize font-bold">first</h1>
                     </header>
-                    <header v-else class="font-mont border-b-2 border-black">
+                    <header v-else class="font-mont">
                         <h1 class="text-6xl capitalize font-bold">second</h1>
                     </header>
                 </transition>
                 <div class="mt-8">
                     <Button class="text-4xl text-white font-ssp capitalize bg-black p-4" @click="animation3Toggle = !animation3Toggle">toggle zoom-fade</Button>
                 </div>
+                <TransitionAnimationCode :hljs="hljs" />
 
             </div>
         </div>
@@ -235,16 +243,17 @@
                     :css="false"
                     mode="out-in"
                 >
-                    <header v-if="animation4Toggle" class="font-mont border-b-2 border-black">
+                    <header v-if="animation4Toggle" class="font-mont">
                         <h1 class="text-6xl capitalize font-bold">first</h1>
                     </header>
-                    <header v-else class="font-mont border-b-2 border-black">
+                    <header v-else class="font-mont">
                         <h1 class="text-6xl capitalize font-bold">second</h1>
                     </header>
                 </transition>
                 <div class="mt-8">
                     <Button class="text-4xl text-white font-ssp capitalize bg-black p-4" @click="animation4Toggle = !animation4Toggle">toggle javascript scale</Button>
                 </div>
+                <JavascriptCode :hljs="hljs" />
 
             </div>
         </div>
@@ -263,10 +272,10 @@
                     :css="true"
                     mode="out-in"
                 >
-                    <header v-if="animation5Toggle" class="font-mont border-b-2 border-black">
+                    <header v-if="animation5Toggle" class="font-mont">
                         <h1 class="text-6xl capitalize font-bold">first</h1>
                     </header>
-                    <header v-else class="font-mont border-b-2 border-black">
+                    <header v-else class="font-mont">
                         <h1 class="text-6xl capitalize font-bold">second</h1>
                     </header>
                 </transition>
@@ -274,6 +283,7 @@
                     <p class="mt-4 p-4">num of rounds {{ roundsNum }}</p>
                     <Button class="text-4xl text-white font-ssp capitalize bg-black p-4" @click="animation5Toggle = !animation5Toggle">toggle javascript + css</Button>
                 </div>
+                <JavascriptCssCode :hljs="hljs" />
 
             </div>
 
@@ -287,16 +297,17 @@
                     leave-active-class="animate__animated animate__fadeOutRight"
                     mode="out-in"
                 >
-                    <header v-if="animation6Toggle" class="font-mont border-b-2 border-black">
+                    <header v-if="animation6Toggle" class="font-mont">
                         <h1 class="text-6xl capitalize font-bold">first</h1>
                     </header>
-                    <header v-else class="font-mont border-b-2 border-black">
+                    <header v-else class="font-mont">
                         <h1 class="text-6xl capitalize font-bold">second</h1>
                     </header>
                 </transition>
                 <div class="text-4xl font-ssp capitalize mt-8">
                     <Button class="text-4xl text-white font-ssp capitalize bg-black p-4" @click="animation6Toggle = !animation6Toggle">toggle classes</Button>
                 </div>
+                <ClassesCode :hljs="hljs" />
 
             </div>
 
