@@ -2,13 +2,15 @@
 import Base from "../../layouts/base.astro";
 
 import ContainerCenterScroll from "../../components/astro/container-center-scroll.astro";
-import PageHeader from "../../components/vue/page-header.vue";
 ---
+<script>
+    import '../../js/vue-app.js';
+</script>
 <Base>
 
     <ContainerCenterScroll>
 
-        <PageHeader client:visible></PageHeader>
+        <div id="app"></div>
         
     </ContainerCenterScroll>
 
