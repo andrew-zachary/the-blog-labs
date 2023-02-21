@@ -1,7 +1,34 @@
 {
-    "home": {
-        "hello": {
-            "title": "مرحبا"
+    "forms": {
+        "register": {
+            "name": {
+                "label": "الاسم",
+                "errors": {
+                    "required": "الاسم مطلوب"
+                }
+            },
+            "email": {
+                "label": "البريد الالكتروني",
+                "errors": {
+                    "required": "البريد الالكتروني مطلوب",
+                    "email": "صيغة البريد الالكتروني غير صحيحة"
+                }
+            },
+            "password": {
+                "label": "كلمة المرور",
+                "errors": {
+                    "required": "كلمة المرور مطلوبة"
+                }
+            },
+            "confirm-password": {
+                "label": "تأكيد كلمة المرور",
+                "errors": {
+                    "confirmed": "كلمة المرور غير متطابقة"
+                }
+            },
+            "btns": {
+                "submit": "تسجيل"
+            }
         }
     }
 }

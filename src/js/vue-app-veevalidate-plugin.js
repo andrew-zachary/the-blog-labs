@@ -21,9 +21,9 @@ export default {
         configure({
             generateMessage: (ctx) => {
                 const messages = {
-                    'required': `${ctx.field} is required`,
-                    'email': 'valid email is needed',
-                    'confirmed': 'password does not match'
+                    'required': `${ctx.field}.errors.required`,
+                    'email': `${ctx.field}.errors.email`,
+                    'confirmed': `${ctx.field}.errors.confirmed`
                 };
                 return messages[ctx.rule.name]
             }
