@@ -1,49 +1,74 @@
 <script setup>
+    import { useI18n } from 'vue-i18n';
+    import LangSwitch from './lang-switch.vue';
+
+    const { locale } = useI18n({ useScope: 'global' });
     const validationSchema = {
-        'fname': 'required',
-        'lname': 'required',
+        'name': 'required',
         'email': 'required|email',
         'password': 'required',
         'confirm-password': 'confirmed:@password' 
     };
+
     const register = (values) => {
-        console.log(values);
+        alert(JSON.stringify(values, null, 4));
     };
+
+    const prepForTrans = (str) => `forms.register.${str}`.toLowerCase();
 </script>
 <style lang="scss"></style>
 <template>
-    <vee-form 
-        class="px-4 text-4xl w-full max-w-sm mx-auto"
-        :validation-schema="validationSchema"
-        @submit="register"
-    >
-        <div class="mt-8 flex flex-col justify-center">
-            <label for="fname" class="capitalize">first name</label>
-            <vee-field name="fname" type="text" class="p-4 mt-4 border-2 border-black"></vee-field>
-            <ErrorMessage class="text-3xl text-red-600 mt-2" name="fname" />
-        </div>
-        <div class="mt-8 flex flex-col justify-center">
-            <label for="lname" class="capitalize">last name</label>
-            <vee-field name="lname" type="text" class="p-4 mt-4 border-2 border border-black"></vee-field>
-            <ErrorMessage class="text-3xl text-red-600 mt-2" name="lname" />
-        </div>
-        <div class="mt-8 flex flex-col justify-center">
-            <label for="email" class="capitalize">email</label>
-            <vee-field name="email" type="email" class="p-4 mt-4 border-2 border border-black"></vee-field>
-            <ErrorMessage class="text-3xl text-red-600 mt-2" name="email" />
-        </div>
-        <div class="mt-8 flex flex-col justify-center">
-            <label for="password" class="capitalize">password</label>
-            <vee-field name="password" type="password" class="p-4 mt-4 border-2 border border-black"></vee-field>
-            <ErrorMessage class="text-3xl text-red-600 mt-2" name="password" />
-        </div>
-        <div class="mt-8 flex flex-col justify-center">
-            <label for="confirm-password" class="capitalize">confirm password</label>
-            <vee-field name="confirm-password" type="password" class="p-4 mt-4 border-2 border border-black" :validateOnInput="true"></vee-field>
-            <ErrorMessage class="text-3xl text-red-600 mt-2" name="confirm-password" />
-        </div>
-        <div class="mt-8">
-            <button class="p-4 w-full bg-black text-4xl text-white" type="submit">sign up</button>
-        </div>
-    </vee-form>
+    <div id="page-box" class="w-full max-w-sm mx-auto">
+
+        <LangSwitch />
+
+        <vee-form 
+            class="px-4 text-4xl"
+            :validation-schema="validationSchema"
+            @submit="register"
+        >
+            <div class="mt-8 flex flex-col justify-center">
+                <label for="name" class="font-ssp font-bold capitalize">{{ $t(prepForTrans("name.label")) }}</label>
+                <vee-field name="name" v-slot="{field, errors}">
+                    <input type="text" class="p-4 mt-4 border-2 border-black" v-bind="field">
+                    <div class="font-mont font-bold text-3xl text-red-600 mt-2" v-if="errors.length > 0">
+                        {{ $t(prepForTrans(errors[0] || "")) }}
+                    </div>
+                </vee-field>
+            </div>
+            <div class="mt-8 flex flex-col justify-center">
+                <label for="email" class="font-ssp font-bold capitalize">{{ $t(prepForTrans("email.label")) }}</label>
+                <vee-field name="email" v-slot="{field, errors}">
+                    <input type="email" class="p-4 mt-4 border-2 border border-black" v-bind="field">
+                    <div class="font-mont font-bold text-3xl text-red-600 mt-2" v-if="errors.length > 0">
+                        {{ $t(prepForTrans(errors[0] || "")) }}
+                    </div>
+                </vee-field>
+            </div>
+            <div class="mt-8 flex flex-col justify-center">
+                <label for="password" class="font-ssp font-bold capitalize">{{ $t(prepForTrans("password.label")) }}</label>
+                <vee-field name="password" v-slot="{field, errors}">
+                    <input type="password" class="p-4 mt-4 border-2 border border-black" v-bind="field">
+                    <div class="font-mont font-bold text-3xl text-red-600 mt-2" v-if="errors.length > 0">
+                        {{ $t(prepForTrans(errors[0] || "")) }}
+                    </div>
+                </vee-field>
+            </div>
+            <div class="mt-8 flex flex-col justify-center">
+                <label for="confirm-password" class="font-ssp font-bold capitalize">{{ $t(prepForTrans("confirm-password.label")) }}</label>
+                <vee-field name="confirm-password" v-slot="{field, errors}" :validateOnInput="true">
+                    <input type="password" class="p-4 mt-4 border-2 border border-black" v-bind="field">
+                    <div class="font-mont font-bold text-3xl text-red-600 mt-2" v-if="errors.length > 0">
+                        {{ $t(prepForTrans(errors[0] || "")) }}
+                    </div>
+                </vee-field>
+            </div>
+            <div class="mt-8">
+                <button class="font-ssp font-bold uppercase p-4 w-full bg-black text-4xl text-white" type="submit">
+                    {{ $t(prepForTrans("btns.submit")) }}
+                </button>
+            </div>
+        </vee-form>
+
+    </div>
 </template>

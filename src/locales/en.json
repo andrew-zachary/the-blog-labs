@@ -1,7 +1,34 @@
 {
-    "home": {
-        "hello": {
-            "title": "hello"
+    "forms": {
+        "register": {
+            "name": {
+                "label": "name",
+                "errors": {
+                    "required": "name is required"
+                }
+            },
+            "email": {
+                "label": "email",
+                "errors": {
+                    "required": "email is required",
+                    "email": "valid email is needed"
+                }
+            },
+            "password": {
+                "label": "password",
+                "errors": {
+                    "required": "password is required"
+                }
+            },
+            "confirm-password": {
+                "label": "confirm password",
+                "errors": {
+                    "confirmed": "passwords don't match"
+                }
+            },
+            "btns": {
+                "submit": "sign up"
+            }
         }
     }
 }
