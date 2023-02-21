@@ -1,5 +1,8 @@
 import { createApp } from 'vue';
 
-import App from '../components/vue/app.vue';
+//includes
+import veevalidate from './vue-app-veevalidate-plugin.js';
 
-createApp(App).mount('#app');
+import App from '../components/vue/multilingual-register-form/index.vue';
+
+createApp(App).use(veevalidate).mount('#app');
