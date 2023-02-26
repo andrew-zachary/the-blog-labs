@@ -7,7 +7,7 @@ export const ecommerceApi = createApi({
     }),
     endpoints: (builder) => ({
         getProducts: builder.query({
-            query: () => 'products'
+            query: (skip) => `products?limit=5&skip=${skip}`
         })
     })
 });

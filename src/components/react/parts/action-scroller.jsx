@@ -5,7 +5,8 @@ export default ({target, action}) => {
     const {y} = useScroll(target);
 
     const throttledBottomScroll = useThrottleFn((currentY) => {
-        return Math.ceil(currentY + target.current.clientHeight) >= (target.current.scrollHeight - 150)?true:false;
+        if(y === 0) return;
+        return Math.ceil(currentY + target.current.clientHeight) === (target.current.scrollHeight)?true:false;
     }, 400, [y]);
 
     useEffect(() => {
