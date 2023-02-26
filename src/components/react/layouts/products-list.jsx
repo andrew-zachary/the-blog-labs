@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 
 import ProductsListItem from "./products-list-item";
 
-export default ({response}) => {
+export default ({items}) => {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        if(response.value) setProducts(value => value.concat(response.value.products));
-    }, [response.value]);
+        if(items) setProducts(value => value.concat(items));
+    }, [items]);
 
     return <ul className="p-4">
         {

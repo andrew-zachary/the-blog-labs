@@ -15,7 +15,7 @@ export default ({url, target, perPage}) => {
 
     return <div ref={scrollRef} id="infinite-scroll-page" className="h-full overflow-y-auto">
         <ActionScroller target={scrollRef} action={() => tryFetching(state.loading, hasMore)} />
-        { state.value && <ProductsList response={state} /> }
+        { state.value && <ProductsList items={state.value.products} /> }
         { hasMore && <div className="p-4 text-center">
             <span className="loader"></span>
         </div> }
