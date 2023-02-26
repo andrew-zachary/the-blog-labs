@@ -2,7 +2,7 @@ import { useRef } from "react";
 
 import ProductsList from './layouts/products-list';
 import ActionScroller from "./parts/action-scroller";
-import usePaginator from "./hooks/paginator";
+import usePaginator from "../../js/react/hooks/paginator";
 
 export default ({url, target, perPage}) => {
     const scrollRef = useRef(null);
