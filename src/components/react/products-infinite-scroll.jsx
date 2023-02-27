@@ -1,7 +1,10 @@
 import { useRef } from "react";
 
 import ProductsList from './layouts/products-list';
+
 import ActionScroller from "./parts/action-scroller";
+import Loader from "./parts/loader";
+
 import usePaginator from "../../js/react/hooks/paginator";
 
 export default ({url, target, perPage}) => {
@@ -17,7 +20,7 @@ export default ({url, target, perPage}) => {
         <ActionScroller target={scrollRef} action={() => tryFetching(state.loading, hasMore)} />
         { state.value && <ProductsList items={state.value.products} /> }
         { hasMore && <div className="p-4 text-center">
-            <span className="loader"></span>
+            <Loader width="45" height="45" />
         </div> }
     </div>
 };
