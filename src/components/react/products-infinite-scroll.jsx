@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 
 import ProductsList from './layouts/products-list';
 
@@ -16,11 +16,15 @@ export default ({url, target, perPage}) => {
         doFetch();
     };
 
+    useEffect(() => {
+        tryFetching(false, true);
+    }, []);
+
     return <div ref={scrollRef} id="infinite-scroll-page" className="h-full overflow-y-auto">
         <ActionScroller target={scrollRef} action={() => tryFetching(state.loading, hasMore)} />
         { state.value && <ProductsList items={state.value.products} /> }
-        { hasMore && <div className="p-4 text-center">
-            <Loader width="45" height="45" />
-        </div> }
+        <div className="p-4 text-center">
+            <Loader width="45" height="45" hiddeWhenZero={hasMore} />
+        </div>
     </div>
 };
