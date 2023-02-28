@@ -2,13 +2,13 @@ import { createApp } from 'vue';
 import { createI18n } from 'vue-i18n';
 
 //includes
-import veevalidate from './vue-app-veevalidate-plugin.js';
+import veevalidate from './plugins/veevalidate.js';
 
 //locales
-import en from '../locales/en.json';
-import ar from '../locales/ar.json';
+import en from '../../locales/en.json';
+import ar from '../../locales/ar.json';
 
-import App from '../components/vue/multilingual-register-form/index.vue';
+import App from '../../components/vue/multilingual-register-form/index.vue';
 
 //parts
 const i18n = createI18n({
