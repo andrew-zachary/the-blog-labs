@@ -1,5 +1,5 @@
-import initCart from "./alpine-cart-page";
-import intersectionObserver from "./alpine-lazy-loading-page";
+import initCart from "./alpinejs/cart-page";
+import intersectionObserver from "./alpinejs/lazy-loading-page";
 
 const loader = (pageId) => {
     if(pageId === 'cart-page') {
