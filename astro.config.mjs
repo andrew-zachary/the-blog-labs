@@ -17,9 +17,7 @@ export default defineConfig({
   server: {
     port: 4200
   },
-  integrations: [tailwind(), mdx(), vue({
-    appEntrypoint: '/src/js/vue-app-astro'
-  }), react()],
+  integrations: [tailwind(), mdx(), vue(), react()],
   vite: {
     resolve: {
       alias: {
