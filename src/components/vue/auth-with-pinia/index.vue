@@ -5,6 +5,11 @@
 </script>
 <style lang="scss"></style>
 <template>
-    <h1>auth with pinia {{ counterStore.count }}</h1>
-    <button @click="counterStore.increment">increment</button>
+    <div class="text-4xl">
+        <h1 :class="counterStore.successStyleClasses">auth with pinia {{ counterStore.count }}</h1>
+        <div>
+            <input type="text" ref="amount" />
+        </div>
+        <button @click="counterStore.update($refs.amount.value)">update</button>
+    </div>
 </template>
