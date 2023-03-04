@@ -4,7 +4,6 @@ import PrimeVue from 'primevue/config';
 import Dialog from 'primevue/dialog';
 import Button from 'primevue/button';
 
-import 'primevue/resources/primevue.min.css';
 import 'primeicons/primeicons.css';
 
 import App from '../../components/vue/transitions-and-animations/index.vue';

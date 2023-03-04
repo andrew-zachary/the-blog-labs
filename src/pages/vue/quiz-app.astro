@@ -1,14 +1,32 @@
 ---
 import Base from "../../layouts/base.astro";
-import ContainerCenterScroll from "../../components/astro/container-center-scroll.astro";
 
-import QuizApp from '../../components/vue/quiz-app/index.vue';
+import ContainerCenterScroll from "../../components/astro/container-center-scroll.astro";
 ---
+<script>
+    import '../../js/vue/quiz-app';
+</script>
+<style lang="scss" is:global>
+    .p-progressbar {
+        background-color: black;
+        height: 1rem;
+        border-radius: 5rem;
+        display: flex;
+        align-items: center;
+    }
+    .p-progressbar-determinate .p-progressbar-value {
+        background-color: white;
+        height: 0.3rem;
+        transition-duration: 1s;
+        transition-timing-function: linear;
+        position: unset;
+    }
+</style>
 <Base>
 
     <ContainerCenterScroll>
 
-        <QuizApp client:only />
+        <div id="app"></div>
 
     </ContainerCenterScroll>
 
