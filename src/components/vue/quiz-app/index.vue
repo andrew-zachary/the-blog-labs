@@ -1,4 +1,6 @@
 <script setup>
+    import { onMounted } from 'vue';
+
     import Timer from './timer.vue';
     import Question from './question.vue';
 
@@ -6,12 +8,28 @@
 
     const quizStore = useQuizStore();
 
+    onMounted(() => {
+        quizStore.paginate();
+    });
+
     const loadNextQuestion = () => {
-        console.log("next question");
+        quizStore.paginate();
     };
 </script>
 <style lang="scss"></style>
 <template>
-    <Timer :duration="5" @countFinished="loadNextQuestion" />
-    <Question v-for="question of quizStore.quiz" :content="question" />
+    <div v-if="quizStore.quizFinished" class="capitalize flex flex-col items-center">
+        <h1 class="text-6xl font-mont font-bold">finished</h1>
+        <div class="mt-4">
+            <button class="text-4xl font-ssp font-bold bg-black text-white px-4 py-2" @click="quizStore.restartQuiz">restart quiz</button>
+        </div>
+    </div>
+    <div v-else>
+        <Timer :duration="2" @countFinished="loadNextQuestion" />
+        <div id="question-box" class="relative">
+            <template v-for="question of quizStore.quiz.items" :key="question.id">
+                <Question :content="question" v-if="question.id === quizStore.currentQuestionId" />
+            </template>
+        </div>
+    </div>
 </template>
