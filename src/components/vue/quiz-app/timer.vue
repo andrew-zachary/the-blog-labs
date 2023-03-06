@@ -1,9 +1,9 @@
 <script setup>
-    import { onMounted, ref } from 'vue';
+    import { onMounted, onUnmounted, ref } from 'vue';
     import { useQuizStore } from '../../../js/vue/stores/quiz.js';
 
     const {duration} = defineProps(['duration']);
-    const emit = defineEmits(['count-finished']);
+    const emit = defineEmits(['count-finished', 'timeout-notifying']);
 
     const quizStore = useQuizStore();
 
@@ -17,25 +17,26 @@
             currentSecound.value += 1;
             questionDurationProgress.value = (currentSecound.value / (duration-1)) * 100;
             if(currentSecound.value === duration) {
+                clearInterval(timerInterval.value);
                 timeOut.value = true;
-                restartTimer();
+                emit('timeout-notifying');
+                finishing();
             }
         }, 1000);
-    }
+    };
 
-    const restartTimer = () => {
+    const finishing = () => {
         setTimeout(() => {
-            clearInterval(timerInterval.value);
-            questionDurationProgress.value = 0;
-            currentSecound.value = 0;
-            timeOut.value = false;
             emit('count-finished');
-            startTimer();
-        }, 1000);
-    }
+        }, 2000);
+    };
 
     onMounted(() => {
         startTimer();
+    });
+
+    onUnmounted(() => {
+        clearInterval(timerInterval.value);
     });
 </script>
 <style lang="scss"></style>
@@ -47,7 +48,7 @@
             </div>
         </h1>
         <div class="mt-8">
-            <h1 class="font-mont font-bold text-4xl text-center capitalize" v-if="timeOut">time out !!!</h1>
+            <h1 class="font-mont font-bold text-4xl text-center capitalize animate__animated animate__tada" v-if="timeOut">time out !!!</h1>
             <ProgressBar v-else :value="questionDurationProgress" :showValue="false" />
         </div>
     </div>
