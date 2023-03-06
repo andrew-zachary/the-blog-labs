@@ -230,6 +230,7 @@ export const useQuizStore = defineStore('quiz', () => {
     const quizFinished = ref(false);
     const version = ref(1);
     const result = ref([]);
+    const score = ref(0);
 
     const quiz = computed(() => {
         const max = questions.length - 1;
@@ -249,13 +250,18 @@ export const useQuizStore = defineStore('quiz', () => {
     });
 
     const updateProgress = (question, answerId) => {
+
+        const answerisRight = question.rightAnswerId === answerId;
+
+        if(answerisRight) score.value += 1;
+
         result.value = [...result.value, {
             ...question,
             userAnswer: question.answers.filter((choice) => answerId === choice.id)[0] ?? {body:'no answer'},
-            answerisRight: question.rightAnswerId === answerId,
+            answerisRight,
             rightAnswer: question.answers.filter((choice) => question.rightAnswerId === choice.id)[0]
         }];
-    }
+    };
 
     const paginate = () => {
         if(currentQuestionIndex.value === quiz.value.items.length) return quizFinished.value = true;
@@ -268,11 +274,22 @@ export const useQuizStore = defineStore('quiz', () => {
         currentQuestionId.value = null;
         quizFinished.value = false;
         result.value = [];
+        score.value = 0;
 
         version.value += 1;
 
         paginate();
-    }
+    };
 
-    return { questions,  quizFinished, quiz, currentQuestionId, paginate, restartQuiz, updateProgress, result };
+    return { 
+        questions,  
+        quizFinished, 
+        quiz, 
+        currentQuestionId, 
+        paginate, 
+        restartQuiz, 
+        updateProgress, 
+        result,  
+        score
+    };
 });
