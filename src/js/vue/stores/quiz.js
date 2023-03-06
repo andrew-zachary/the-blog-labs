@@ -185,7 +185,7 @@ export const useQuizStore = defineStore('quiz', () => {
             answers: [
                 {id:1, body: '7 feet'},
                 {id:2, body: '5 feet'},
-                {id:3, body: '3 feetpanda'},
+                {id:3, body: '3 feet'},
                 {id:4, body: '10 feet'}
             ],
             rightAnswerId: 4
@@ -229,6 +229,7 @@ export const useQuizStore = defineStore('quiz', () => {
     const currentQuestionId = ref(null);
     const quizFinished = ref(false);
     const version = ref(1);
+    const result = ref([]);
 
     const quiz = computed(() => {
         const max = questions.length - 1;
@@ -247,6 +248,15 @@ export const useQuizStore = defineStore('quiz', () => {
         };
     });
 
+    const updateProgress = (question, answerId) => {
+        result.value = [...result.value, {
+            ...question,
+            userAnswer: question.answers.filter((choice) => answerId === choice.id)[0] ?? {body:'no answer'},
+            answerisRight: question.rightAnswerId === answerId,
+            rightAnswer: question.answers.filter((choice) => question.rightAnswerId === choice.id)[0]
+        }];
+    }
+
     const paginate = () => {
         if(currentQuestionIndex.value === quiz.value.items.length) return quizFinished.value = true;
         currentQuestionId.value = quiz.value.items[currentQuestionIndex.value].id;
@@ -257,11 +267,12 @@ export const useQuizStore = defineStore('quiz', () => {
         currentQuestionIndex.value = 0;
         currentQuestionId.value = null;
         quizFinished.value = false;
+        result.value = [];
 
         version.value += 1;
 
         paginate();
     }
 
-    return { questions,  quizFinished, quiz, currentQuestionId, paginate, restartQuiz };
+    return { questions,  quizFinished, quiz, currentQuestionId, paginate, restartQuiz, updateProgress, result };
 });
