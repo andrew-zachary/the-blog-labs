@@ -27,8 +27,7 @@ export default defineConfig({
     css: {
       preprocessorOptions: {
         scss: {
-          additionalData: '@import "./src/styles/_mixins.scss";',
-          additionalData: '@import "primeicons/primeicons.css";',
+          additionalData: '@import "./src/styles/_mixins.scss";@import "primeicons/primeicons.css";',
         }
       }
     },
