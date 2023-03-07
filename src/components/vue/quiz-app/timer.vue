@@ -34,10 +34,6 @@
     onMounted(() => {
         startTimer();
     });
-
-    onUnmounted(() => {
-        clearInterval(timerInterval.value);
-    });
 </script>
 <style lang="scss"></style>
 <template>
