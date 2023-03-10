@@ -3,9 +3,9 @@
 
     import { useDateCountDown } from '../../../js/vue/composables/useDateCountDown';
 
-    const { secs, mins } = useDateCountDown(1678397400, 60 * 60 * 1000, () => { console.log('target') });
+    const { secs, mins, hrs, days } = useDateCountDown(1682805600, 60 * 60 * 1000, () => { console.log('target') });
 
 </script>
 <template>
-    <div ref="refTest1" class="text-4xl">{{ mins }} : {{ secs }}</div>
+    <div class="text-4xl">{{ days }} : {{ hrs }} : {{ mins }} : {{ secs }}</div>
 </template>
