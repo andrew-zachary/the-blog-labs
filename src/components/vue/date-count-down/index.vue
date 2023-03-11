@@ -1,11 +1,27 @@
 <script setup>
-    import { ref, computed } from 'vue';
+    import { ref } from 'vue';
 
     import { useDateCountDown } from '../../../js/vue/composables/useDateCountDown';
 
-    const { secs, mins, hrs, days } = useDateCountDown(1682805600, 60 * 60 * 1000, () => { console.log('target') });
+    const source = ref(null);
 
+    const { 
+        secs, 
+        mins, 
+        hrs, 
+        days,
+        startCounting,
+        stopCounting,
+        isCounting
+    } = useDateCountDown(source, () => { console.log('target') });
 </script>
 <template>
-    <div class="text-4xl">{{ days }} : {{ hrs }} : {{ mins }} : {{ secs }}</div>
+    <div v-show="isCounting" id="reset-counting">
+        <button type="button" @click="stopCounting">reset</button>
+    </div>
+    <form v-show="!isCounting" @submit.prevent="startCounting">
+        <input ref="source" type="datetime-local" name="event-time" id="event-time" value="" />
+        <button type="submit">start</button>
+    </form>
+    <div>{{ days }} : {{ hrs }} : {{ mins }} : {{ secs }}</div>
 </template>
