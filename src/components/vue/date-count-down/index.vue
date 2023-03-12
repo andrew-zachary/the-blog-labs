@@ -12,16 +12,22 @@
         days,
         startCounting,
         stopCounting,
-        isCounting
+        isCounting,
+        errMsg
     } = useDateCountDown(source, () => { console.log('target') });
 </script>
 <template>
-    <div v-show="isCounting" id="reset-counting">
-        <button type="button" @click="stopCounting">reset</button>
+    <div id="app-container">
+        <div v-show="isCounting" id="reset-counting">
+            <button type="button" @click="stopCounting">reset</button>
+        </div>
+        <form v-show="!isCounting" @submit.prevent="startCounting" novalidate>
+            <input ref="source" type="text" placeholder="mm/dd/yyyy" name="event-time" id="event-time" value="" />
+            <button type="submit">start</button>
+            <div v-show="errMsg">
+                {{ errMsg }}
+            </div>
+        </form>
+        <div>{{ days }} : {{ hrs }} : {{ mins }} : {{ secs }}</div>
     </div>
-    <form v-show="!isCounting" @submit.prevent="startCounting">
-        <input ref="source" type="datetime-local" name="event-time" id="event-time" value="" />
-        <button type="submit">start</button>
-    </form>
-    <div>{{ days }} : {{ hrs }} : {{ mins }} : {{ secs }}</div>
 </template>
