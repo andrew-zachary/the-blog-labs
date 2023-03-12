@@ -42,6 +42,7 @@ export function useDateCountDown(source = 0, callback = null) {
         if( !validatingDate(source.value.value) ) return;
 
         const unixTimeStamp = (new Date(source.value.value)).getTime();
+        
         isCounting.value = true;
 
         countingInterval = setInterval(() => {

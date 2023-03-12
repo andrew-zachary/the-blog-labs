@@ -6,6 +6,18 @@ import ContainerCenterScroll from "../../components/astro/container-center-scrol
 <script>
     import '../../js/vue//date-count-down';
 </script>
+<style lang="scss" is:global>
+    #form-box, #reset-counting {
+        height: 7.1rem;
+    }
+    .fade-enter-from, .fade-leave-to {
+        opacity: 0;
+        position: absolute;
+    }
+    .fade-enter-active, .fade-leave-active  {
+        transition: opacity 0.3s ease-in-out;
+    }
+</style>
 <Base>
 
     <ContainerCenterScroll>
