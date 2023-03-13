@@ -4,19 +4,48 @@ import Base from "../../layouts/base.astro";
 import ContainerCenterScroll from "../../components/astro/container-center-scroll.astro";
 ---
 <script>
-    import '../../js/vue//date-count-down';
+    import '../../js/vue/date-count-down';
 </script>
 <style lang="scss" is:global>
+
     #form-box, #reset-counting {
-        height: 7.1rem;
+
+        input::placeholder, input, button {
+            font-size: clamp(24px, calc(1.5rem + ((1vw - 3.2px) * 7.5893)), 58px);
+        }
     }
+
+    #counters-row {
+        display: grid;
+        grid-template-columns: 1fr min-content 1fr min-content 1fr min-content 1fr;
+        align-items: center;
+        justify-items: center;
+
+        .circle-counter {
+            height: 18vw;
+            width: 18vw;
+            max-width: 15rem;
+            max-height: 15rem;
+        }
+
+        .circle-counter, span {
+            min-height: 0vw;
+            font-size: clamp(24px, calc(1.5rem + ((1vw - 3.2px) * 8.9286)), 64px);
+        }
+    }
+
     .fade-enter-from, .fade-leave-to {
         opacity: 0;
         position: absolute;
+        top:0;
+        left: 50%;
+        transform: translate(-50%, 0);
     }
+
     .fade-enter-active, .fade-leave-active  {
         transition: opacity 0.3s ease-in-out;
     }
+
 </style>
 <Base>
 

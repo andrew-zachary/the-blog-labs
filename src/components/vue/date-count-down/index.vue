@@ -20,17 +20,42 @@
 </script>
 <template>
 
-    <div id="app-container" class="text-6xl font-ssp font-bold relative">
+    <div id="app-container" class="px-2 font-ssp font-bold relative">
 
-        <transition name="fade" mode="out-in">
-            <div id="reset-counting" class="w-full flex justify-center" v-show="isCounting">
-                <button type="button" class="p-4 bg-black text-white uppercase" @click="stopCounting">reset</button>
+        <transition name="fade">
+            <div 
+                id="reset-counting" 
+                class="flex items-end justify-center 
+                w-full max-w-md mx-auto" 
+                v-show="isCounting"
+            >
+                <button type="button" class="p-4 border-black border-2 bg-black text-white uppercase" @click="stopCounting">reset</button>
             </div>
         </transition>
-        <transition name="fade" mode="out-in">
-            <div id="form-box" v-show="!isCounting">
-                <form id="date-form" class="w-full flex justify-center max-w-sm mx-auto" @submit.prevent="startCounting" novalidate>
-                    <input class="p-4 w-full border-black border-2" ref="source" type="text" placeholder="mm/dd/yyyy" name="event-time" id="event-time" value="" />
+        <transition name="fade">
+            <div 
+                id="form-box" 
+                class="flex items-end 
+                w-full max-w-md mx-auto" 
+                v-show="!isCounting"
+            >
+                <form 
+                    id="date-form" 
+                    class="w-full flex justify-center" 
+                    @submit.prevent="startCounting" 
+                    novalidate
+                >
+                    <input 
+                        class="p-4 
+                        w-full 
+                        border-black border-2 
+                        placeholder:text-gray-500" 
+                        ref="source" 
+                        type="text" 
+                        placeholder="mm/dd/yyyy" 
+                        name="event-time" 
+                        id="event-time" value="" 
+                    />
                     <button class="p-4 bg-black text-white uppercase" type="submit">start</button>
                     <div v-show="errMsg">
                         {{ errMsg }}
@@ -39,11 +64,11 @@
             </div>
         </transition>
 
-        <div id="counters-row" class="flex items-center justify-center mt-8">
-            <CounterCircle bgColor="black" fontColor="white" borderColor="yellow" borderWidth="8" :count="days" /> <span class="p-2">:</span>
-            <CounterCircle bgColor="black" fontColor="white" borderColor="green" borderWidth="8" :count="hrs" /> <span class="p-2">:</span>
-            <CounterCircle bgColor="black" fontColor="white" borderColor="pink" borderWidth="8" :count="mins" /> <span class="p-2">:</span>
-            <CounterCircle bgColor="black" fontColor="white" borderColor="blue" borderWidth="8" :count="secs" />
+        <div id="counters-row" class="mt-8 max-w-md mx-auto">
+            <CounterCircle bgColor="#dae4f9" fontColor="black" borderColor="yellow" borderWidth="8" :count="days" /> <span>:</span>
+            <CounterCircle bgColor="#dae4f9" fontColor="black" borderColor="green" borderWidth="8" :count="hrs" /> <span>:</span>
+            <CounterCircle bgColor="#dae4f9" fontColor="black" borderColor="black" borderWidth="8" :count="mins" /> <span>:</span>
+            <CounterCircle bgColor="#dae4f9" fontColor="black" borderColor="blue" borderWidth="8" :count="secs" />
         </div>
 
     </div>
