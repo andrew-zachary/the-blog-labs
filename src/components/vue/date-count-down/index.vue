@@ -65,10 +65,10 @@
         </transition>
 
         <div id="counters-row" class="mt-8 max-w-md mx-auto">
-            <CounterCircle bgColor="#dae4f9" fontColor="black" borderColor="yellow" borderWidth="8" :count="days" /> <span>:</span>
-            <CounterCircle bgColor="#dae4f9" fontColor="black" borderColor="green" borderWidth="8" :count="hrs" /> <span>:</span>
-            <CounterCircle bgColor="#dae4f9" fontColor="black" borderColor="black" borderWidth="8" :count="mins" /> <span>:</span>
-            <CounterCircle bgColor="#dae4f9" fontColor="black" borderColor="blue" borderWidth="8" :count="secs" />
+            <CounterCircle bgColor="#dae4f9" fontColor="black" borderColor="red" borderWidth="2" :count="days" :countFrom="18" /> <span>:</span>
+            <CounterCircle bgColor="#dae4f9" fontColor="black" borderColor="green" borderWidth="2" :count="hrs" :countFrom="24" /> <span>:</span>
+            <CounterCircle bgColor="#dae4f9" fontColor="black" borderColor="black" borderWidth="2" :count="mins" :countFrom="60" /> <span>:</span>
+            <CounterCircle bgColor="#dae4f9" fontColor="black" borderColor="blue" borderWidth="2" :count="secs" :countFrom="60" />
         </div>
 
     </div>
