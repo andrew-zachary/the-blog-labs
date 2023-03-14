@@ -15,7 +15,8 @@
         startCounting,
         stopCounting,
         isCounting,
-        errMsg
+        errMsg,
+        totalDays
     } = useDateCountDown(source, () => { console.log('target') });
 </script>
 <template>
@@ -66,7 +67,7 @@
         </transition>
 
         <div id="counters-row" class="mt-8 max-w-md mx-auto">
-            <CounterCircle bgColor="#dae4f9" fontColor="black" borderColor="red" borderWidth="2" :count="days" :countFrom="days" /> <span>:</span>
+            <CounterCircle bgColor="#dae4f9" fontColor="black" borderColor="red" borderWidth="2" :count="days" :countFrom="totalDays" /> <span>:</span>
             <CounterCircle bgColor="#dae4f9" fontColor="black" borderColor="orange" borderWidth="2" :count="hrs" :countFrom="24" /> <span>:</span>
             <CounterCircle bgColor="#dae4f9" fontColor="black" borderColor="black" borderWidth="2" :count="mins" :countFrom="60" /> <span>:</span>
             <CounterCircle bgColor="#dae4f9" fontColor="black" borderColor="blue" borderWidth="2" :count="secs" :countFrom="60" />

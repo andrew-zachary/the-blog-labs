@@ -4,14 +4,17 @@
     const props = defineProps([ 'count', 'countFrom', 'bg-color', 'font-color', 'borderColor', 'borderWidth']);
 
     const ratingCircle = ref(null);
-
+    
     watch(()=> props.count, count => {
+
         const totalLength = ratingCircle.value.getTotalLength();
         const lengthToAnimate = totalLength - Math.floor( ( count / props.countFrom ) * 100 );
+
         ratingCircle.value.setAttribute('stroke-dasharray', totalLength);
         ratingCircle.value.setAttribute('stroke-dashoffset', lengthToAnimate);
         
         if(count === 0) ratingCircle.value.setAttribute('stroke-dashoffset', 0);
+        
     });
 </script>
 <template>

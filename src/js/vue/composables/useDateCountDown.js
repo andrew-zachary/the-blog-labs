@@ -11,6 +11,8 @@ export function useDateCountDown(source = 0, callback = null) {
     const isCounting = ref(false);
     const errMsg = ref(null);
 
+    const totalDays = ref(null);
+
     const validatingDate = (date) => {
 
         if(date.length === 0) {
@@ -44,10 +46,11 @@ export function useDateCountDown(source = 0, callback = null) {
         const unixTimeStamp = (new Date(source.value.value)).getTime();
         
         isCounting.value = true;
+        totalDays.value = Math.floor( Math.floor ( Math.abs( Date.now() - unixTimeStamp ) / 1000 ) / (60 * 60 * 24) );
 
         countingInterval = setInterval(() => {
     
-            const diff =  Math.floor ( Math.abs( Date.now() - unixTimeStamp ) / 1000 );
+            const diff =  Math.floor( Math.abs( Date.now() - unixTimeStamp ) / 1000 );
             
             secs.value = Math.floor( diff % 60 );
             mins.value = Math.floor( (diff % (60 * 60)) / 60 );
@@ -78,6 +81,7 @@ export function useDateCountDown(source = 0, callback = null) {
         startCounting, 
         stopCounting, 
         isCounting, 
-        errMsg 
+        errMsg,
+        totalDays
     };
 }
