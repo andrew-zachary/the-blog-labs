@@ -23,18 +23,18 @@ export function useDateCountDown(source = 0, callback = null) {
             errMsg.value = 'date is expired';
             return false;
 
-        } else if(!(/^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/.test(date))) {
+        } else if(!(/^(\d{4}-\d{2}-\d{2}T\d{2}:\d{2})$/.test(date))) {
 
             errMsg.value = 'date is not valid';
             return false;
-
+            
         } else {
-
+            
             errMsg.value = null;
             return true;
-
+            
         }
-
+        
     };
     
     const startCounting = () => {

@@ -52,7 +52,7 @@
                         border-black border-2 
                         placeholder:text-gray-500" 
                         ref="source" 
-                        type="text" 
+                        type="datetime-local" 
                         placeholder="mm/dd/yyyy" 
                         name="event-time" 
                         id="event-time" value="" 
@@ -66,7 +66,7 @@
         </transition>
 
         <div id="counters-row" class="mt-8 max-w-md mx-auto">
-            <CounterCircle bgColor="#dae4f9" fontColor="black" borderColor="red" borderWidth="2" :count="days" :countFrom="18" /> <span>:</span>
+            <CounterCircle bgColor="#dae4f9" fontColor="black" borderColor="red" borderWidth="2" :count="days" :countFrom="days" /> <span>:</span>
             <CounterCircle bgColor="#dae4f9" fontColor="black" borderColor="orange" borderWidth="2" :count="hrs" :countFrom="24" /> <span>:</span>
             <CounterCircle bgColor="#dae4f9" fontColor="black" borderColor="black" borderWidth="2" :count="mins" :countFrom="60" /> <span>:</span>
             <CounterCircle bgColor="#dae4f9" fontColor="black" borderColor="blue" borderWidth="2" :count="secs" :countFrom="60" />
