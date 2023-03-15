@@ -1,6 +1,6 @@
 import { ref } from "vue";
 
-export function useDateCountDown(source = 0, callback = null) {
+export function useDateCountDown({source = 0, callback = null}) {
 
     let countingInterval = null;
 
@@ -53,8 +53,11 @@ export function useDateCountDown(source = 0, callback = null) {
             const diff =  Math.floor( Math.abs( Date.now() - unixTimeStamp ) / 1000 );
 
             if(diff === 0){
+
                 stopCounting();
-                callback();
+
+                if(callback) callback();
+                
             }
             
             secs.value = Math.floor( diff % 60 );

@@ -17,7 +17,7 @@
         isCounting,
         errMsg,
         totalDays
-    } = useDateCountDown(source, () => { console.log('target') });
+    } = useDateCountDown({source, callback: () => { console.log('target') }});
 </script>
 <template>
 
