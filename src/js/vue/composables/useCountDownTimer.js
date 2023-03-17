@@ -1,6 +1,6 @@
-import { ref } from "vue";
+import { ref, isRef } from "vue";
 
-export function useDateCountDown({source = 0, callback = null}) {
+export function useCountDownTimer({source = 0, callback = null}) {
 
     let countingInterval = null;
 
@@ -27,7 +27,7 @@ export function useDateCountDown({source = 0, callback = null}) {
 
         } else if(!(/^(\d{4}-\d{2}-\d{2}T\d{2}:\d{2})$/.test(date))) {
 
-            errMsg.value = 'date is not valid';
+            errMsg.value = 'date format must be YYYY-MM-DDTHH:mm';
             return false;
             
         } else {
@@ -40,10 +40,11 @@ export function useDateCountDown({source = 0, callback = null}) {
     };
     
     const startCounting = () => {
+        const target = isRef(source) ? source.value : ref(source);
 
-        if( !validatingDate(source.value.value) ) return;
+        if( !validatingDate(target.value) ) return;
 
-        const unixTimeStamp = (new Date(source.value.value)).getTime();
+        const unixTimeStamp = (new Date(target.value)).getTime();
         
         isCounting.value = true;
         totalDays.value = Math.floor( Math.floor( Math.abs( Date.now() - unixTimeStamp ) / 1000 ) / (60 * 60 * 24) );

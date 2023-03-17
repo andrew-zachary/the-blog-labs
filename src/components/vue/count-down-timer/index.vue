@@ -1,7 +1,7 @@
 <script setup>
     import { ref } from 'vue';
 
-    import { useDateCountDown } from '../../../js/vue/composables/useDateCountDown';
+    import { useCountDownTimer } from '../../../js/vue/composables/useCountDownTimer';
 
     import CounterCircle from './counter-circle.vue';
 
@@ -17,7 +17,7 @@
         isCounting,
         errMsg,
         totalDays
-    } = useDateCountDown({source, callback: () => { console.log('target') }});
+    } = useCountDownTimer({source, callback: () => { console.log('target') }});
 </script>
 <template>
 

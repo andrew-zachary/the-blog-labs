@@ -7,19 +7,16 @@
     
     watch(()=> props.count, count => {
 
-        const totalLength = ratingCircle.value.getTotalLength();
-        const lengthToAnimate = totalLength - Math.floor( ( count / props.countFrom ) * 100 );
-
-        ratingCircle.value.setAttribute('stroke-dasharray', totalLength);
+        const lengthToAnimate = 100 - Math.floor( ( count / props.countFrom ) * 100 );
         ratingCircle.value.setAttribute('stroke-dashoffset', lengthToAnimate);
         
-        if(count === 0) ratingCircle.value.setAttribute('stroke-dashoffset', 0);
+        if(count === 0) ratingCircle.value.setAttribute('stroke-dashoffset', 100);
         
     });
 </script>
 <template>
 <div 
-    class="circle-counter inline-block relative rounded-full"
+    class="counter-circle inline-block relative rounded-full"
     :style="{'background-color': props.bgColor, 'color': props.fontColor}"
 >
     <span class="absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%]">{{ count }}</span>
@@ -39,6 +36,7 @@
             :stroke-width="borderWidth"
             fill="none"
             stroke-dashoffset="100"
+            stroke-dasharray="100"
         />
     </svg>
 </div>
