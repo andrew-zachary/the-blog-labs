@@ -2,18 +2,21 @@
 import Base from "../../layouts/base.astro";
 
 import ContainerCenterScroll from "../../components/astro/container-center-scroll.astro";
+import IconBars from "../../components/astro/assets/icon-bars.astro";
+import IconSearch from "../../components/astro/assets/icon-search.astro";
+import List from "../../components/astro/responsive-menu/list.astro";
 ---
 <Base>
 
     <ContainerCenterScroll>
 
-        <ul>
-            <li>link 1</li>
-            <li>link 2</li>
-            <li>link 3</li>
-            <li>link 4</li>
-            <li>link 5</li>
-        </ul>
+        <nav>
+            <div id="nav-box" class="flex">
+                <IconBars />
+                <List />
+                <IconSearch />
+            </div>
+        </nav>
 
     </ContainerCenterScroll>
 
