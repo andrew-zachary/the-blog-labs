@@ -8,7 +8,22 @@ module.exports = {
 			'md': '76.8rem',
 			'lg': '99.2rem'
 		},
-		extend: {},
+		extend: {
+			maxWidth: {
+				//menu-mobile-logo
+				'mml': '18rem',
+				//menu-mobile-feature-btn
+				'mmfb': '3rem'
+			},
+			gridTemplateRows: {
+				//menu-mobile-rows
+				'mmr': 'repeat(2, min-content)'
+			},
+			gridTemplateColumns: {
+				//menu-mobile-columns
+				'mmc': 'max-content 1fr max-content'
+			}
+		},
 	},
 	plugins: [],
 }

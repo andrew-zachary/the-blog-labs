@@ -4,18 +4,46 @@ import Base from "../../layouts/base.astro";
 import ContainerCenterScroll from "../../components/astro/container-center-scroll.astro";
 import IconBars from "../../components/astro/assets/icon-bars.astro";
 import IconSearch from "../../components/astro/assets/icon-search.astro";
+import IconLogoTest from "../../components/astro/assets/icon-logo-test.astro";
 import List from "../../components/astro/responsive-menu/list.astro";
 ---
+<script>
+    import loader from '../../js/loader.js';
+    loader('nav-menu-page');
+</script>
 <Base>
 
     <ContainerCenterScroll>
 
-        <nav>
-            <div id="nav-box" class="flex">
-                <IconBars />
-                <List />
-                <IconSearch />
+        <nav class="p-2" x-data="navmenu">
+
+            <div 
+                id="nav-box" 
+                class="grid justify-items-center grid-rows-mmr grid-cols-mmc"
+            >
+
+                <div 
+                    id="bars-btn" 
+                    class="max-w-mmfb cursor-pointer" 
+                    @click="collapse = !collapse"
+                >
+                    <IconBars />
+                </div>
+
+                <div id="logo" class="max-w-mml">
+                    <IconLogoTest />
+                </div>
+
+                <div id="list-links" class="row-start-2 row-end-3 col-start-1 col-end-4 w-full">
+                    <List />
+                </div>
+
+                <div id="search-btn" class="max-w-mmfb cursor-pointer">
+                    <IconSearch />
+                </div>
+                
             </div>
+
         </nav>
 
     </ContainerCenterScroll>
