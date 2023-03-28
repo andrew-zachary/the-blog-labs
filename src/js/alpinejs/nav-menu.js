@@ -1,9 +1,11 @@
 import alpine from 'alpinejs';
+import collapse from '@alpinejs/collapse';
 
 const initNavMenu = () => {
     alpine.data('navmenu', () => ({
-        'collapse': true
+        'collapse': false
     }));
+    alpine.plugin(collapse);
     alpine.start();
 };
 
