@@ -48,12 +48,13 @@ import IconLogoTest from "../../components/astro/assets/icon-logo-test.astro";
                 >
                     <ul
                         class="text-4xl text-center capitalize
+                        [&[x-cloak]]:hidden
                         md:!flex md:justify-end md:text-end md:!h-full"
                         x-show="open"
                         x-collapse
                         x-cloak
                     >
-                        <li class="p-4 w-full">
+                        <li x-cloak class="p-4 w-full">
                             <a href="#">link 1</a>
                         </li>
                         <li class="p-4 w-full">
