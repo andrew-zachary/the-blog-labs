@@ -5,7 +5,6 @@ import ContainerCenterScroll from "../../components/astro/container-center-scrol
 import IconBars from "../../components/astro/assets/icon-bars.astro";
 import IconSearch from "../../components/astro/assets/icon-search.astro";
 import IconLogoTest from "../../components/astro/assets/icon-logo-test.astro";
-import List from "../../components/astro/responsive-menu/list.astro";
 ---
 <script>
     import loader from '../../js/loader.js';
@@ -19,26 +18,64 @@ import List from "../../components/astro/responsive-menu/list.astro";
 
             <div 
                 id="nav-box" 
-                class="grid justify-items-center grid-rows-mmr grid-cols-mmc"
+                class="grid justify-items-center 
+                grid-rows-mmr grid-cols-mmc
+                md:grid-rows-mtr md:grid-cols-mtc"
             >
 
                 <div 
                     id="bars-btn" 
-                    class="max-w-mmfb cursor-pointer" 
-                    @click="collapse = !collapse"
+                    class="max-w-mmfb cursor-pointer 
+                    md:hidden"
+                    @click="open = !open"
                 >
                     <IconBars />
                 </div>
 
-                <div id="logo" class="max-w-mml">
+                <div 
+                    id="logo" 
+                    class="max-w-mml
+                    md:col-start-1 md:col-end-2"
+                >
                     <IconLogoTest />
                 </div>
 
-                <div id="list-links" class="row-start-2 row-end-3 col-start-1 col-end-4 w-full">
-                    <List />
+                <div 
+                    id="list-links" 
+                    class="w-full 
+                    row-start-2 row-end-3 col-start-1 col-end-4
+                    md:row-start-1 md:row-end-1 md:col-start-2 md:col-end-3"
+                >
+                    <ul
+                        class="text-4xl text-center capitalize
+                        md:!flex md:justify-end md:text-end md:!h-full"
+                        x-show="open"
+                        x-collapse
+                        x-cloak
+                    >
+                        <li class="p-4 w-full">
+                            <a href="#">link 1</a>
+                        </li>
+                        <li class="p-4 w-full">
+                            <a href="#">link 2</a>
+                        </li>
+                        <li class="p-4 w-full">
+                            <a href="#">link 3</a>
+                        </li>
+                        <li class="p-4 w-full">
+                            <a href="#">link 4</a>
+                        </li>
+                        <li class="p-4 w-full">
+                            <a href="#">link 5</a>
+                        </li>
+                    </ul>
                 </div>
 
-                <div id="search-btn" class="max-w-mmfb cursor-pointer">
+                <div 
+                    id="search-btn" 
+                    class="max-w-mmfb cursor-pointer
+                    md:col-start-3 md:col-end-4"
+                >
                     <IconSearch />
                 </div>
                 

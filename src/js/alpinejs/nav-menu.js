@@ -3,7 +3,7 @@ import collapse from '@alpinejs/collapse';
 
 const initNavMenu = () => {
     alpine.data('navmenu', () => ({
-        'collapse': false
+        'open': false
     }));
     alpine.plugin(collapse);
     alpine.start();

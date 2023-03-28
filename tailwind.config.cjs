@@ -17,11 +17,15 @@ module.exports = {
 			},
 			gridTemplateRows: {
 				//menu-mobile-rows
-				'mmr': 'repeat(2, min-content)'
+				'mmr': 'repeat(2, min-content)',
+				//menu-tablet-rows
+				'mtr': '1fr'
 			},
 			gridTemplateColumns: {
 				//menu-mobile-columns
-				'mmc': 'max-content 1fr max-content'
+				'mmc': 'max-content 1fr max-content',
+				//menu-tablet-columns
+				'mtc': 'max-content 1fr max-content'
 			}
 		},
 	},
