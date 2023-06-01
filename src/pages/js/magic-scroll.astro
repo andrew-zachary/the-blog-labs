@@ -1,0 +1,59 @@
+<script>
+
+import loader from "../../js/magic-scroll.js";
+
+window.onload = () => loader();
+
+</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>magic scroll</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.14.0/TweenMax.min.js" integrity="sha512-PlmQiqilYxHHDW1Hw+iQ060Au6lwKNIP2yqKnVmhTYpjYTG+dIMiQq4i3dUkJzIRY3NgS9HkuvkYzZHz0WiiAw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js" integrity="sha512-8E3KZoPoZCD+1dgfqhPbejQBnQfBXe8FuwL4z/c8sTrgeDMFEnoyTlH3obB4/fV+6Sg0a0XF+L/6xS4Xx1fUEg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/animation.gsap.min.js" integrity="sha512-5/OHwmQzDSBS0Ous4/hlYoWLHd06/d2r7LdKZQVBXOA6PvOqWVXtdboiLTU7lQTGyVoKVTNkwi0ol4gHGlw5ww==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+    <div class="flex flex-col justify-around">
+
+        <div id="trigger1" class="h-screen w-full relative border border-black overflow-hidden">
+            <div 
+                id="animate1" 
+                class="absolute top-0 left-[50%]"
+            >test 1</div>
+        </div>
+
+        <div id="trigger2" class="h-screen w-full relative border border-black overflow-hidden">
+            <div 
+                id="animate2" 
+                class="absolute top-0 left-[50%]"
+            >test 2</div>
+        </div>
+
+        <div id="trigger3" class="h-screen w-full relative border border-black overflow-hidden">
+            <div 
+                id="animate3" 
+                class="absolute top-0 left-[50%]"
+            >test 3</div>
+        </div>
+
+        <div id="trigger4" class="h-screen w-full relative border border-black overflow-hidden">
+            <div 
+                id="animate4" 
+                class="absolute top-0 left-[50%]"
+            >test 4</div>
+        </div>
+
+        <div id="trigger5" class="h-screen w-full relative border border-black overflow-hidden">
+            <div 
+                id="animate5" 
+                class="absolute top-0 left-[50%]"
+            >test 5</div>
+        </div>
+
+    </div>
+</body>
+</html>
