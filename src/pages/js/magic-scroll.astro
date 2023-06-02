@@ -5,6 +5,28 @@ import loader from "../../js/magic-scroll.js";
 window.onload = () => loader();
 
 </script>
+<style lang="scss">
+    li:has(a#nav-btn1.current) {
+        background-color: green;
+        color: white;
+    }
+    li:has(a#nav-btn2.current) {
+        background-color: blue;
+        color: white;
+    }
+    li:has(a#nav-btn3.current) {
+        background-color: rgba(255, 255, 0, 0.761);
+        color: black;
+    }
+    li:has(a#nav-btn4.current) {
+        background-color: red;
+        color: white;
+    }
+    li:has(a#nav-btn5.current) {
+        background-color: white;
+        color: black;
+    }
+</style>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,57 +35,126 @@ window.onload = () => loader();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>magic scroll</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.14.0/TweenMax.min.js" integrity="sha512-PlmQiqilYxHHDW1Hw+iQ060Au6lwKNIP2yqKnVmhTYpjYTG+dIMiQq4i3dUkJzIRY3NgS9HkuvkYzZHz0WiiAw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.14.0/plugins/ScrollToPlugin.min.js" integrity="sha512-eUDunt53hh9V/WuewCb8Xh+w3X3l88MdMGr0Ckw/NMNOtU6RGOZMFo/GEVKwj5b+si4pCN2fF3uThKVfOCF65w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js" integrity="sha512-8E3KZoPoZCD+1dgfqhPbejQBnQfBXe8FuwL4z/c8sTrgeDMFEnoyTlH3obB4/fV+6Sg0a0XF+L/6xS4Xx1fUEg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/animation.gsap.min.js" integrity="sha512-5/OHwmQzDSBS0Ous4/hlYoWLHd06/d2r7LdKZQVBXOA6PvOqWVXtdboiLTU7lQTGyVoKVTNkwi0ol4gHGlw5ww==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body>
-    <div class="flex flex-col justify-around">
 
-        <div id="trigger1" class="h-screen w-full relative border border-black overflow-hidden">
-            <div 
-                id="animate1" 
-                class="absolute left-[50%] translate-x-[-50%] p-12 rounded-full"
-            >
-                <span class="text-6xl absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">1</span>
+    <main>
+
+        <nav class="fixed top-[50%] translate-y-[-50%] z-10">
+
+            <ul class="px-4">
+                <li class="p-6 mb-4 border border-black relative rounded-full">
+                    <a 
+                        id="nav-btn1" 
+                        href="#trigger1" 
+                        class="nav-btn
+                        flex justify-center items-center
+                        w-full h-full 
+                        text-2xl 
+                        absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]"
+                    >1</a>
+                </li>
+                <li class="p-6 mb-4 border border-black relative rounded-full">
+                    <a 
+                        id="nav-btn2" 
+                        href="#trigger2" 
+                        class="nav-btn
+                        flex justify-center items-center
+                        w-full h-full 
+                        text-2xl 
+                        absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]"
+                    >2</a>
+                </li>
+                <li class="p-6 mb-4 border border-black relative rounded-full">
+                    <a 
+                        id="nav-btn3" 
+                        href="#trigger3" 
+                        class="nav-btn
+                        flex justify-center items-center
+                        w-full h-full 
+                        text-2xl 
+                        absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]"
+                    >3</a>
+                </li>
+                <li class="p-6 mb-4 border border-black relative rounded-full">
+                    <a 
+                        id="nav-btn4" 
+                        href="#trigger4" 
+                        class="nav-btn
+                        flex justify-center items-center
+                        w-full h-full 
+                        text-2xl
+                        absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]"
+                    >4</a>
+                </li>
+                <li class="p-6 mb-4 border border-black relative rounded-full">
+                    <a 
+                        id="nav-btn5" 
+                        href="#trigger5" 
+                        class="nav-btn
+                        flex justify-center items-center
+                        w-full h-full 
+                        text-2xl
+                        absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]"
+                    >5</a>
+                </li>
+            </ul>
+
+        </nav>
+
+        <div id="page" class="flex flex-col justify-around">
+
+            <div id="trigger1" class="h-screen w-full relative border border-black overflow-hidden">
+                <div 
+                    id="animate1" 
+                    class="absolute left-[50%] translate-x-[-50%] p-12 rounded-full"
+                >
+                    <span class="text-6xl absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">1</span>
+                </div>
             </div>
+    
+            <div id="trigger2" class="h-screen w-full relative border border-black overflow-hidden">
+                <div 
+                    id="animate2" 
+                    class="absolute left-[50%] translate-x-[-50%] p-12 rounded-full"
+                >
+                    <span class="text-6xl absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">2</span>
+                </div>
+            </div>
+    
+            <div id="trigger3" class="h-screen w-full relative border border-black overflow-hidden">
+                <div 
+                    id="animate3" 
+                    class="absolute left-[50%] translate-x-[-50%] p-12 rounded-full"
+                >
+                    <span class="text-6xl absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">3</span>
+                </div>
+            </div>
+    
+            <div id="trigger4" class="h-screen w-full relative border border-black overflow-hidden">
+                <div 
+                    id="animate4" 
+                    class="absolute left-[50%] translate-x-[-50%] p-12 rounded-full"
+                >
+                    <span class="text-6xl absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">4</span>
+                </div>
+            </div>
+    
+            <div id="trigger5" class="h-screen w-full relative border border-black overflow-hidden">
+                <div 
+                    id="animate5" 
+                    class="absolute left-[50%] translate-x-[-50%] translate-y-[-50%] p-12 rounded-full"
+                >
+                    <span class="text-6xl absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">5</span>
+                </div>
+            </div>
+    
         </div>
 
-        <div id="trigger2" class="h-screen w-full relative border border-black overflow-hidden">
-            <div 
-                id="animate2" 
-                class="absolute left-[50%] translate-x-[-50%] p-12 rounded-full"
-            >
-                <span class="text-6xl absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">2</span>
-            </div>
-        </div>
+    </main>
 
-        <div id="trigger3" class="h-screen w-full relative border border-black overflow-hidden">
-            <div 
-                id="animate3" 
-                class="absolute left-[50%] translate-x-[-50%] p-12 rounded-full"
-            >
-                <span class="text-6xl absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">3</span>
-            </div>
-        </div>
-
-        <div id="trigger4" class="h-screen w-full relative border border-black overflow-hidden">
-            <div 
-                id="animate4" 
-                class="absolute left-[50%] translate-x-[-50%] p-12 rounded-full"
-            >
-                <span class="text-6xl absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">4</span>
-            </div>
-        </div>
-
-        <div id="trigger5" class="h-screen w-full relative border border-black overflow-hidden">
-            <div 
-                id="animate5" 
-                class="absolute left-[50%] translate-x-[-50%] translate-y-[-50%] p-12 rounded-full"
-            >
-                <span class="text-6xl absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">5</span>
-            </div>
-        </div>
-
-    </div>
 </body>
 </html>
