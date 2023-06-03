@@ -2,7 +2,7 @@
 
 import loader from "../../js/magic-scroll.js";
 
-window.onload = () => loader();
+window.onload = () => loader(); 
 
 </script>
 <style lang="scss">
@@ -15,7 +15,7 @@ window.onload = () => loader();
         color: white;
     }
     li:has(a#nav-btn3.current) {
-        background-color: rgba(255, 255, 0, 0.761);
+        background-color: orange;
         color: black;
     }
     li:has(a#nav-btn4.current) {
@@ -23,8 +23,8 @@ window.onload = () => loader();
         color: white;
     }
     li:has(a#nav-btn5.current) {
-        background-color: white;
-        color: black;
+        background-color: black;
+        color: white;
     }
 </style>
 <!DOCTYPE html>
@@ -50,7 +50,7 @@ window.onload = () => loader();
                     <a 
                         id="nav-btn1" 
                         href="#trigger1" 
-                        class="nav-btn
+                        class="nav-btn current 
                         flex justify-center items-center
                         w-full h-full 
                         text-2xl 
@@ -105,12 +105,12 @@ window.onload = () => loader();
 
         </nav>
 
-        <div id="page" class="flex flex-col justify-around">
+        <div id="page-box" class="flex flex-col justify-around text-white">
 
             <div id="trigger1" class="h-screen w-full relative border border-black overflow-hidden">
                 <div 
                     id="animate1" 
-                    class="absolute left-[50%] translate-x-[-50%] p-12 rounded-full"
+                    class="absolute left-[50%] translate-x-[-50%] translate-y-[-50%] p-12 rounded-full"
                 >
                     <span class="text-6xl absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">1</span>
                 </div>
@@ -119,7 +119,7 @@ window.onload = () => loader();
             <div id="trigger2" class="h-screen w-full relative border border-black overflow-hidden">
                 <div 
                     id="animate2" 
-                    class="absolute left-[50%] translate-x-[-50%] p-12 rounded-full"
+                    class="absolute left-[50%] translate-x-[-50%] translate-y-[-50%] p-12 rounded-full"
                 >
                     <span class="text-6xl absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">2</span>
                 </div>
@@ -128,7 +128,7 @@ window.onload = () => loader();
             <div id="trigger3" class="h-screen w-full relative border border-black overflow-hidden">
                 <div 
                     id="animate3" 
-                    class="absolute left-[50%] translate-x-[-50%] p-12 rounded-full"
+                    class="absolute left-[50%] translate-x-[-50%] translate-y-[-50%] p-12 rounded-full"
                 >
                     <span class="text-6xl absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">3</span>
                 </div>
@@ -137,7 +137,7 @@ window.onload = () => loader();
             <div id="trigger4" class="h-screen w-full relative border border-black overflow-hidden">
                 <div 
                     id="animate4" 
-                    class="absolute left-[50%] translate-x-[-50%] p-12 rounded-full"
+                    class="absolute left-[50%] translate-x-[-50%] translate-y-[-50%] p-12 rounded-full"
                 >
                     <span class="text-6xl absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">4</span>
                 </div>

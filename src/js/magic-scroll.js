@@ -1,5 +1,9 @@
 const loader = () => {
 
+    window.onbeforeunload = function () {
+        window.scrollTo(0,0);
+    };
+
     const navBtns = document.querySelectorAll('.nav-btn');
 
     const controller = new ScrollMagic.Controller();
@@ -24,24 +28,24 @@ const loader = () => {
 
     });
 
-    const tween1 = TweenMax.fromTo("#animate1", 0.5, {backgroundColor: "green", top: "-150%"}, {backgroundColor: "green", top: "100%"});
-    const scene1 = new ScrollMagic.Scene({triggerElement: "#trigger1", duration: "100%"});
+    const tween1 = TweenMax.fromTo("#animate1", 0.5, {backgroundColor: "green", top: "-96px"}, {backgroundColor: "green", top: "50%"});
+    const scene1 = new ScrollMagic.Scene({triggerElement: "#trigger1", duration: "0%"});
     scene1.setTween(tween1).addTo(controller);
 
-    const tween2 = TweenMax.fromTo("#animate2", 0.5, {backgroundColor: "green", top: "-96px"}, {backgroundColor: "blue", top: "100%"});
-    const scene2 = new ScrollMagic.Scene({triggerElement: "#trigger2", duration: "100%"});
+    const tween2 = TweenMax.fromTo("#animate2", 0.5, {backgroundColor: "green", top: "-96px"}, {backgroundColor: "blue", top: "50%"});
+    const scene2 = new ScrollMagic.Scene({triggerElement: "#trigger2", duration: "50%"});
     scene2.setTween(tween2).addTo(controller);
 
-    const tween3 = TweenMax.fromTo("#animate3", 0.5, {backgroundColor: "blue", top: "-96px"}, {backgroundColor: "rgba(255, 255, 0, 0.761)", top: "100%"});
-    const scene3 = new ScrollMagic.Scene({triggerElement: "#trigger3", duration: "100%"});
+    const tween3 = TweenMax.fromTo("#animate3", 0.5, {backgroundColor: "blue", top: "-96px"}, {backgroundColor: "orange", top: "50%"});
+    const scene3 = new ScrollMagic.Scene({triggerElement: "#trigger3", duration: "50%"});
     scene3.setTween(tween3).addTo(controller);
 
-    const tween4 = TweenMax.fromTo("#animate4", 0.5, {backgroundColor: "rgba(255, 255, 0, 0.761)", top: "-96px"}, {backgroundColor: "red", top: "100%"});
-    const scene4 = new ScrollMagic.Scene({triggerElement: "#trigger4", duration: "100%"});
+    const tween4 = TweenMax.fromTo("#animate4", 0.5, {backgroundColor: "orange", top: "-96px"}, {backgroundColor: "red", top: "50%"});
+    const scene4 = new ScrollMagic.Scene({triggerElement: "#trigger4", duration: "50%"});
     scene4.setTween(tween4).addTo(controller);
 
-    const tween5 = TweenMax.fromTo("#animate5", 0.5, {backgroundColor: "red", top: "-300%"}, {backgroundColor: "white", top: "50%"});
-    const scene5 = new ScrollMagic.Scene({triggerElement: "#trigger4", duration: "150%"});
+    const tween5 = TweenMax.fromTo("#animate5", 0.5, {backgroundColor: "red", top: "-96px"}, {backgroundColor: "black", top: "50%"});
+    const scene5 = new ScrollMagic.Scene({triggerElement: "#trigger5", duration: "50%"});
     scene5.setTween(tween5).addTo(controller);
 
 };
