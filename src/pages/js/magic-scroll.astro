@@ -3,6 +3,7 @@
 import loader from "../../js/magic-scroll.js";
 
 window.onload = () => loader(); 
+window.onbeforeunload =  () => window.scrollTo(0,0);
 
 </script>
 <style lang="scss">
@@ -16,7 +17,7 @@ window.onload = () => loader();
     }
     li:has(a#nav-btn3.current) {
         background-color: orange;
-        color: black;
+        color: white;
     }
     li:has(a#nav-btn4.current) {
         background-color: red;
