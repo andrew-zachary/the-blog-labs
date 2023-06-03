@@ -47,12 +47,19 @@ const loader = () => {
     });
     scene3.setTween(tween3).addTo(controller);
 
-    const tween4 = TweenMax.fromTo("#animate4", 0.5, {backgroundColor: "orange", top: "-96px"}, {backgroundColor: "red", top: "50%"});
+    const tween4 = TweenMax.fromTo("#animate4", 0.5, 
+    {backgroundColor: "orange", top: "-96px", 'borderRadius': '100%'}, 
+    {backgroundColor: "red", top: "50%", width: '70%', height: '70%', 'borderRadius': '2%'})
+    .eventCallback("onComplete", function() {
+        TweenMax.fromTo("#animate4-content", 0.5, {opacity:0}, {opacity:1});
+        document.querySelector('#animate4').querySelector('span').innerText = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem facere quia labore earum, quae nihil.";
+    });
     const scene4 = new ScrollMagic.Scene({triggerElement: "#trigger4", duration: "50%"})
     .on('enter', () => highlightCurrent("a[href='#trigger4']"))
     .on('progress', ({state}) => {
         if(state === 'BEFORE') {
             highlightCurrent("a[href='#trigger3']");
+            document.querySelector('#animate4').querySelector('span').innerText = "4";
         }
     });
     scene4.setTween(tween4).addTo(controller);
