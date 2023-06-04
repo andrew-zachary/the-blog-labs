@@ -23,7 +23,7 @@ const loader = () => {
         document.querySelector(current).classList.add('current');
     };
 
-    const buildAnimatedSlide = ({animationTrigger, slideId, fromColor, toColor, fromTxt, toTxt}) => {
+    const buildAnimatedSlide = ({animationTrigger, slideId, fromColor, toColor, fromTxt, toTxt, prevSlide}) => {
         const animate4Content = document.querySelector(slideId).querySelector('span');
         const tween4 = TweenMax.fromTo(slideId, 0.5, 
         {backgroundColor: fromColor, top: "-96px", 'borderRadius': '100%'}, 
@@ -37,7 +37,7 @@ const loader = () => {
         .on('enter', () => highlightCurrentNav(`a[href='${animationTrigger}']`))
         .on('progress', ({state}) => {
             if(state === 'BEFORE') {
-                highlightCurrentNav("a[href='#trigger3']");
+                highlightCurrentNav(`[href='${prevSlide}']`);
                 animate4Content.innerText = fromTxt;
                 animate4Content.style.fontSize = "3.75rem";
             }
@@ -76,7 +76,8 @@ const loader = () => {
         fromColor: 'orange', 
         toColor: 'red',
         fromTxt: '4',
-        toTxt: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Magni vel impedit dignissimos nisi vitae non.'
+        toTxt: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Magni vel impedit dignissimos nisi vitae non.',
+        prevSlide: '#trigger3'
     });
 
     const tween5 = TweenMax.fromTo("#animate5", 0.5, {backgroundColor: "red", top: "-96px"}, {backgroundColor: "black", top: "50%"});
