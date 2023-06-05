@@ -5,52 +5,57 @@ import createSlides from "../../js/magic-scroll.js";
 window.onload = () => createSlides([
     {
         animationTrigger: '#trigger1', 
-        slideId: '#animate1', 
+        slideId: '#animate1',
+        navBtnId: '#nav-btn1',
+        preNavBtnId: null,
         fromColor: 'white', 
         toColor: 'green',
         fromTxt: '1',
         toTxt: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Magni vel impedit dignissimos nisi vitae non.',
-        prevSlide: null,
         scrollDuration: '0%'
     },
     {
-        animationTrigger: '#trigger2', 
+        animationTrigger: '#trigger2',
         slideId: '#animate2', 
+        navBtnId: '#nav-btn2',
+        preNavBtnId: '#nav-btn1',
         fromColor: 'green', 
         toColor: 'blue',
         fromTxt: '2',
         toTxt: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Magni vel impedit dignissimos nisi vitae non.',
-        prevSlide: '#trigger1',
         scrollDuration: '50%'
     },
     {
         animationTrigger: '#trigger3', 
         slideId: '#animate3', 
+        navBtnId: '#nav-btn3',
+        preNavBtnId: '#nav-btn2',
         fromColor: 'blue', 
         toColor: 'orange',
         fromTxt: '3',
         toTxt: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Magni vel impedit dignissimos nisi vitae non.',
-        prevSlide: '#trigger2',
         scrollDuration: '50%'
     },
     {
-        animationTrigger: '#trigger4', 
+        animationTrigger: '#trigger4',
         slideId: '#animate4', 
+        navBtnId: '#nav-btn4',
+        preNavBtnId: '#nav-btn3',
         fromColor: 'orange', 
         toColor: 'red',
         fromTxt: '4',
         toTxt: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Magni vel impedit dignissimos nisi vitae non.',
-        prevSlide: '#trigger3',
         scrollDuration: '50%'
     },
     {
         animationTrigger: '#trigger5', 
         slideId: '#animate5', 
+        navBtnId: '#nav-btn5',
+        preNavBtnId: '#nav-btn4',
         fromColor: 'red', 
         toColor: 'black',
         fromTxt: '5',
         toTxt: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Magni vel impedit dignissimos nisi vitae non.',
-        prevSlide: '#trigger4',
         scrollDuration: '50%'
     }
 ]);
@@ -59,25 +64,32 @@ window.onbeforeunload =  () => window.scrollTo(0,0);
 
 </script>
 <style lang="scss">
-    li:has(a#nav-btn1.current) {
-        background-color: green;
-        color: white;
-    }
-    li:has(a#nav-btn2.current) {
-        background-color: blue;
-        color: white;
-    }
-    li:has(a#nav-btn3.current) {
-        background-color: orange;
-        color: white;
-    }
-    li:has(a#nav-btn4.current) {
-        background-color: red;
-        color: white;
-    }
-    li:has(a#nav-btn5.current) {
-        background-color: black;
-        color: white;
+    li {
+        
+        &.current {
+            color: white;
+        }
+
+        &#nav-btn1.current {
+            background-color: green;
+        }
+
+        &#nav-btn2.current {
+            background-color: blue;
+        }
+
+        &#nav-btn3.current {
+            background-color: orange;
+        }
+
+        &#nav-btn4.current {
+            background-color: red;
+        }
+
+        &#nav-btn5.current {
+            background-color: black;
+        }
+        
     }
 </style>
 <!DOCTYPE html>
@@ -99,56 +111,46 @@ window.onbeforeunload =  () => window.scrollTo(0,0);
         <nav class="fixed top-[50%] translate-y-[-50%] z-10">
 
             <ul class="px-4">
-                <li class="p-6 mb-4 border border-black relative rounded-full">
+                <li id="nav-btn1" class="nav-btn current p-6 mb-4 border border-black relative rounded-full">
                     <a 
-                        id="nav-btn1" 
                         href="#trigger1" 
-                        class="nav-btn current 
-                        flex justify-center items-center
+                        class="flex justify-center items-center
                         w-full h-full 
                         text-2xl 
                         absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]"
                     >1</a>
                 </li>
-                <li class="p-6 mb-4 border border-black relative rounded-full">
+                <li id="nav-btn2" class="nav-btn p-6 mb-4 border border-black relative rounded-full">
                     <a 
-                        id="nav-btn2" 
                         href="#trigger2" 
-                        class="nav-btn
-                        flex justify-center items-center
+                        class="flex justify-center items-center
                         w-full h-full 
                         text-2xl 
                         absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]"
                     >2</a>
                 </li>
-                <li class="p-6 mb-4 border border-black relative rounded-full">
+                <li id="nav-btn3" class="nav-btn p-6 mb-4 border border-black relative rounded-full">
                     <a 
-                        id="nav-btn3" 
                         href="#trigger3" 
-                        class="nav-btn
-                        flex justify-center items-center
+                        class="flex justify-center items-center
                         w-full h-full 
                         text-2xl 
                         absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]"
                     >3</a>
                 </li>
-                <li class="p-6 mb-4 border border-black relative rounded-full">
+                <li id="nav-btn4" class="nav-btn p-6 mb-4 border border-black relative rounded-full">
                     <a 
-                        id="nav-btn4" 
                         href="#trigger4" 
-                        class="nav-btn
-                        flex justify-center items-center
+                        class="flex justify-center items-center
                         w-full h-full 
                         text-2xl
                         absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]"
                     >4</a>
                 </li>
-                <li class="p-6 mb-4 border border-black relative rounded-full">
+                <li id="nav-btn5" class="nav-btn p-6 mb-4 border border-black relative rounded-full">
                     <a 
-                        id="nav-btn5" 
                         href="#trigger5" 
-                        class="nav-btn
-                        flex justify-center items-center
+                        class="flex justify-center items-center
                         w-full h-full 
                         text-2xl
                         absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]"

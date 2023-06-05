@@ -5,7 +5,7 @@ const createSlides = (slides) => {
         TweenMax.to(window, 0.5, {scrollTo: {y: newPos}});
     });
 
-    const navBtns = document.querySelectorAll('.nav-btn');
+    const navBtns = document.querySelectorAll('.nav-btn ');
     navBtns.forEach((node) => {
         
         node.addEventListener('click', (e) => {
@@ -18,12 +18,22 @@ const createSlides = (slides) => {
 
     });
 
-    const highlightCurrentNav = (current) => {
+    const highlightCurrentNav = (navBtnId) => {
         navBtns.forEach((node) => node.classList.remove('current'));
-        document.querySelector(current).classList.add('current');
+        document.querySelector(navBtnId).classList.add('current');
     };
 
-    const buildAnimatedSlide = ({animationTrigger, slideId, fromColor, toColor, fromTxt, toTxt, prevSlide, scrollDuration}) => {
+    const buildAnimatedSlide = ({
+        animationTrigger, 
+        slideId,
+        navBtnId,
+        preNavBtnId,
+        fromColor, 
+        toColor,
+        fromTxt,
+        toTxt,
+        scrollDuration,
+    }) => {
 
         const content = document.querySelector(slideId).querySelector('span');
 
@@ -37,10 +47,10 @@ const createSlides = (slides) => {
         });
 
         const scene = new ScrollMagic.Scene({triggerElement: animationTrigger, duration: scrollDuration})
-        .on('enter', () => highlightCurrentNav(`a[href='${animationTrigger}']`))
+        .on('enter', () => highlightCurrentNav(navBtnId))
         .on('progress', ({state}) => {
             if(state === 'BEFORE') {
-                highlightCurrentNav(`[href='${prevSlide}']`);
+                highlightCurrentNav(preNavBtnId);
                 content.innerText = fromTxt;
                 content.style.fontSize = "3.75rem";
             }
