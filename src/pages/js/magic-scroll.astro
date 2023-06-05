@@ -64,6 +64,11 @@ window.onbeforeunload =  () => window.scrollTo(0,0);
 
 </script>
 <style lang="scss">
+
+    html {
+	    font-size: 62.5%;
+	}
+
     li {
         
         &.current {
@@ -89,7 +94,7 @@ window.onbeforeunload =  () => window.scrollTo(0,0);
         &#nav-btn5.current {
             background-color: black;
         }
-        
+
     }
 </style>
 <!DOCTYPE html>
@@ -106,104 +111,151 @@ window.onbeforeunload =  () => window.scrollTo(0,0);
 </head>
 <body>
 
-    <main>
+    <main class="max-w-md mx-auto">
 
-        <nav class="fixed top-[50%] translate-y-[-50%] z-10">
+        <nav 
+            class="w-full md:w-[0]
+            flex justify-center md:inline-block
+            fixed top-[10%] md:top-[50%] translate-y-[-50%] z-10"
+        >
 
-            <ul class="px-4">
-                <li id="nav-btn1" class="nav-btn current p-6 mb-4 border border-black relative rounded-full">
+            <ul 
+                class="w-full max-w-xs
+                px-4
+                flex justify-between items-center md:inline-block"
+            >
+                <li 
+                    id="nav-btn1" 
+                    class="nav-btn current 
+                    p-6 md:mb-4
+                    border border-black rounded-full
+                    relative"
+                >
                     <a 
                         href="#trigger1" 
                         class="flex justify-center items-center
                         w-full h-full 
                         text-2xl 
-                        absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]"
+                        absolute inset-0"
                     >1</a>
                 </li>
-                <li id="nav-btn2" class="nav-btn p-6 mb-4 border border-black relative rounded-full">
+                <li 
+                    id="nav-btn2" 
+                    class="nav-btn current 
+                    p-6 md:mb-4
+                    border border-black rounded-full
+                    relative"
+                >
                     <a 
                         href="#trigger2" 
                         class="flex justify-center items-center
                         w-full h-full 
                         text-2xl 
-                        absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]"
+                        absolute inset-0"
                     >2</a>
                 </li>
-                <li id="nav-btn3" class="nav-btn p-6 mb-4 border border-black relative rounded-full">
+                <li 
+                    id="nav-btn3" 
+                    class="nav-btn current 
+                    p-6 md:mb-4
+                    border border-black rounded-full
+                    relative"
+                >
                     <a 
                         href="#trigger3" 
                         class="flex justify-center items-center
                         w-full h-full 
                         text-2xl 
-                        absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]"
+                        absolute inset-0"
                     >3</a>
                 </li>
-                <li id="nav-btn4" class="nav-btn p-6 mb-4 border border-black relative rounded-full">
+                <li 
+                    id="nav-btn4" 
+                    class="nav-btn current 
+                    p-6 md:mb-4
+                    border border-black rounded-full
+                    relative"
+                >
                     <a 
                         href="#trigger4" 
                         class="flex justify-center items-center
                         w-full h-full 
                         text-2xl
-                        absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]"
+                        absolute inset-0"
                     >4</a>
                 </li>
-                <li id="nav-btn5" class="nav-btn p-6 mb-4 border border-black relative rounded-full">
+                <li 
+                    id="nav-btn5" 
+                    class="nav-btn current 
+                    p-6 md:mb-4
+                    border border-black rounded-full
+                    relative"
+                >
                     <a 
                         href="#trigger5" 
                         class="flex justify-center items-center
                         w-full h-full 
                         text-2xl
-                        absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]"
+                        absolute inset-0"
                     >5</a>
                 </li>
             </ul>
 
         </nav>
 
-        <div id="page-box" class="flex flex-col justify-around text-white">
+        <div 
+            id="page-box" 
+            class="px-4 md:px-24
+            flex flex-col justify-around text-white"
+        >
 
-            <div id="trigger1" class="h-screen w-full relative border border-black overflow-hidden">
+            <div id="trigger1" class="h-screen w-full relative overflow-hidden">
                 <div 
                     id="animate1" 
-                    class="absolute left-[50%] translate-x-[-50%] translate-y-[-50%] p-12 rounded-full"
+                    class="flex justify-center items-center
+                    absolute left-[50%] translate-x-[-50%] translate-y-[-50%]"
                 >
-                    <span id="animate1-content" class="w-full p-4 text-6xl text-center absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">1</span>
+                    <span id="animate1-content" class="w-full p-4 text-6xl text-center">1</span>
                 </div>
             </div>
     
-            <div id="trigger2" class="h-screen w-full relative border border-black overflow-hidden">
+            <div id="trigger2" class="h-screen w-full relative overflow-hidden">
                 <div 
                     id="animate2" 
-                    class="absolute left-[50%] translate-x-[-50%] translate-y-[-50%] p-12 rounded-full"
+                    class="flex justify-center items-center
+                    absolute left-[50%] translate-x-[-50%] translate-y-[-50%] p-12 rounded-full"
                 >
-                    <span id="animate2-content" class="w-full p-4 text-6xl text-center absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">2</span>
+                    <span id="animate2-content" class="w-full p-4 text-6xl text-center">2</span>
                 </div>
             </div>
     
-            <div id="trigger3" class="h-screen w-full relative border border-black overflow-hidden">
+            <div id="trigger3" class="h-screen w-full relative overflow-hidden">
                 <div 
                     id="animate3" 
-                    class="absolute left-[50%] translate-x-[-50%] translate-y-[-50%] p-12 rounded-full"
+                    class="flex justify-center items-center
+                    absolute left-[50%] translate-x-[-50%] translate-y-[-50%] p-12 rounded-full"
                 >
-                    <span id="animate3-content" class="w-full p-4 text-6xl text-center absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">3</span>
+                    <span id="animate3-content" class="w-full p-4 text-6xl text-center">3</span>
                 </div>
             </div>
     
-            <div id="trigger4" class="h-screen w-full relative border border-black overflow-hidden">
+            <div id="trigger4" class="h-screen w-full relative overflow-hidden">
                 <div 
                     id="animate4" 
-                    class="absolute left-[50%] translate-x-[-50%] translate-y-[-50%] p-12 rounded-full"
+                    class="flex justify-center items-center
+                    absolute left-[50%] translate-x-[-50%] translate-y-[-50%] p-12 rounded-full"
                 >
-                    <span id="animate4-content" class="w-full p-4 text-6xl text-center absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">4</span>
+                    <span id="animate4-content" class="w-full p-4 text-6xl text-center">4</span>
                 </div>
             </div>
     
-            <div id="trigger5" class="h-screen w-full relative border border-black overflow-hidden">
+            <div id="trigger5" class="h-screen w-full relative overflow-hidden">
                 <div 
                     id="animate5" 
-                    class="absolute left-[50%] translate-x-[-50%] translate-y-[-50%] p-12 rounded-full"
+                    class="flex justify-center items-center
+                    absolute left-[50%] translate-x-[-50%] translate-y-[-50%] p-12 rounded-full"
                 >
-                    <span id="animate5-content" class="w-full p-4 text-6xl text-center absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">5</span>
+                    <span id="animate5-content" class="w-full p-4 text-6xl text-center">5</span>
                 </div>
             </div>
     

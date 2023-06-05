@@ -39,7 +39,7 @@ const createSlides = (slides) => {
 
         const tween = TweenMax.fromTo(slideId, 0.5, 
         {backgroundColor: fromColor, top: "-96px", 'borderRadius': '100%'}, 
-        {backgroundColor: toColor, top: "50%", width: '70%', height: '70%', 'borderRadius': '2%'})
+        {backgroundColor: toColor, top: "50%", width: '100%', height: '50%', 'borderRadius': '2%'})
         .eventCallback("onComplete", function() {
             TweenMax.fromTo(`${slideId}-content`, 0.5, {opacity:0}, {opacity:1});
             content.innerText = toTxt;
