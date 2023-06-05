@@ -1,8 +1,60 @@
 <script>
 
-import loader from "../../js/magic-scroll.js";
+import createSlides from "../../js/magic-scroll.js";
 
-window.onload = () => loader(); 
+window.onload = () => createSlides([
+    {
+        animationTrigger: '#trigger1', 
+        slideId: '#animate1', 
+        fromColor: 'white', 
+        toColor: 'green',
+        fromTxt: '1',
+        toTxt: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Magni vel impedit dignissimos nisi vitae non.',
+        prevSlide: null,
+        scrollDuration: '0%'
+    },
+    {
+        animationTrigger: '#trigger2', 
+        slideId: '#animate2', 
+        fromColor: 'green', 
+        toColor: 'blue',
+        fromTxt: '2',
+        toTxt: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Magni vel impedit dignissimos nisi vitae non.',
+        prevSlide: '#trigger1',
+        scrollDuration: '50%'
+    },
+    {
+        animationTrigger: '#trigger3', 
+        slideId: '#animate3', 
+        fromColor: 'blue', 
+        toColor: 'orange',
+        fromTxt: '3',
+        toTxt: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Magni vel impedit dignissimos nisi vitae non.',
+        prevSlide: '#trigger2',
+        scrollDuration: '50%'
+    },
+    {
+        animationTrigger: '#trigger4', 
+        slideId: '#animate4', 
+        fromColor: 'orange', 
+        toColor: 'red',
+        fromTxt: '4',
+        toTxt: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Magni vel impedit dignissimos nisi vitae non.',
+        prevSlide: '#trigger3',
+        scrollDuration: '50%'
+    },
+    {
+        animationTrigger: '#trigger5', 
+        slideId: '#animate5', 
+        fromColor: 'red', 
+        toColor: 'black',
+        fromTxt: '5',
+        toTxt: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Magni vel impedit dignissimos nisi vitae non.',
+        prevSlide: '#trigger4',
+        scrollDuration: '50%'
+    }
+]);
+
 window.onbeforeunload =  () => window.scrollTo(0,0);
 
 </script>
@@ -113,7 +165,7 @@ window.onbeforeunload =  () => window.scrollTo(0,0);
                     id="animate1" 
                     class="absolute left-[50%] translate-x-[-50%] translate-y-[-50%] p-12 rounded-full"
                 >
-                    <span class="w-full p-4 text-6xl text-center absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">1</span>
+                    <span id="animate1-content" class="w-full p-4 text-6xl text-center absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">1</span>
                 </div>
             </div>
     
@@ -122,7 +174,7 @@ window.onbeforeunload =  () => window.scrollTo(0,0);
                     id="animate2" 
                     class="absolute left-[50%] translate-x-[-50%] translate-y-[-50%] p-12 rounded-full"
                 >
-                    <span class="w-full p-4 text-6xl text-center absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">2</span>
+                    <span id="animate2-content" class="w-full p-4 text-6xl text-center absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">2</span>
                 </div>
             </div>
     
@@ -131,7 +183,7 @@ window.onbeforeunload =  () => window.scrollTo(0,0);
                     id="animate3" 
                     class="absolute left-[50%] translate-x-[-50%] translate-y-[-50%] p-12 rounded-full"
                 >
-                    <span class="w-full p-4 text-6xl text-center absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">3</span>
+                    <span id="animate3-content" class="w-full p-4 text-6xl text-center absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">3</span>
                 </div>
             </div>
     
@@ -149,7 +201,7 @@ window.onbeforeunload =  () => window.scrollTo(0,0);
                     id="animate5" 
                     class="absolute left-[50%] translate-x-[-50%] translate-y-[-50%] p-12 rounded-full"
                 >
-                    <span class="w-full p-4 text-6xl text-center absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">5</span>
+                    <span id="animate5-content" class="w-full p-4 text-6xl text-center absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">5</span>
                 </div>
             </div>
     
