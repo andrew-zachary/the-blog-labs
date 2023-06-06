@@ -1,22 +1,29 @@
 ---
 import Base from "../../layouts/base.astro";
 ---
+<script>
+    import loader from '../../js/loader';
+
+    loader('tabs-page');
+</script>
 <Base>
     
-    <div>
-        <div>test 1</div>
-        <div>test 2</div>
-        <div>test 3</div>
-    </div>
+    <div x-data="tabs" class="text-6xl">
 
-    <div>
-        <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, praesentium.</div>
-    </div>
-    <div>
-        <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, praesentium.</div>
-    </div>
-    <div>
-        <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, praesentium.</div>
+        <span x-text="current"></span>
+
+        <ul class="flex">
+            <li @click="changeTab(1)">test 1</li>
+            <li @click="changeTab(2)">test 2</li>
+            <li @click="changeTab(3)">test 3</li>
+        </ul>
+
+        <div class="relative">
+            <div class="absolute">1 Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, praesentium.</div>
+            <div class="absolute">2 Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, praesentium.</div>
+            <div class="absolute">3 Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, praesentium.</div>
+        </div>
+        
     </div>
 
 </Base>
