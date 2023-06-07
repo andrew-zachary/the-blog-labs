@@ -8,20 +8,37 @@ import Base from "../../layouts/base.astro";
 </script>
 <Base>
     
-    <div x-data="tabs" class="text-6xl">
+    <div id="page-layout" class="h-full max-w-screen-md mx-auto p-2 grid items-center overflow-auto">
 
-        <ul class="flex">
-            <li @click="changeTab(1)">test 1</li>
-            <li @click="changeTab(2)">test 2</li>
-            <li @click="changeTab(3)">test 3</li>
-        </ul>
+        <div id="page-layout-box" class="flex flex-col">
 
-        <div class="relative">
-            <div x-show="current == 1" class="absolute">1 Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, praesentium.</div>
-            <div x-show="current == 2" class="absolute">2 Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, praesentium.</div>
-            <div x-show="current == 3" class="absolute">3 Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, praesentium.</div>
-        </div>
+            <div x-data="tabs" class="w-full max-w-sm mx-auto">
+
+                <ul class="text-4xl capitalize flex relative z-10 -mb-[0.1rem]">
+                    <li data-tab="1"
+                        class="text-white bg-black p-4 rounded-t-3xl cursor-pointer"
+                        :class="$el.getAttribute('data-tab') == current?'!text-black font-bold !bg-white border border-black border-b-0':''"
+                        @click="changeTab(1)">test 1</li>
+                    <li data-tab="2"
+                        class="text-white bg-black p-4 rounded-t-3xl cursor-pointer"
+                        :class="$el.getAttribute('data-tab') == current?'!text-black font-bold !bg-white border border-black border-b-0':''"
+                        @click="changeTab(2)">test 2</li>
+                    <li data-tab="3"
+                        class="text-white bg-black p-4 rounded-t-3xl cursor-pointer"
+                        :class="$el.getAttribute('data-tab') == current?'!text-black font-bold !bg-white border border-black border-b-0':''"
+                        @click="changeTab(3)">test 3</li>
+                </ul>
         
+                <div class="text-6xl leading-[4.2rem] border border-black p-8 relative rounded-b-xl rounded-tr-xl">
+                    <div x-show="current == 1">1 conent tab 1 Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, praesentium.</div>
+                    <div x-show="current == 2">2 conent tab 2 Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, praesentium.</div>
+                    <div x-show="current == 3">3 conent tab 3 Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, praesentium.</div>
+                </div>
+
+            </div>
+
+        </div>
+
     </div>
 
 </Base>
