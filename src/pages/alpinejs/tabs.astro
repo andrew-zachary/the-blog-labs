@@ -10,8 +10,6 @@ import Base from "../../layouts/base.astro";
     
     <div x-data="tabs" class="text-6xl">
 
-        <span x-text="current"></span>
-
         <ul class="flex">
             <li @click="changeTab(1)">test 1</li>
             <li @click="changeTab(2)">test 2</li>
@@ -19,9 +17,9 @@ import Base from "../../layouts/base.astro";
         </ul>
 
         <div class="relative">
-            <div class="absolute">1 Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, praesentium.</div>
-            <div class="absolute">2 Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, praesentium.</div>
-            <div class="absolute">3 Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, praesentium.</div>
+            <div x-show="current == 1" class="absolute">1 Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, praesentium.</div>
+            <div x-show="current == 2" class="absolute">2 Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, praesentium.</div>
+            <div x-show="current == 3" class="absolute">3 Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, praesentium.</div>
         </div>
         
     </div>
