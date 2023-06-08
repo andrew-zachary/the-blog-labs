@@ -14,25 +14,61 @@ import Base from "../../layouts/base.astro";
 
             <div x-data="tabs" class="w-full max-w-sm mx-auto">
 
-                <ul class="text-4xl capitalize flex relative z-10 -mb-[0.1rem]">
+                <ul class="text-4xl capitalize flex -mb-[0.1rem] relative z-10">
                     <li data-tab="1"
                         class="text-white bg-black p-4 rounded-t-3xl cursor-pointer"
-                        :class="$el.getAttribute('data-tab') == current?'!text-black font-bold !bg-white border border-black border-b-0':''"
-                        @click="changeTab(1)">test 1</li>
+                        :class="$el.getAttribute('data-tab') == current?'!text-black font-bold !bg-green-500 border border-black border-b-0':''"
+                        @click="changeTab(1)">Green</li>
                     <li data-tab="2"
                         class="text-white bg-black p-4 rounded-t-3xl cursor-pointer"
-                        :class="$el.getAttribute('data-tab') == current?'!text-black font-bold !bg-white border border-black border-b-0':''"
-                        @click="changeTab(2)">test 2</li>
+                        :class="$el.getAttribute('data-tab') == current?'!text-black font-bold !bg-yellow-500 border border-black border-b-0':''"
+                        @click="changeTab(2)">Yellow</li>
                     <li data-tab="3"
                         class="text-white bg-black p-4 rounded-t-3xl cursor-pointer"
-                        :class="$el.getAttribute('data-tab') == current?'!text-black font-bold !bg-white border border-black border-b-0':''"
-                        @click="changeTab(3)">test 3</li>
+                        :class="$el.getAttribute('data-tab') == current?'!text-black font-bold !bg-pink-500 border border-black border-b-0':''"
+                        @click="changeTab(3)">Pink</li>
                 </ul>
         
-                <div class="text-6xl leading-[4.2rem] border border-black p-8 relative rounded-b-xl rounded-tr-xl">
-                    <div x-show="current == 1">1 conent tab 1 Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, praesentium.</div>
-                    <div x-show="current == 2">2 conent tab 2 Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, praesentium.</div>
-                    <div x-show="current == 3">3 conent tab 3 Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, praesentium.</div>
+                <div class="text-4xl leading-[3rem] border border-black rounded-b-xl rounded-tr-xl relative overflow-hidden">
+                    <div 
+                        :class="current == 1?'':'absolute top-0'" 
+                        class="bg-green-500 p-8" 
+                        x-show="current == 1" 
+                        x-transition:enter="transition ease-out duration-1000"
+                        x-transition:enter-start="opacity-0"
+                        x-transition:enter-end="opacity-100"
+                        x-transition:leave="transition ease-in duration-300"
+                        x-transition:leave-start="opacity-100"
+                        x-transition:leave-end="opacity-0"
+                    >
+                        1 conent tab 1 Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, praesentium.
+                    </div>
+                    <div 
+                        :class="current == 2?'':'absolute top-0'" 
+                        class="bg-yellow-500 p-8" 
+                        x-show="current == 2" 
+                        x-transition:enter="transition ease-out duration-1000"
+                        x-transition:enter-start="opacity-0"
+                        x-transition:enter-end="opacity-100"
+                        x-transition:leave="transition ease-in duration-300"
+                        x-transition:leave-start="opacity-100"
+                        x-transition:leave-end="opacity-0"
+                    >
+                        2 conent tab 2 Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, praesentium.
+                    </div>
+                    <div 
+                        :class="current == 3?'':'absolute top-0'" 
+                        class="bg-pink-500 p-8" 
+                        x-show="current == 3" 
+                        x-transition:enter="transition ease-out duration-1000"
+                        x-transition:enter-start="opacity-0"
+                        x-transition:enter-end="opacity-100"
+                        x-transition:leave="transition ease-in duration-300"
+                        x-transition:leave-start="opacity-100"
+                        x-transition:leave-end="opacity-0"
+                    >
+                        3 conent tab 3 Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, praesentium.
+                    </div>
                 </div>
 
             </div>
