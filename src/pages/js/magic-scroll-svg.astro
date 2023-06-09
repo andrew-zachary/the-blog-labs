@@ -5,17 +5,25 @@
 
     window.onload = () => MagicScrollSvg();
 </script>
+<style>
+    html {
+	    font-size: 62.5%;
+	}
+</style>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>magic scroll svg</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.14.0/TweenMax.min.js" integrity="sha512-PlmQiqilYxHHDW1Hw+iQ060Au6lwKNIP2yqKnVmhTYpjYTG+dIMiQq4i3dUkJzIRY3NgS9HkuvkYzZHz0WiiAw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js" integrity="sha512-8E3KZoPoZCD+1dgfqhPbejQBnQfBXe8FuwL4z/c8sTrgeDMFEnoyTlH3obB4/fV+6Sg0a0XF+L/6xS4Xx1fUEg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/animation.gsap.min.js" integrity="sha512-5/OHwmQzDSBS0Ous4/hlYoWLHd06/d2r7LdKZQVBXOA6PvOqWVXtdboiLTU7lQTGyVoKVTNkwi0ol4gHGlw5ww==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body>
-    <div class="p-4">
+    <div id="trigger" class="p-4 h-[100rem]">
         <svg width="100%" height="100%" viewBox="0 0 2293 2457" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M1141 0V648H2291.5V1269.5H1V1803.5H1141V2456.5" stroke="black" stroke-width="2"/>
+            <path id="line" d="M1141 0V648H2291.5V1269.5H1V1803.5H1141V2456.5" stroke="black" stroke-width="2"/>
         </svg>
     </div>
 </body>
