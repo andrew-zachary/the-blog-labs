@@ -2,16 +2,16 @@ const buildSpace = () => {
     
     const line = document.querySelector('path#line');
     const lineTotalLength = line.getTotalLength();
-    line.style.strokeDasharray = lineTotalLength;
-    line.style.strokeDashoffset = lineTotalLength;
+    line.style.strokeDasharray = lineTotalLength + 700;
+    line.style.strokeDashoffset = lineTotalLength + 700;
 
     const controller = new ScrollMagic.Controller();
 
     const tween = new TimelineMax()
-    .add(TweenMax.fromTo(line, 0.3, {strokeDashoffset: 6500, ease: Linear.easeNone}, {strokeDashoffset: 0, ease: Linear.easeNone}));
+    .add(TweenMax.to(line, 2, {strokeDashoffset: 0, ease: Linear.easeNone}));
 
     const scene = new ScrollMagic
-    .Scene({triggerElement: "#trigger1", duration: 200})
+    .Scene({triggerElement: "#trigger1", duration: 2700})
     .setTween(tween);
 
     scene.addTo(controller);
