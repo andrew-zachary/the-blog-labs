@@ -67,7 +67,7 @@ const buildSpace = () => {
     const tween = TweenMax.to(line, 0.3, {strokeDashoffset: 0, ease: Linear.easeNone});
     scene.setTween(tween);
 
-    const controller = new ScrollMagic.Controller();
+    const controller = new ScrollMagic.Controller({container: 'main'});
     scene.addTo(controller);
 
 };
