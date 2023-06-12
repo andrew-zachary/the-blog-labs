@@ -44,6 +44,7 @@ const selectWithFilter = () => {
                 //init filteredCates
                 this.filteredCates = this.cats;
 
+                this.$refs.catInput.value = '';
                 this.$refs.catInput.focus();
             }, 0);
         },
