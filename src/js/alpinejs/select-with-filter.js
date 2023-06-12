@@ -19,14 +19,40 @@ const selectWithFilter = () => {
             {id: 13, text: 'category 40', value: 'category 40'},
             {id: 14, text: 'category 50', value: 'category 50'}
         ],
+        'filteredCates': [],
+        'searchingValue': '',
         'value': 'select cat',
         'open': false,
+        init() {
+
+            // watch over the changes of searchingValue and do filtering
+            this.$watch('searchingValue', value => {
+
+                const result = [...this.cats.filter( cat => {
+                    return cat.text.toLowerCase() === value.toLowerCase()
+                })];
+
+                this.filteredCates = result.length > 0 ? result : this.cats;
+
+            });
+        },
         toggle() {
             this.open = !this.open;
+
+            if(this.open) setTimeout(() => {
+
+                //init filteredCates
+                this.filteredCates = this.cats;
+
+                this.$refs.catInput.focus();
+            }, 0);
         },
         selectCat(value) {
             this.value = value;
             this.open = false;
+        },
+        filtering() {
+            this.filtering = [1];
         }
     }));
     alpine.start();

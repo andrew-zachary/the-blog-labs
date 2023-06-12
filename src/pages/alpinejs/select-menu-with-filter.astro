@@ -56,9 +56,18 @@
                     >
                     
                         <div id="modal-box" class="px-4 py-8 flex flex-col justify-center">
-                            <input class="w-full p-4 mb-12 text-8xl font-bold border-4 border-black rounded-2xl" type="text" />
+                            <input 
+                            class="w-full 
+                            p-4 mb-12 
+                            text-8xl font-bold 
+                            border-4 border-black rounded-2xl
+                            placeholder:capitalize"
+                            type="text"
+                            placeholder="search categories" 
+                            x-ref="catInput" 
+                            @input="searchingValue = $el.value" />
                             <ul class="text-6xl text-white text-center capitalize">
-                                <template x-for="cat in cats">
+                                <template x-for="cat in filteredCates">
                                     <li
                                         class="py-4 hover:font-bold cursor-pointer"
                                         @click="selectCat(cat.value)"
