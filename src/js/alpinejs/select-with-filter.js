@@ -29,7 +29,7 @@ const selectWithFilter = () => {
             this.$watch('searchingValue', value => {
 
                 const result = [...this.cats.filter( cat => {
-                    return cat.text.toLowerCase() === value.toLowerCase()
+                    return cat.text.toLowerCase().includes(value.toLowerCase());
                 })];
 
                 this.filteredCates = result.length > 0 ? result : this.cats;
