@@ -1,19 +1,17 @@
-<style lang="scss">
-    html, body {
-        font-size: 62.5%;
-    }
-</style>
+---
+import Base from "../../layouts/base.astro";
+
+import ContainerCenterScroll from "../../components/astro/container-center-scroll.astro";
+---
 <script>
     import '../../js/vue/register-form-subfrom.js';
 </script>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form - Subform</title>
-</head>
-<body>
-    <div id="app"></div>
-</body>
-</html>
+<Base>
+
+    <ContainerCenterScroll>
+
+        <div id="app" class="w-full max-w-md mx-auto"></div>
+
+    </ContainerCenterScroll>
+
+</Base>
