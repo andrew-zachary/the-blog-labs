@@ -1,6 +1,7 @@
 import {
     Form as VeeForm,
     Field as VeeField,
+    FieldArray as VeeFieldArray,
     defineRule,
     configure
 } from 'vee-validate';
@@ -11,6 +12,7 @@ export default {
     install(app) {
         app.component('VeeForm', VeeForm);
         app.component('VeeField', VeeField);
+        app.component('VeeFieldArray', VeeFieldArray);
         
         defineRule('required', required);
         defineRule('email', email);

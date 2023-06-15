@@ -20,10 +20,10 @@
                     "required": "password is required"
                 }
             },
-            "confirm-password": {
+            "confirm_password": {
                 "label": "confirm password",
                 "errors": {
-                    "confirmed": "passwords don't match"
+                    "required": "passwords don't match"
                 }
             },
             "btns": {

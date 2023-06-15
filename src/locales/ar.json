@@ -20,10 +20,10 @@
                     "required": "كلمة المرور مطلوبة"
                 }
             },
-            "confirm-password": {
+            "confirm_password": {
                 "label": "تأكيد كلمة المرور",
                 "errors": {
-                    "confirmed": "كلمة المرور غير متطابقة"
+                    "required": "كلمة المرور غير متطابقة"
                 }
             },
             "btns": {
