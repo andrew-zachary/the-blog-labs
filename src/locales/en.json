@@ -14,6 +14,13 @@
                     "email": "valid email is needed"
                 }
             },
+            "hobbies": {
+                "label": "hobbies",
+                "errors": {
+                    "min": "at least one hobby",
+                    "signal": "can't be empty"
+                }
+            },
             "password": {
                 "label": "password",
                 "errors": {

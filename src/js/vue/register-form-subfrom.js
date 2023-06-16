@@ -2,7 +2,7 @@ import { createApp } from 'vue';
 import { createI18n } from 'vue-i18n';
 import PrimeVue from 'primevue/config';
 
-import ProgressBar from 'primevue/progressbar';
+import Button from 'primevue/button';
 import veevalidate from './plugins/veevalidate.js';
 
 //locales
@@ -19,5 +19,5 @@ const i18n = createI18n({
 });
 
 const registerFormSubform = createApp(App);
-registerFormSubform.component('ProgressBar', ProgressBar);
+registerFormSubform.component('Button', Button);
 registerFormSubform.use(i18n).use(PrimeVue).use(veevalidate).mount('#app');
