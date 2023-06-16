@@ -19,6 +19,11 @@
                 "errors": {
                     "min": "at least one hobby",
                     "signal": "can't be empty"
+                },
+                "years" : {
+                    "1": "1 year",
+                    "2": "2 years",
+                    "3": "more than 3"
                 }
             },
             "password": {

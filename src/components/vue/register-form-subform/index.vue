@@ -5,19 +5,20 @@
     const initialValues = {
         name: '',
         email: '',
-        hobbies: [],
+        hobbies: [{name: '', years: '1'}],
         password: '',
         confirm_password: ''
     };
 
     const validationSchema = yup.object().shape({
         name: yup.string().required('name.errors.required'),
-        email: yup.string().email().required('email.errors.required'),
+        email: yup.string().email('email.errors.email').required('email.errors.required'),
         hobbies: yup.array().of(
             yup.object().shape({
-                name: yup.string().required()
+                name: yup.string().required(),
+                years: yup.string().required(),
             })
-        ).min(1, 'at least 1 hobby'),
+        ).min(1),
         password: yup.string().required('password.errors.required'),
         'confirm_password': yup.string().required('confirm_password.errors.required').oneOf([yup.ref('password')], 'confirm_password.errors.required')
     });
@@ -30,11 +31,20 @@
     
 </script>
 <style lang="scss">
+
+#select-years {
+    margin: 0 0 0 1.5rem;
+
+    html[dir=rtl] & {
+        margin: 0 1.5rem 0 0;
+    }
+}
+
 .p-button-icon {
-    padding: 1.5rem;
+    padding: 0 1.5rem;
 
     &:before {
-        font-size: 3rem;
+        font-size: 3.5rem;
         color: #2563eb;
     }
 }
@@ -43,7 +53,12 @@
 
     <LangSwitch />
 
-    <vee-form :validation-schema="validationSchema" :initial-values="initialValues" @submit="register">
+    <vee-form 
+        :validation-schema="validationSchema" 
+        :initial-values="initialValues" 
+        @submit="register"
+        v-slot={errors}
+    >
 
         <vee-field name="name" v-slot="{field, errors}">
             <div class="flex flex-col my-6">
@@ -68,9 +83,9 @@
         <vee-field-array name="hobbies" v-slot="{ fields, push, remove }">
 
             <div class="flex items-center mt-6">
-                <label for="hobbies" class="text-2xl font-mont font-bold capitalize">{{ $t(prepForTrans("hobbies.label")) }}</label>
+                <label for="hobbies" class="text-2xl font-mont font-bold capitalize py-[1.5rem]">{{ $t(prepForTrans("hobbies.label")) }}</label>
                 <Button 
-                    v-show="fields.length < 3" @click="push({name: ''})"
+                    v-show="fields.length < 3" @click="push({name: '', years: '1'})"
                     icon="pi pi-plus-circle text-2xl text-blue-600" 
                     severity="secondary" 
                     rounded 
@@ -81,24 +96,37 @@
                 {{ $t(prepForTrans("hobbies.errors.min")) }}
             </div>
 
-            <div class="flex items-center" v-for="(entry, id) in fields" :key="entry.key">
+            <div class="flex items-start" v-for="(entry, id) in fields" :key="entry.key">
                 
-                <vee-field :name="`hobbies[${id}].name`" v-slot="{field, errors}" rules="required">
-                    <div class="grow flex flex-col py-2 relative">
-                        <input type="text" class="w-full text-3xl py-2 px-4 border border-black rounded-full" v-bind="field" />
-                        <div class="text-2xl absolute bottom-[-17px]" v-if="errors.length > 0">
+                <vee-field :name="`hobbies[${id}].name`" v-slot="{field, errors}" :validateOnInput="true">
+
+                    <div class="grow flex flex-col mb-4">
+                        <input
+                            type="text" 
+                            class="w-full text-3xl py-2 px-4 border border-black rounded-full" 
+                            v-bind="field" />
+                        <div class="text-2xl" v-if="errors.length > 0">
                             * {{ $t(prepForTrans('hobbies.errors.signal')) }}
                         </div>
                     </div>
-                </vee-field>
 
-                <Button 
+                    <div id="select-years" class="py-2 px-4 border border-black rounded-full">
+                        <vee-field :name="`hobbies[${id}].years`" as="select" class="text-3xl bg-white focus:outline-none">
+                            <option value="1">{{ $t(prepForTrans('hobbies.years.1')) }}</option>
+                            <option value="2">{{ $t(prepForTrans('hobbies.years.2')) }}</option>
+                            <option value="3">{{ $t(prepForTrans('hobbies.years.3')) }}</option>
+                        </vee-field>
+                    </div>
+
+                    <Button 
                     @click="remove(id)"
                     class="grow-0"
                     icon="pi pi-times-circle" 
                     severity="secondary" 
                     rounded 
                     aria-label="Bookmark" />
+
+                </vee-field>
 
             </div>
 
@@ -124,7 +152,10 @@
             </div>
         </vee-field>
 
-        <button class="text-2xl font-bold text-white uppercase w-full p-4 bg-blue-600 rounded-full mt-12" type="submit">
+        <button 
+            :class="['text-2xl font-bold text-white uppercase w-full p-4 bg-blue-600 rounded-full mt-12', {'opacity-50 cursor-not-allowed': Object.keys(errors).length}]"
+            type="submit"
+        >
             {{ $t(prepForTrans("btns.submit")) }}
         </button>
 
