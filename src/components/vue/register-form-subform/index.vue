@@ -18,12 +18,13 @@
                 name: yup.string().required(),
                 years: yup.string().required(),
             })
-        ).min(1),
+        ).required().min(1),
         password: yup.string().required('password.errors.required'),
         'confirm_password': yup.string().required('confirm_password.errors.required').oneOf([yup.ref('password')], 'confirm_password.errors.required')
     });
 
     const register = (values, errors) => {
+        console.log(values);
         alert(JSON.stringify(values, null, 4));
     };
 
@@ -47,6 +48,10 @@
         font-size: 3.5rem;
     }
 }
+
+button:disabled {
+    opacity: 0.5;
+}
 </style>
 <template>
 
@@ -56,7 +61,7 @@
         :validation-schema="validationSchema" 
         :initial-values="initialValues" 
         @submit="register"
-        v-slot={errors}
+        v-slot="{errors}"
     >
 
         <vee-field name="name" v-slot="{field, errors}">
@@ -118,7 +123,11 @@
                     </div>
 
                     <Button 
-                    @click="remove(id)"
+                    @click="() => {
+                        if(fields.length <= 1) return;
+                        remove(id);
+                    }"
+                    :disabled="fields.length <= 1"
                     class="grow-0"
                     icon="pi pi-times-circle" 
                     severity="secondary" 
@@ -152,7 +161,8 @@
         </vee-field>
 
         <button 
-            :class="['text-6xl font-bold text-white uppercase w-full p-4 bg-black rounded-full mt-12', {'opacity-50 cursor-not-allowed': Object.keys(errors).length}]"
+            :class="['text-6xl font-bold text-white uppercase w-full p-4 bg-black rounded-full mt-12']"
+            :disabled="Object.keys(errors).length"
             type="submit"
         >
             {{ $t(prepForTrans("btns.submit")) }}
