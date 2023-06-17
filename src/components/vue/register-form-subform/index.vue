@@ -24,7 +24,7 @@
     });
 
     const register = (values, errors) => {
-        console.log(values);
+        alert(JSON.stringify(values, null, 4));
     };
 
     const prepForTrans = (str) => `forms.register.${str}`.toLowerCase();
@@ -45,7 +45,6 @@
 
     &:before {
         font-size: 3.5rem;
-        color: #2563eb;
     }
 }
 </style>
@@ -62,8 +61,8 @@
 
         <vee-field name="name" v-slot="{field, errors}">
             <div class="flex flex-col my-6">
-                <label for="name" class="text-2xl font-mont font-bold capitalize my-4">{{ $t(prepForTrans("name.label")) }}</label>
-                <input type="text" class="w-full text-3xl py-2 px-4 border border-black rounded-full" v-bind="field" />
+                <label for="name" class="text-4xl font-mont font-bold capitalize my-4">{{ $t(prepForTrans("name.label")) }}</label>
+                <input type="text" class="w-full text-3xl py-2 px-8 border border-black rounded-full" v-bind="field" />
                 <div class="text-2xl mt-2" v-if="errors.length > 0">
                     * {{ $t(prepForTrans(errors[0] || "")) }}
                 </div>
@@ -72,8 +71,8 @@
 
         <vee-field name="email" v-slot="{field, errors}">
             <div class="flex flex-col my-6">
-                <label for="name" class="text-2xl font-mont font-bold capitalize my-4">{{ $t(prepForTrans("email.label")) }}</label>
-                <input type="text" class="w-full text-3xl py-2 px-4 border border-black rounded-full" v-bind="field" />
+                <label for="name" class="text-4xl font-mont font-bold capitalize my-4">{{ $t(prepForTrans("email.label")) }}</label>
+                <input type="text" class="w-full text-3xl py-2 px-8 border border-black rounded-full" v-bind="field" />
                 <div class="text-2xl mt-2" v-if="errors.length > 0">
                     * {{ $t(prepForTrans(errors[0] || "")) }}
                 </div>
@@ -83,10 +82,10 @@
         <vee-field-array name="hobbies" v-slot="{ fields, push, remove }">
 
             <div class="flex items-center mt-6">
-                <label for="hobbies" class="text-2xl font-mont font-bold capitalize py-[1.5rem]">{{ $t(prepForTrans("hobbies.label")) }}</label>
+                <label for="hobbies" class="text-4xl font-mont font-bold capitalize py-[1.5rem]">{{ $t(prepForTrans("hobbies.label")) }}</label>
                 <Button 
                     v-show="fields.length < 3" @click="push({name: '', years: '1'})"
-                    icon="pi pi-plus-circle text-2xl text-blue-600" 
+                    icon="pi pi-plus-circle text-2xl" 
                     severity="secondary" 
                     rounded 
                     aria-label="Bookmark" />
@@ -103,7 +102,7 @@
                     <div class="grow flex flex-col mb-4">
                         <input
                             type="text" 
-                            class="w-full text-3xl py-2 px-4 border border-black rounded-full" 
+                            class="w-full text-3xl py-2 px-8 border border-black rounded-full" 
                             v-bind="field" />
                         <div class="text-2xl" v-if="errors.length > 0">
                             * {{ $t(prepForTrans('hobbies.errors.signal')) }}
@@ -134,8 +133,8 @@
 
         <vee-field name="password" v-slot="{field, errors}">
             <div class="flex flex-col my-6">
-                <label for="name" class="text-2xl font-mont font-bold capitalize my-4">{{ $t(prepForTrans("password.label")) }}</label>
-                <input type="password" class="w-full text-3xl py-2 px-4 border border-black rounded-full" v-bind="field" />
+                <label for="name" class="text-4xl font-mont font-bold capitalize my-4">{{ $t(prepForTrans("password.label")) }}</label>
+                <input type="password" class="w-full text-3xl py-2 px-8 border border-black rounded-full" v-bind="field" />
                 <div class="text-2xl mt-2" v-if="errors.length > 0">
                     * {{ $t(prepForTrans(errors[0] || "")) }}
                 </div>
@@ -144,8 +143,8 @@
 
         <vee-field name="confirm_password" v-slot="{field, errors}" :validateOnInput="true">
             <div class="flex flex-col my-6">
-                <label for="confirm_password" class="text-2xl font-mont font-bold capitalize my-4">{{ $t(prepForTrans("confirm_password.label")) }}</label>
-                <input type="password" class="w-full text-3xl py-2 px-4 border border-black rounded-full" v-bind="field" />
+                <label for="confirm_password" class="text-4xl font-mont font-bold capitalize my-4">{{ $t(prepForTrans("confirm_password.label")) }}</label>
+                <input type="password" class="w-full text-3xl py-2 px-8 border border-black rounded-full" v-bind="field" />
                 <div class="text-2xl mt-2" v-if="errors.length > 0">
                     * {{ $t(prepForTrans(errors[0] || "")) }}
                 </div>
@@ -153,7 +152,7 @@
         </vee-field>
 
         <button 
-            :class="['text-2xl font-bold text-white uppercase w-full p-4 bg-blue-600 rounded-full mt-12', {'opacity-50 cursor-not-allowed': Object.keys(errors).length}]"
+            :class="['text-6xl font-bold text-white uppercase w-full p-4 bg-black rounded-full mt-12', {'opacity-50 cursor-not-allowed': Object.keys(errors).length}]"
             type="submit"
         >
             {{ $t(prepForTrans("btns.submit")) }}
