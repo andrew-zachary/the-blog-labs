@@ -64,7 +64,7 @@ button:disabled {
         v-slot="{errors}"
     >
 
-        <vee-field name="name" v-slot="{field, errors}">
+        <vee-field name="name" v-slot="{field, errors}" :validateOnInput="true">
             <div class="flex flex-col my-6">
                 <label for="name" class="text-4xl font-mont font-bold capitalize my-4">{{ $t(prepForTrans("name.label")) }}</label>
                 <input type="text" class="w-full text-3xl py-2 px-8 border border-black rounded-full" v-bind="field" />
@@ -74,7 +74,7 @@ button:disabled {
             </div>
         </vee-field>
 
-        <vee-field name="email" v-slot="{field, errors}">
+        <vee-field name="email" v-slot="{field, errors}" :validateOnInput="true">
             <div class="flex flex-col my-6">
                 <label for="name" class="text-4xl font-mont font-bold capitalize my-4">{{ $t(prepForTrans("email.label")) }}</label>
                 <input type="text" class="w-full text-3xl py-2 px-8 border border-black rounded-full" v-bind="field" />
@@ -140,7 +140,7 @@ button:disabled {
 
         </vee-field-array>
 
-        <vee-field name="password" v-slot="{field, errors}">
+        <vee-field name="password" v-slot="{field, errors}" :validateOnInput="true">
             <div class="flex flex-col my-6">
                 <label for="name" class="text-4xl font-mont font-bold capitalize my-4">{{ $t(prepForTrans("password.label")) }}</label>
                 <input type="password" class="w-full text-3xl py-2 px-8 border border-black rounded-full" v-bind="field" />
