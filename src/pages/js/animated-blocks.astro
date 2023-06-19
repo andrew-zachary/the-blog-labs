@@ -3,6 +3,15 @@
 
     window.onload = animatedBlocks();
 </script>
+<style lang="scss">
+    html, body {
+        height: 100%;
+    }
+
+    html {
+        font-size: 62.5%;
+    }
+</style>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,9 +20,29 @@
     <title>Animated blocks</title>
 </head>
 <body>
-    <h1>animated blocks</h1>
-    <div>
+
+    <div class="grid justify-center items-center h-full overflow-auto">
+        
+        <div class="flex flex-col">
+            
+            <ul class="text-6xl py-2">
+                <li class="ab-col h-[60rem] w-[30rem]">
+                    <div class="ab-col-blocks ab-col-top w-[30rem] h-[30rem] bg-black">1</div>
+                    <div class="ab-col-blocks ab-col-bottom w-[30rem] h-[30rem] bg-green-500">2</div>
+                </li>
+                <li>test 2</li>
+                <li>test 3</li>
+                <li>test 4</li>
+                <li>test 6</li>
+                <li>test 7</li>
+                <li>test 8</li>
+                <li>test 9</li>
+                <li>test 10</li>
+            </ul>
+
+        </div>
 
     </div>
+
 </body>
 </html>
