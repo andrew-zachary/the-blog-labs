@@ -26,9 +26,16 @@
         <div class="flex flex-col">
             
             <ul class="text-6xl py-2">
-                <li class="ab-col h-[60rem] w-[30rem]">
-                    <div class="ab-col-blocks ab-col-top w-[30rem] h-[30rem] bg-black">1</div>
-                    <div class="ab-col-blocks ab-col-bottom w-[30rem] h-[30rem] bg-green-500">2</div>
+                <li class="ab-col h-[60rem] w-[30rem] overflow-hidden">
+                    <div class="ab-col-blocks ab-col-top 
+                        w-[30rem] h-[30rem] 
+                        transition-[height] duration-500 
+                        bg-black">1</div>
+                    <div class="ab-col-blocks
+                        relative z-10
+                        w-[30rem] h-[30rem] 
+                        transition-[height] duration-500 
+                        bg-green-500">2</div>
                 </li>
                 <li>test 2</li>
                 <li>test 3</li>

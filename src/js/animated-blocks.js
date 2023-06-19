@@ -3,7 +3,7 @@ const animatedBlocks = () => {
     const abColBlocks = document.querySelectorAll('.ab-col-blocks');
     const getBlockPosition = (target) => {
         return target.classList.contains('ab-col-top') ? 'nextElementSibling' : 'previousElementSibling';
-    }
+    };
 
     abColBlocks.forEach( block => {
         block.addEventListener('mouseenter', (e) => {

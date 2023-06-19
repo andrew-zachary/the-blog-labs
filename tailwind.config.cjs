@@ -26,6 +26,9 @@ module.exports = {
 				'mmc': 'max-content 1fr max-content',
 				//menu-tablet-columns
 				'mtc': 'max-content 1fr max-content'
+			},
+			transitionProperty: {
+				'height': 'height',
 			}
 		},
 	},
