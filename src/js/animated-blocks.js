@@ -12,6 +12,7 @@ const animatedBlocks = () => {
             blockPosition = getBlockPosition(e.target);
 
             e.target.style.height = '600px';
+            e.target.querySelector('.car').style.opacity = 1;
             e.target[blockPosition].style.height = 0;
             e.target[blockPosition].querySelector('.logo').style.opacity = 0;
         });
@@ -24,6 +25,7 @@ const animatedBlocks = () => {
             blockPosition = getBlockPosition(e.target);
 
             e.target.style.height = '300px';
+            e.target.querySelector('.car').style.opacity = 0;
             e.target[blockPosition].style.height = '300px';
             e.target[blockPosition].querySelector('.logo').style.opacity = 1;
         });
