@@ -1,3 +1,23 @@
+<script>
+    import masonry from '../../js/masonry.js';
+
+    window.onload = () => masonry();
+</script>
+<style lang="scss" is:global>
+    html {
+        font-size: 62.5%;
+    }
+    .list {
+        width: 100%;
+        list-style: none;
+    }
+    .grid-sizer, .list-item {
+        width: 30rem;
+    }
+    .list-item {
+        border: 1px solid black;
+    }
+</style>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +26,18 @@
     <title>masonry</title>
 </head>
 <body>
-    <h1>masonry</h1>
+    <div class="list">
+        <div class="grid-sizer"></div>
+        <div class="list-item text-3xl p-4">1- Lorem, ipsum dolor sit amet consectetur adipisicing elit. Impedit officia placeat, tempora atque id reprehenderit?</div>
+        <div class="list-item text-3xl p-4">2- Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorem tenetur a deleniti, quaerat velit saepe non dignissimos quisquam magnam voluptates sunt porro possimus id praesentium?</div>
+        <div class="list-item text-3xl p-4">3- Lorem ipsum dolor sit amet consectetur, adipisicing elit. Impedit, libero ipsum. Voluptatum!</div>
+        <div class="list-item text-3xl p-4">4- Lorem ipsum dolor sit amet.</div>
+        <div class="list-item text-3xl p-4">5- Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolore, neque placeat ea nostrum ad in, id ipsam rerum architecto asperiores maxime iure assumenda suscipit. Quos voluptatem atque dolores sed vel commodi cumque animi ipsum?</div>
+        <div class="list-item text-3xl p-4">6- Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vel aut sint praesentium doloribus unde aperiam eligendi iste enim? Modi, ducimus!</div>
+        <div class="list-item text-3xl p-4">7- Lorem ipsum dolor sit, amet consectetur adipisicing elit. Provident, perspiciatis.</div>
+        <div class="list-item text-3xl p-4">8- Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ad nulla dolorum optio dolor?</div>
+        <div class="list-item text-3xl p-4">9- Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorem tenetur a deleniti, quaerat velit saepe non dignissimos quisquam magnam voluptates sunt porro possimus id praesentium.</div>
+        <div class="list-item text-3xl p-4">10- Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias, quisquam quia.</div>
+    </div>
 </body>
 </html>
