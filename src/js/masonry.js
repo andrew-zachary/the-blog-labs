@@ -1,24 +1,62 @@
 import * as Masonry from 'masonry-layout';
 
-let msry = null;
-
-const loadProducts = async() => {
-    const res = await (await fetch('https://dummyjson.com/products?limit=10&skip=10&select=title,price,thumbnail,description')).json();
-    return res.products;
+const fetchingProducts = {
+    _value: {
+        busy: false,
+        page: 1
+    },
+  
+    get value() {
+      return this._value;
+    },
+  
+    set value(newValue) {
+      this._value = {...this._value, newValue};
+    }
 };
 
-const createMasonry = async() => {
+const list = document.querySelector('.main-list');
+const msry = new Masonry( list, {
+    itemSelector: '.main-list_item',
+    columnWidth: '.grid-sizer',
+    gutter: 0,
+    horizontalOrder: true,
+});
+
+const init = () => {
+
+    // first products load
+    loadProducts();
+
+    window.addEventListener('scroll', () => {
+        
+        let { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+
+        if(clientHeight + scrollTop >= scrollHeight) {
+            loadProducts();
+        }
+
+    });
+
+};
+
+const loadProducts = async() => {
+
+    if(fetchingProducts.value.busy) return;
+    fetchingProducts.value.busy = true;
+
+    const skip = 10 * fetchingProducts.value.page;
+    const res = await (await fetch(`https://dummyjson.com/products?limit=10&skip=${skip}&select=title,price,thumbnail,description`)).json();
+
+    await createMasonry(res.products);
+
+    fetchingProducts.value.busy = false;
+    fetchingProducts.value.page++;
+};
+
+const createMasonry = async(products) => {
 
     const imagePromises = [];
-    const products = await loadProducts();
-
-    const list = document.querySelector('.main-list');
-    msry = new Masonry( list, {
-        itemSelector: '.main-list_item',
-        columnWidth: '.grid-sizer',
-        gutter: 0,
-        horizontalOrder: true,
-    });
 
     products.forEach((item) => {
 
@@ -55,4 +93,4 @@ const createMasonry = async() => {
     
 };
 
-export { createMasonry };
+export default init;
