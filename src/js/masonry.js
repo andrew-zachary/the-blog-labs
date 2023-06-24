@@ -1,59 +1,58 @@
 import * as Masonry from 'masonry-layout';
 
-const masonry = () => {
+let msry = null;
 
-    const items = [
-        {
-            desc:'11- Lorem, ipsum dolor sit amet consectetur adipisicing elit. Impedit officia placeat, tempora atque id reprehenderit?',
-        },
-        {
-            desc:'12- Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorem tenetur a deleniti, quaerat velit saepe non dignissimos quisquam magnam voluptates sunt porro possimus id praesentium?'
-        },
-        {
-            desc:'13- Lorem ipsum dolor sit amet consectetur, adipisicing elit. Impedit, libero ipsum. Voluptatum!'
-        },
-        {
-            desc: '14- Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias,'
-        },
-        {
-            desc: '15- Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolore, neque placeat ea nostrum ad in, id ipsam rerum architecto asperiores maxime iure assumenda suscipit. Quos voluptatem atque dolores sed vel commodi cumque animi ipsum'
-        },
-        {
-            desc: '16- Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vel aut sint praesentium doloribus unde aperiam eligendi iste enim? Modi, ducimus!'
-        },
-        {
-            desc: '17- Lorem ipsum dolor sit, amet consectetur adipisicing elit. Provident, perspiciatis.'
-        },
-        {
-            desc: '18- Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ad nulla dolorum optio dolor?'
-        },
-        {
-            desc: '19- Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorem tenetur a deleniti, quaerat velit saepe non dignissimos quisquam magnam voluptates sunt porro possimus id praesentium.'
-        },
-        {
-            desc: '20- Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias, quisquam quia.'
-        }
-    ];
+const loadProducts = async() => {
+    const res = await (await fetch('https://dummyjson.com/products?limit=10&skip=10&select=title,price,thumbnail,description')).json();
+    return res.products;
+};
+
+const createMasonry = async() => {
+
+    const imagePromises = [];
+    const products = await loadProducts();
 
     const list = document.querySelector('.main-list');
-    const msry = new Masonry( list, {
+    msry = new Masonry( list, {
         itemSelector: '.main-list_item',
         columnWidth: '.grid-sizer',
         gutter: 0,
         horizontalOrder: true,
     });
 
-    items.forEach((item) => {
-        const node = document.createTextNode(item.desc);
+    products.forEach((item) => {
+
+        const img = new Image();
+        img.src = item.thumbnail;
+
+        const imgPromise = new Promise((resolve, reject) => {
+            img.onload = resolve;
+            img.onerror = reject;
+        });
+
+        imagePromises.push(imgPromise);
+
+        const h1 = document.createElement('h1');
+        h1.innerText = item.title;
+
+        const p = document.createElement('p');
+        p.innerText = item.description;
+
         const div = document.createElement("div");
         div.classList.add('main-list_item','text-3xl', 'border', 'border-black');
-        div.appendChild(node);
+        div.appendChild(img);
+        div.appendChild(h1);
+        div.appendChild(p);
     
         list.appendChild(div);
         msry.appended(div);
+
     });
-    
+
+    await Promise.all(imagePromises);
     msry.layout();
+    msry.layout();
+    
 };
 
-export default masonry;
+export { createMasonry };
