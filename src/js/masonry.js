@@ -67,15 +67,23 @@ const createMasonry = async(products) => {
 
     products.forEach((item) => {
 
-        const img = new Image();
-        img.src = item.thumbnail;
-        img.classList.add(
-            'mx-auto'
+        const placeholderImg = new Image();
+        placeholderImg.src = '/placeholder.jpg';
+        placeholderImg.style.width = '100%';
+        placeholderImg.style.height = '250px';
+        placeholderImg.classList.add('placeholder-img');
+
+        const productImg = new Image();
+        productImg.src = item.thumbnail;
+        productImg.classList.add(
+            'mx-auto',
+            'hidden',
+            'product-img'
         );
 
         const imgPromise = new Promise((resolve, reject) => {
-            img.onload = resolve;
-            img.onerror = reject;
+            productImg.onload = resolve;
+            productImg.onerror = reject;
         });
         imagePromises.push(imgPromise);
 
@@ -109,9 +117,11 @@ const createMasonry = async(products) => {
             'border',
             'border-black',
             'rounded-xl',
-            'p-2'
+            'p-2',
+            'pb-8'
         );
-        innerDiv.appendChild(img);
+        innerDiv.appendChild(placeholderImg);
+        innerDiv.appendChild(productImg);
         innerDiv.appendChild(title);
         innerDiv.appendChild(price);
         innerDiv.appendChild(description);
@@ -121,7 +131,7 @@ const createMasonry = async(products) => {
             'main-list_item',
             'overflow-hidden',
             'text-3xl', 
-            'p-4',
+            'p-4'
         );
         otterDiv.appendChild(innerDiv);
     
@@ -130,7 +140,18 @@ const createMasonry = async(products) => {
 
     });
 
+    msry.layout();
+
     await Promise.all(imagePromises);
+
+    document.querySelectorAll('.placeholder-img').forEach( img => {
+        img.remove();
+    });
+
+    document.querySelectorAll('.product-img').forEach( img => {
+        img.classList.remove('hidden');
+    });
+
     msry.layout();
     msry.layout();
     
