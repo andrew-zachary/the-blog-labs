@@ -56,6 +56,13 @@ const loadProducts = async() => {
 
 const createMasonry = async(products) => {
 
+    // hide the spinner if no more products
+    if(products.length === 0) {
+        document.querySelector('.spinner').style.display = 'none';
+    } else {
+        document.querySelector('.spinner').style.display = 'block';
+    }
+
     const imagePromises = [];
 
     products.forEach((item) => {

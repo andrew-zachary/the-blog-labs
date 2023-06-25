@@ -1,5 +1,5 @@
 <script>
-    import init from '../../js/masonry.js';
+    import init from "../../js/masonry.js";
 
     window.onload = () => init();
 </script>
@@ -7,20 +7,50 @@
     html {
         font-size: 62.5%;
     }
-    .grid-sizer, .main-list_item {
+    .grid-sizer,
+    .main-list_item {
         width: 25%;
     }
+    .lds-dual-ring {
+        display: inline-block;
+        width: 80px;
+        height: 80px;
+    }
+    .lds-dual-ring:after {
+        content: " ";
+        display: block;
+        width: 64px;
+        height: 64px;
+        margin: 8px;
+        border-radius: 50%;
+        border: 6px solid black;
+        border-color: black transparent black transparent;
+        animation: lds-dual-ring 1.2s linear infinite;
+    }
+    @keyframes lds-dual-ring {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
 </style>
-<!DOCTYPE html>
+
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>masonry</title>
-</head>
-<body>
-    <div class="main-list">
-        <div class="grid-sizer"></div>
-    </div>
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>masonry</title>
+    </head>
+    <body>
+        <div class="page-layout">
+            <div class="main-list">
+                <div class="grid-sizer"></div>
+            </div>
+            <div class="spinner flex justify-center py-4 overflow-hidden">
+                <div class="lds-dual-ring"></div>
+            </div>
+        </div>
+    </body>
 </html>
