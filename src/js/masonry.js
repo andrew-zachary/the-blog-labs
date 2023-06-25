@@ -60,7 +60,7 @@ const createMasonry = async(products) => {
     if(products.length === 0) {
         document.querySelector('.spinner').style.display = 'none';
     } else {
-        document.querySelector('.spinner').style.display = 'block';
+        document.querySelector('.spinner').style.display = 'flex';
     }
 
     const imagePromises = [];
@@ -69,6 +69,9 @@ const createMasonry = async(products) => {
 
         const img = new Image();
         img.src = item.thumbnail;
+        img.classList.add(
+            'mx-auto'
+        );
 
         const imgPromise = new Promise((resolve, reject) => {
             img.onload = resolve;
@@ -79,18 +82,41 @@ const createMasonry = async(products) => {
 
         const h1 = document.createElement('h1');
         h1.innerText = item.title;
+        h1.classList.add(
+            'mt-6',
+            'font-bold',
+            'capitalize'
+        );
 
-        const p = document.createElement('p');
-        p.innerText = item.description;
+        const description = document.createElement('p');
+        description.innerText = item.description;
+        description.classList.add(
+            'mt-6',
+            'text-4xl',
+            'capitalize'
+        );
 
-        const div = document.createElement("div");
-        div.classList.add('main-list_item','text-3xl', 'border', 'border-black');
-        div.appendChild(img);
-        div.appendChild(h1);
-        div.appendChild(p);
+        const innerDiv = document.createElement("div");
+        innerDiv.classList.add(
+            'border',
+            'border-black',
+            'rounded-xl',
+            'p-2'
+        );
+        innerDiv.appendChild(img);
+        innerDiv.appendChild(h1);
+        innerDiv.appendChild(description);
+
+        const otterDiv = document.createElement("div");
+        otterDiv.classList.add(
+            'main-list_item',
+            'text-3xl', 
+            'p-4',
+        );
+        otterDiv.appendChild(innerDiv);
     
-        list.appendChild(div);
-        msry.appended(div);
+        list.appendChild(otterDiv);
+        msry.appended(otterDiv);
 
     });
 
