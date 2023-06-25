@@ -77,13 +77,21 @@ const createMasonry = async(products) => {
             img.onload = resolve;
             img.onerror = reject;
         });
-
         imagePromises.push(imgPromise);
 
-        const h1 = document.createElement('h1');
-        h1.innerText = item.title;
-        h1.classList.add(
+        const title = document.createElement('h1');
+        title.innerText = item.title;
+        title.classList.add(
             'mt-6',
+            'font-bold',
+            'capitalize'
+        );
+
+        const price = document.createElement('h2');
+        price.innerText = `$${item.price}.99`;
+        price.classList.add(
+            'mt-6',
+            'text-7xl',
             'font-bold',
             'capitalize'
         );
@@ -104,12 +112,14 @@ const createMasonry = async(products) => {
             'p-2'
         );
         innerDiv.appendChild(img);
-        innerDiv.appendChild(h1);
+        innerDiv.appendChild(title);
+        innerDiv.appendChild(price);
         innerDiv.appendChild(description);
 
         const otterDiv = document.createElement("div");
         otterDiv.classList.add(
             'main-list_item',
+            'overflow-hidden',
             'text-3xl', 
             'p-4',
         );
