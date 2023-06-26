@@ -7,6 +7,10 @@
     html {
         font-size: 62.5%;
     }
+
+    html, body, #page-layout {
+        height: 100%;
+    }
     .grid-sizer,
     .main-list_item {
         width: 100%;
@@ -19,7 +23,7 @@
             width: calc(100% / 3);
         }
 
-        @media screen and (min-width: 1024px) {
+        @media screen and (min-width: 1200px) {
             width: 25%;
         }
 
@@ -61,13 +65,19 @@
         <title>masonry</title>
     </head>
     <body>
-        <div class="page-layout">
-            <div class="main-list">
-                <div class="grid-sizer"></div>
+
+        <div id="page-layout" class="grid items-center">
+
+            <div id="page-box" class="w-full flex flex-col items-start">
+                <div class="main-list w-full">
+                    <div class="grid-sizer"></div>
+                </div>
+                <div class="spinner w-full flex justify-center py-4 overflow-hidden">
+                    <div class="lds-dual-ring"></div>
+                </div>
             </div>
-            <div class="spinner flex justify-center py-4 overflow-hidden">
-                <div class="lds-dual-ring"></div>
-            </div>
+
         </div>
+
     </body>
 </html>

@@ -1,5 +1,7 @@
 import * as Masonry from 'masonry-layout';
 
+import svgPlaceholder from '../assets/placeholder.svg';
+
 const fetchingProducts = {
     _value: {
         busy: false,
@@ -20,7 +22,6 @@ const msry = new Masonry( list, {
     itemSelector: '.main-list_item',
     columnWidth: '.grid-sizer',
     gutter: 0,
-    horizontalOrder: true,
 });
 
 const init = () => {
@@ -32,7 +33,7 @@ const init = () => {
         
         let { scrollTop, scrollHeight, clientHeight } = document.documentElement;
 
-        if(clientHeight + scrollTop >= scrollHeight) {
+        if(clientHeight + scrollTop >= ( scrollHeight - 200 )) {
             loadProducts();
         }
 
@@ -68,16 +69,19 @@ const createMasonry = async(products) => {
     products.forEach((item) => {
 
         const placeholderImg = new Image();
-        placeholderImg.src = '/placeholder.jpg';
+        placeholderImg.src = svgPlaceholder;
         placeholderImg.style.width = '100%';
         placeholderImg.style.height = '250px';
         placeholderImg.classList.add('placeholder-img');
 
         const productImg = new Image();
         productImg.src = item.thumbnail;
+        productImg.style.visibility = 'hidden';
+        productImg.style.opacity = 0;
+        productImg.style.height = 0;
+        productImg.style.transition = 'visibility 0s, opacity 1s linear';
         productImg.classList.add(
             'mx-auto',
-            'hidden',
             'product-img'
         );
 
@@ -149,7 +153,9 @@ const createMasonry = async(products) => {
     });
 
     document.querySelectorAll('.product-img').forEach( img => {
-        img.classList.remove('hidden');
+        img.style.visibility = 'visible';
+        img.style.opacity = 1;
+        img.style.height = 'unset';
     });
 
     msry.layout();
