@@ -1,4 +1,4 @@
-import * as Masonry from 'masonry-layout';
+import Masonry from 'masonry-layout';
 
 import svgPlaceholder from '../assets/placeholder.svg';
 
